@@ -11,6 +11,7 @@ extends State
 func enter() -> void:
 	player.sprite.play("roll")
 	player.velocity.x = player.roll_speed 
+	player.velocity.y = 0
 	if player.sprite.flip_h:
 		player.velocity.x *= -1
 

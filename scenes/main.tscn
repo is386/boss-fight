@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cw3w0dq3qlpky" path="res://assets/sprites/player/_Run.png" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://bortqjpqumabx" path="res://src/state_machine/state_machine.gd" id="3_tbgi4"]
 [ext_resource type="Texture2D" uid="uid://dmcb2jxtkpx38" path="res://assets/sprites/player/_Jump.png" id="3_tipki"]
+[ext_resource type="Texture2D" uid="uid://bxtotlm16jbsb" path="res://assets/sprites/player/_Dash.png" id="4_gqmmt"]
 [ext_resource type="Script" uid="uid://p7mblhvstqsw" path="res://src/player/states/idle.gd" id="4_tefeu"]
 [ext_resource type="Script" uid="uid://twrptyjlulwr" path="res://src/player/states/move.gd" id="5_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://bvjhkykt72d6e" path="res://assets/sprites/player/_Roll.png" id="7_dp3eg"]
@@ -18,6 +19,7 @@
 [ext_resource type="Script" uid="uid://bjfdmweq7sd8f" path="res://src/player/velocity_component.gd" id="12_eb6dy"]
 [ext_resource type="Script" uid="uid://babfsl71vtf4a" path="res://src/player/states/crouch_walk.gd" id="13_jkv2x"]
 [ext_resource type="Script" uid="uid://ebmp0ho1slti" path="res://src/player/states/roll.gd" id="15_muem4"]
+[ext_resource type="Script" uid="uid://dawi15qqfv47j" path="res://src/player/states/dash.gd" id="17_0ld40"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yq6so"]
 atlas = ExtResource("2_trceg")
@@ -50,6 +52,14 @@ region = Rect2(720, 0, 120, 80)
 [sub_resource type="AtlasTexture" id="AtlasTexture_fuf3a"]
 atlas = ExtResource("3_jbj1t")
 region = Rect2(840, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvyfr"]
+atlas = ExtResource("4_gqmmt")
+region = Rect2(0, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ty1g6"]
+atlas = ExtResource("4_gqmmt")
+region = Rect2(120, 0, 120, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2wyq8"]
 atlas = ExtResource("2_choun")
@@ -237,6 +247,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_nvyfr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ty1g6")
+}],
+"loop": false,
+"name": &"dash",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_2wyq8")
 }, {
 "duration": 1.0,
@@ -397,10 +418,8 @@ roll_speed = 300.0
 texture_filter = 1
 position = Vector2(1, -25)
 sprite_frames = SubResource("SpriteFrames_o5qli")
-animation = &"roll"
+animation = &"dash"
 autoplay = "idle"
-frame = 10
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=753644030]
 position = Vector2(-2, 0)
@@ -427,17 +446,19 @@ fall_state = NodePath("../Fall")
 crouch_state = NodePath("../Crouch")
 roll_state = NodePath("../Roll")
 
-[node name="Jump" type="Node" parent="Player/StateMachine" unique_id=590698938 node_paths=PackedStringArray("player", "fall_state")]
+[node name="Jump" type="Node" parent="Player/StateMachine" unique_id=590698938 node_paths=PackedStringArray("player", "fall_state", "dash_state")]
 script = ExtResource("8_85g3d")
 player = NodePath("../..")
 jump_speed = 350.0
 fall_state = NodePath("../Fall")
+dash_state = NodePath("../Dash")
 
-[node name="Fall" type="Node" parent="Player/StateMachine" unique_id=1889351762 node_paths=PackedStringArray("player", "idle_state", "crouch_state")]
+[node name="Fall" type="Node" parent="Player/StateMachine" unique_id=1889351762 node_paths=PackedStringArray("player", "idle_state", "crouch_state", "dash_state")]
 script = ExtResource("10_ya4ey")
 player = NodePath("../..")
 idle_state = NodePath("../Idle")
 crouch_state = NodePath("../Crouch")
+dash_state = NodePath("../Dash")
 
 [node name="Crouch" type="Node" parent="Player/StateMachine" unique_id=765043638 node_paths=PackedStringArray("player", "idle_state", "jump_state", "crouch_walk_state", "roll_state")]
 script = ExtResource("12_a8y0u")
@@ -465,6 +486,11 @@ move_state = NodePath("../Move")
 fall_state = NodePath("../Fall")
 crouch_state = NodePath("../Crouch")
 crouch_walk_state = NodePath("../CrouchWalk")
+
+[node name="Dash" type="Node" parent="Player/StateMachine" unique_id=1165588002 node_paths=PackedStringArray("player", "fall_state")]
+script = ExtResource("17_0ld40")
+player = NodePath("../..")
+fall_state = NodePath("../Fall")
 
 [node name="MovementComponent" type="Node" parent="Player" unique_id=1549188483 node_paths=PackedStringArray("player")]
 script = ExtResource("11_ya4ey")
