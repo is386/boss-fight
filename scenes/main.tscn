@@ -144,50 +144,6 @@ region = Rect2(120, 0, 120, 80)
 atlas = ExtResource("3_tipki")
 region = Rect2(240, 0, 120, 80)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fv21b"]
-atlas = ExtResource("7_dp3eg")
-region = Rect2(0, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pibwh"]
-atlas = ExtResource("7_dp3eg")
-region = Rect2(120, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c6pm6"]
-atlas = ExtResource("7_dp3eg")
-region = Rect2(240, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5he1u"]
-atlas = ExtResource("7_dp3eg")
-region = Rect2(360, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5poiv"]
-atlas = ExtResource("7_dp3eg")
-region = Rect2(480, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2cjbq"]
-atlas = ExtResource("7_dp3eg")
-region = Rect2(600, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_chjal"]
-atlas = ExtResource("7_dp3eg")
-region = Rect2(720, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_cjqg0"]
-atlas = ExtResource("7_dp3eg")
-region = Rect2(840, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vchkt"]
-atlas = ExtResource("7_dp3eg")
-region = Rect2(960, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_txyw0"]
-atlas = ExtResource("7_dp3eg")
-region = Rect2(1080, 0, 120, 80)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_vc5cj"]
-atlas = ExtResource("7_dp3eg")
-region = Rect2(1200, 0, 120, 80)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_trceg"]
 atlas = ExtResource("3_sugp2")
 region = Rect2(0, 0, 120, 80)
@@ -373,44 +329,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fv21b")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_pibwh")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c6pm6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5he1u")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5poiv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2cjbq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_chjal")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_cjqg0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vchkt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_txyw0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_vc5cj")
-}],
-"loop": false,
-"name": &"roll",
-"speed": 30.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_trceg")
 }, {
 "duration": 1.0,
@@ -515,7 +433,7 @@ zoom = Vector2(5, 5)
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1520613645 node_paths=PackedStringArray("state_machine", "sprite", "movement_component", "velocity_component")]
 script = ExtResource("1_tefeu")
-state_machine = NodePath("StateMachine")
+state_machine = NodePath("MovementStateMachine")
 sprite = NodePath("AnimatedSprite2D")
 movement_component = NodePath("MovementComponent")
 velocity_component = NodePath("VelocityComponent")
@@ -523,8 +441,6 @@ move_speed = 150.0
 sprint_speed = 300.0
 jump_speed = 400.0
 crouch_walk_speed = 50.0
-roll_speed = 500.0
-roll_distance = 100.0
 dash_speed = 500.0
 dash_distance = 100.0
 
@@ -532,18 +448,17 @@ dash_distance = 100.0
 texture_filter = 1
 position = Vector2(2, -20)
 sprite_frames = SubResource("SpriteFrames_o5qli")
-animation = &"sprint_jump"
+animation = &"crouch"
 autoplay = "idle"
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=753644030]
 position = Vector2(-2, 0)
 shape = SubResource("CapsuleShape2D_0wfyh")
 
-[node name="StateMachine" type="Node" parent="Player" unique_id=131067108]
+[node name="MovementStateMachine" type="Node" parent="Player" unique_id=131067108]
 script = ExtResource("3_tbgi4")
 
-[node name="Idle" type="Node" parent="Player/StateMachine" unique_id=195862313 node_paths=PackedStringArray("player", "move_state", "jump_state", "fall_state", "crouch_state", "dash_state")]
+[node name="Idle" type="Node" parent="Player/MovementStateMachine" unique_id=195862313 node_paths=PackedStringArray("player", "move_state", "jump_state", "fall_state", "crouch_state", "dash_state")]
 script = ExtResource("4_tefeu")
 player = NodePath("../..")
 move_state = NodePath("../Move")
@@ -552,7 +467,7 @@ fall_state = NodePath("../Fall")
 crouch_state = NodePath("../Crouch")
 dash_state = NodePath("../Dash")
 
-[node name="Move" type="Node" parent="Player/StateMachine" unique_id=1157750737 node_paths=PackedStringArray("player", "idle_state", "jump_state", "fall_state", "crouch_state", "dash_state", "sprint_jump_state")]
+[node name="Move" type="Node" parent="Player/MovementStateMachine" unique_id=1157750737 node_paths=PackedStringArray("player", "idle_state", "jump_state", "fall_state", "crouch_state", "dash_state", "sprint_jump_state")]
 script = ExtResource("5_o6xl0")
 player = NodePath("../..")
 idle_state = NodePath("../Idle")
@@ -562,13 +477,13 @@ crouch_state = NodePath("../Crouch")
 dash_state = NodePath("../Dash")
 sprint_jump_state = NodePath("../SprintJump")
 
-[node name="Jump" type="Node" parent="Player/StateMachine" unique_id=590698938 node_paths=PackedStringArray("player", "fall_state", "dash_state")]
+[node name="Jump" type="Node" parent="Player/MovementStateMachine" unique_id=590698938 node_paths=PackedStringArray("player", "fall_state", "dash_state")]
 script = ExtResource("8_85g3d")
 player = NodePath("../..")
 fall_state = NodePath("../Fall")
 dash_state = NodePath("../Dash")
 
-[node name="Fall" type="Node" parent="Player/StateMachine" unique_id=1889351762 node_paths=PackedStringArray("player", "idle_state", "jump_state", "crouch_state", "dash_state")]
+[node name="Fall" type="Node" parent="Player/MovementStateMachine" unique_id=1889351762 node_paths=PackedStringArray("player", "idle_state", "jump_state", "crouch_state", "dash_state")]
 script = ExtResource("10_ya4ey")
 player = NodePath("../..")
 idle_state = NodePath("../Idle")
@@ -576,7 +491,7 @@ jump_state = NodePath("../Jump")
 crouch_state = NodePath("../Crouch")
 dash_state = NodePath("../Dash")
 
-[node name="Crouch" type="Node" parent="Player/StateMachine" unique_id=765043638 node_paths=PackedStringArray("player", "idle_state", "jump_state", "crouch_walk_state", "dash_state")]
+[node name="Crouch" type="Node" parent="Player/MovementStateMachine" unique_id=765043638 node_paths=PackedStringArray("player", "idle_state", "jump_state", "crouch_walk_state", "dash_state")]
 script = ExtResource("12_a8y0u")
 player = NodePath("../..")
 idle_state = NodePath("../Idle")
@@ -584,7 +499,7 @@ jump_state = NodePath("../Jump")
 crouch_walk_state = NodePath("../CrouchWalk")
 dash_state = NodePath("../Dash")
 
-[node name="CrouchWalk" type="Node" parent="Player/StateMachine" unique_id=1289406921 node_paths=PackedStringArray("player", "idle_state", "move_state", "jump_state", "fall_state", "crouch_state", "dash_state")]
+[node name="CrouchWalk" type="Node" parent="Player/MovementStateMachine" unique_id=1289406921 node_paths=PackedStringArray("player", "idle_state", "move_state", "jump_state", "fall_state", "crouch_state", "dash_state")]
 script = ExtResource("13_jkv2x")
 player = NodePath("../..")
 idle_state = NodePath("../Idle")
@@ -594,7 +509,7 @@ fall_state = NodePath("../Fall")
 crouch_state = NodePath("../Crouch")
 dash_state = NodePath("../Dash")
 
-[node name="Dash" type="Node" parent="Player/StateMachine" unique_id=1165588002 node_paths=PackedStringArray("player", "idle_state", "move_state", "fall_state", "crouch_state", "crouch_walk_state")]
+[node name="Dash" type="Node" parent="Player/MovementStateMachine" unique_id=1165588002 node_paths=PackedStringArray("player", "idle_state", "move_state", "fall_state", "crouch_state", "crouch_walk_state")]
 script = ExtResource("17_0ld40")
 player = NodePath("../..")
 idle_state = NodePath("../Idle")
@@ -603,7 +518,7 @@ fall_state = NodePath("../Fall")
 crouch_state = NodePath("../Crouch")
 crouch_walk_state = NodePath("../CrouchWalk")
 
-[node name="SprintJump" type="Node" parent="Player/StateMachine" unique_id=381238415 node_paths=PackedStringArray("player", "fall_state")]
+[node name="SprintJump" type="Node" parent="Player/MovementStateMachine" unique_id=381238415 node_paths=PackedStringArray("player", "fall_state")]
 script = ExtResource("21_pm3ni")
 player = NodePath("../..")
 fall_state = NodePath("../Fall")

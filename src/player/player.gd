@@ -9,8 +9,6 @@ extends CharacterBody2D
 @export var sprint_speed: float
 @export var jump_speed: float
 @export var crouch_walk_speed: float
-@export var roll_speed: float
-@export var roll_distance: float
 @export var dash_speed: float
 @export var dash_distance: float
 

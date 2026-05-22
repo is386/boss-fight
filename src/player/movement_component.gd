@@ -15,9 +15,6 @@ func can_buffer_jump() -> bool:
 func can_crouch() -> bool:
 	return is_crouching() and player.is_on_floor()
 
-func can_roll() -> bool:
-	return Input.is_action_just_pressed("roll") and player.is_on_floor()
-
 func can_dash() -> bool:
 	return Input.is_action_just_pressed("dash") and !player.dashed
 
