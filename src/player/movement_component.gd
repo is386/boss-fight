@@ -9,6 +9,9 @@ func get_direction() -> float:
 func can_jump() -> bool:
 	return Input.is_action_just_pressed("jump") and player.is_on_floor()
 
+func can_buffer_jump() -> bool:
+	return Input.is_action_just_pressed("jump")
+
 func can_crouch() -> bool:
 	return is_crouching() and player.is_on_floor()
 

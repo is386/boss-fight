@@ -511,7 +511,7 @@ distance = -256.0
 [node name="Main" type="Node2D" unique_id=1078711876]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1628247919]
-zoom = Vector2(2, 2)
+zoom = Vector2(5, 5)
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1520613645 node_paths=PackedStringArray("state_machine", "sprite", "movement_component", "velocity_component")]
 script = ExtResource("1_tefeu")
@@ -568,10 +568,11 @@ player = NodePath("../..")
 fall_state = NodePath("../Fall")
 dash_state = NodePath("../Dash")
 
-[node name="Fall" type="Node" parent="Player/StateMachine" unique_id=1889351762 node_paths=PackedStringArray("player", "idle_state", "crouch_state", "dash_state")]
+[node name="Fall" type="Node" parent="Player/StateMachine" unique_id=1889351762 node_paths=PackedStringArray("player", "idle_state", "jump_state", "crouch_state", "dash_state")]
 script = ExtResource("10_ya4ey")
 player = NodePath("../..")
 idle_state = NodePath("../Idle")
+jump_state = NodePath("../Jump")
 crouch_state = NodePath("../Crouch")
 dash_state = NodePath("../Dash")
 
