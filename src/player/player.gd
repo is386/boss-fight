@@ -8,8 +8,13 @@ extends CharacterBody2D
 @export var move_speed: float
 @export var crouch_walk_speed: float
 @export var roll_speed: float
+@export var roll_distance: float
+@export var dash_speed: float
+@export var dash_distance: float
 
 var dashed = false
+var direction = 1
+var was_crouching = false
 
 func _ready() -> void:
 	state_machine.init()

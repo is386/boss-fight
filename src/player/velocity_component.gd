@@ -7,7 +7,7 @@ func apply_horizontal_velocity(speed: float) -> bool:
 	var direction := player.movement_component.get_direction()
 	if direction:
 		player.velocity.x = direction * speed 
-		player.sprite.flip_h = direction != 1
+		player.direction = direction
 	else:
 		player.velocity.x = 0 
 		return false

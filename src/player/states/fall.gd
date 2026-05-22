@@ -10,6 +10,8 @@ func enter() -> void:
 	player.sprite.play("fall")
 
 func process_physics(delta: float) -> State:
+	player.sprite.flip_h = player.direction != 1
+
 	if player.is_on_floor():
 		player.dashed = false
 		return idle_state

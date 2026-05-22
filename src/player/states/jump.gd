@@ -11,6 +11,8 @@ func enter() -> void:
 	player.velocity.y = -jump_speed
 
 func process_physics(delta: float) -> State:
+	player.sprite.flip_h = player.direction != 1
+
 	if player.velocity.y >= 0:
 		return fall_state
 	if player.movement_component.can_dash():
