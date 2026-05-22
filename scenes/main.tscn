@@ -22,6 +22,7 @@
 [ext_resource type="Script" uid="uid://bjfdmweq7sd8f" path="res://src/player/velocity_component.gd" id="12_eb6dy"]
 [ext_resource type="Script" uid="uid://babfsl71vtf4a" path="res://src/player/states/crouch_walk.gd" id="13_jkv2x"]
 [ext_resource type="Script" uid="uid://dawi15qqfv47j" path="res://src/player/states/dash.gd" id="17_0ld40"]
+[ext_resource type="Script" uid="uid://wbls3curd7op" path="res://src/player/states/sprint_jump.gd" id="21_pm3ni"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o7ddy"]
 atlas = ExtResource("2_jscy8")
@@ -226,6 +227,10 @@ region = Rect2(960, 0, 120, 80)
 [sub_resource type="AtlasTexture" id="AtlasTexture_jscy8"]
 atlas = ExtResource("3_sugp2")
 region = Rect2(1080, 0, 120, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1v6qk"]
+atlas = ExtResource("7_dp3eg")
+region = Rect2(120, 0, 120, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j2jfr"]
 atlas = ExtResource("10_yc10j")
@@ -441,6 +446,49 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_trceg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8y0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkv2x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbj1t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_muem4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dp3eg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ld40")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gqmmt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yc10j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jscy8")
+}],
+"loop": true,
+"name": &"sprint",
+"speed": 30.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1v6qk")
+}],
+"loop": false,
+"name": &"sprint_jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_j2jfr")
 }, {
 "duration": 1.0,
@@ -463,7 +511,7 @@ distance = -256.0
 [node name="Main" type="Node2D" unique_id=1078711876]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1628247919]
-zoom = Vector2(3, 3)
+zoom = Vector2(2, 2)
 
 [node name="Player" type="CharacterBody2D" parent="." unique_id=1520613645 node_paths=PackedStringArray("state_machine", "sprite", "movement_component", "velocity_component")]
 script = ExtResource("1_tefeu")
@@ -472,6 +520,8 @@ sprite = NodePath("AnimatedSprite2D")
 movement_component = NodePath("MovementComponent")
 velocity_component = NodePath("VelocityComponent")
 move_speed = 150.0
+sprint_speed = 300.0
+jump_speed = 400.0
 crouch_walk_speed = 50.0
 roll_speed = 500.0
 roll_distance = 100.0
@@ -482,9 +532,9 @@ dash_distance = 100.0
 texture_filter = 1
 position = Vector2(2, -20)
 sprite_frames = SubResource("SpriteFrames_o5qli")
-animation = &"run"
+animation = &"sprint_jump"
 autoplay = "idle"
-frame_progress = 0.6951824
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=753644030]
 position = Vector2(-2, 0)
@@ -502,7 +552,7 @@ fall_state = NodePath("../Fall")
 crouch_state = NodePath("../Crouch")
 dash_state = NodePath("../Dash")
 
-[node name="Move" type="Node" parent="Player/StateMachine" unique_id=1157750737 node_paths=PackedStringArray("player", "idle_state", "jump_state", "fall_state", "crouch_state", "dash_state")]
+[node name="Move" type="Node" parent="Player/StateMachine" unique_id=1157750737 node_paths=PackedStringArray("player", "idle_state", "jump_state", "fall_state", "crouch_state", "dash_state", "sprint_jump_state")]
 script = ExtResource("5_o6xl0")
 player = NodePath("../..")
 idle_state = NodePath("../Idle")
@@ -510,11 +560,11 @@ jump_state = NodePath("../Jump")
 fall_state = NodePath("../Fall")
 crouch_state = NodePath("../Crouch")
 dash_state = NodePath("../Dash")
+sprint_jump_state = NodePath("../SprintJump")
 
 [node name="Jump" type="Node" parent="Player/StateMachine" unique_id=590698938 node_paths=PackedStringArray("player", "fall_state", "dash_state")]
 script = ExtResource("8_85g3d")
 player = NodePath("../..")
-jump_speed = 350.0
 fall_state = NodePath("../Fall")
 dash_state = NodePath("../Dash")
 
@@ -551,6 +601,11 @@ move_state = NodePath("../Move")
 fall_state = NodePath("../Fall")
 crouch_state = NodePath("../Crouch")
 crouch_walk_state = NodePath("../CrouchWalk")
+
+[node name="SprintJump" type="Node" parent="Player/StateMachine" unique_id=381238415 node_paths=PackedStringArray("player", "fall_state")]
+script = ExtResource("21_pm3ni")
+player = NodePath("../..")
+fall_state = NodePath("../Fall")
 
 [node name="MovementComponent" type="Node" parent="Player" unique_id=1549188483 node_paths=PackedStringArray("player")]
 script = ExtResource("11_ya4ey")

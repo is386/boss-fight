@@ -7,6 +7,7 @@ extends State
 @export var fall_state: State
 @export var crouch_state: State
 @export var dash_state: State
+@export var sprint_jump_state: State
 
 var is_turning_around = false
 var is_dash_buffered = false 
@@ -20,6 +21,8 @@ func exit() -> void:
 	player.sprite.animation_finished.disconnect(_on_turn_around_animation_finished)	
 
 func process_physics(_delta: float) -> State:
+	if !is_turning_around and player.movement_component.can_jump() and player.movement_component.can_sprint():
+		return sprint_jump_state
 	if player.movement_component.can_jump():
 		return jump_state
 	if !player.is_on_floor():
@@ -42,7 +45,12 @@ func process_physics(_delta: float) -> State:
 
 	var currentDirection = player.direction
 
-	var isMoving = player.velocity_component.apply_horizontal_velocity(player.move_speed)
+	var speed = player.move_speed
+	if player.movement_component.can_sprint():
+		speed = player.sprint_speed
+		player.sprite.play("sprint")
+
+	var isMoving = player.velocity_component.apply_horizontal_velocity(speed)
 	if !isMoving:
 		return idle_state
 
@@ -50,9 +58,14 @@ func process_physics(_delta: float) -> State:
 		currentDirection = player.direction
 		player.sprite.play("turn_around")
 		is_turning_around = true
-
+	
 	player.move_and_slide()
 
+	return null
+
+func process_input(_event: InputEvent) -> State:
+	if Input.is_action_just_released("dash"):
+		player.sprite.play("run")
 	return null
 
 func _on_turn_around_animation_finished() -> void:

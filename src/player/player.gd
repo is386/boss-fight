@@ -6,6 +6,8 @@ extends CharacterBody2D
 @export var movement_component: MovementComponent
 @export var velocity_component: VelocityComponent
 @export var move_speed: float
+@export var sprint_speed: float
+@export var jump_speed: float
 @export var crouch_walk_speed: float
 @export var roll_speed: float
 @export var roll_distance: float

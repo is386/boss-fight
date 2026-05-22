@@ -2,13 +2,12 @@ class_name PlayerJump
 extends State
 
 @export var player: Player
-@export var jump_speed: float
 @export var fall_state: State
 @export var dash_state: State
 
 func enter() -> void:
 	player.sprite.play("jump")
-	player.velocity.y = -jump_speed
+	player.velocity.y = -player.jump_speed
 
 func process_physics(delta: float) -> State:
 	player.sprite.flip_h = player.direction != 1
@@ -24,3 +23,8 @@ func process_physics(delta: float) -> State:
 
 	return null
 		
+func process_input(_event: InputEvent) -> State:
+	if Input.is_action_just_released("jump"):
+		player.velocity.y = 0
+		return fall_state
+	return null

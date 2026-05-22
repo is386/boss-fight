@@ -16,7 +16,10 @@ func can_roll() -> bool:
 	return Input.is_action_just_pressed("roll") and player.is_on_floor()
 
 func can_dash() -> bool:
-	return Input.is_action_just_pressed("roll") and !player.dashed
+	return Input.is_action_just_pressed("dash") and !player.dashed
 
 func is_crouching() -> bool:
 	return Input.is_action_pressed("crouch")
+
+func can_sprint() -> bool:
+	return Input.is_action_pressed("dash") and !player.dashed
