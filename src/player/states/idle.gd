@@ -1,7 +1,6 @@
 class_name PlayerIdle
 extends State
 
-@export var player: Player
 @export var run_state: State
 @export var jump_state: State
 @export var fall_state: State
@@ -9,12 +8,16 @@ extends State
 @export var dash_state: State
 
 func enter() -> void:
+	player.is_idle = true
 	if player.was_crouching:
-		player.sprite.play("get_up")
+		player.play_animation("get_up")
 		player.sprite.animation_finished.connect(_on_get_up_animation_finished)
 	else:
-		player.sprite.play("idle")
+		play_entry_animation()
 	player.velocity.x = 0
+
+func exit() -> void:
+	player.is_idle = false
 
 func process_physics(_delta: float) -> State:
 	if player.was_crouching:
@@ -32,6 +35,9 @@ func process_physics(_delta: float) -> State:
 	return null
 
 func _on_get_up_animation_finished() -> void:
-	player.sprite.play("idle")
+	play_entry_animation()
 	player.sprite.animation_finished.disconnect(_on_get_up_animation_finished)
 	player.was_crouching = false
+
+func play_entry_animation() -> void:
+	player.play_animation("idle")	

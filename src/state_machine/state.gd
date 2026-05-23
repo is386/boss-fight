@@ -1,6 +1,8 @@
 class_name State
 extends Node
 
+@export var player: Player
+
 func enter() -> void:
 	pass
 
@@ -16,3 +18,5 @@ func process(_delta: float) -> State:
 func process_physics(_delta: float) -> State:
 	return null
 
+func play_entry_animation() -> void:
+	pass

@@ -1,7 +1,6 @@
 class_name PlayerCrouchWalk
 extends State
 
-@export var player: Player
 @export var idle_state: State
 @export var run_state: State
 @export var jump_state: State
@@ -10,7 +9,7 @@ extends State
 @export var dash_state: State
 
 func enter() -> void:
-	player.sprite.play("crouch_walk")	
+	play_entry_animation()
 
 func process_physics(_delta: float) -> State:
 	player.sprite.flip_h = player.direction != 1
@@ -36,3 +35,6 @@ func process_physics(_delta: float) -> State:
 	player.move_and_slide()
 
 	return null
+
+func play_entry_animation() -> void:
+	player.play_animation("crouch_walk")	

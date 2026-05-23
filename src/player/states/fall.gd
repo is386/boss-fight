@@ -1,7 +1,6 @@
 class_name PlayerFall
 extends State
 
-@export var player: Player
 @export var idle_state: State
 @export var jump_state: State
 @export var crouch_state: State
@@ -10,7 +9,7 @@ extends State
 var is_jump_buffered: bool = false
 
 func enter() -> void:
-	player.sprite.play("fall")
+	play_entry_animation()
 
 func process_physics(delta: float) -> State:
 	player.sprite.flip_h = player.direction != 1
@@ -36,3 +35,5 @@ func process_physics(delta: float) -> State:
 
 	return null
 	
+func play_entry_animation() -> void:
+	player.play_animation("fall")	

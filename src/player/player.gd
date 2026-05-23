@@ -2,7 +2,8 @@ class_name Player
 extends CharacterBody2D
 
 @export var sprite: AnimatedSprite2D 
-@export var state_machine: StateMachine 
+@export var movement_state_machine: StateMachine 
+@export var attack_state_machine: StateMachine 
 @export var movement_component: MovementComponent
 @export var velocity_component: VelocityComponent
 
@@ -29,18 +30,31 @@ extends CharacterBody2D
 @export var dash_speed: float = 500
 @export var dash_distance: float = 100
 
+@export_group("Attack Parameters")
+@export var enable_attack: bool = true
+
 var dashed = false
 var direction = 1
 var was_crouching = false
+var is_attacking = false
+var is_idle = true
 
 func _ready() -> void:
-	state_machine.init()
+	movement_state_machine.init()
+	attack_state_machine.init()
 
 func _process(delta: float) -> void:
-	state_machine.process(delta)
+	movement_state_machine.process(delta)
+	attack_state_machine.process(delta)
 
 func _physics_process(delta: float) -> void:
-	state_machine.process_physics(delta)
+	movement_state_machine.process_physics(delta)
+	attack_state_machine.process_physics(delta)
 
 func _unhandled_input(event: InputEvent) -> void:
-	state_machine.process_input(event)
+	movement_state_machine.process_input(event)
+	attack_state_machine.process_input(event)
+
+func play_animation(animation_name: String) -> void:
+	if !is_attacking:
+		sprite.play(animation_name)

@@ -34,3 +34,6 @@ func can_sprint() -> bool:
 
 func can_sprint_jump() -> bool:
 	return player.enable_sprint_jump and can_jump() and can_sprint()
+
+func can_attack() -> bool:
+	return player.enable_attack and Input.is_action_just_pressed("attack")

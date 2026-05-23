@@ -1,22 +1,24 @@
 class_name PlayerSprintJump
 extends State
 
-@export var player: Player
 @export var idle_state: State
 @export var run_state: State
 @export var crouch_state: State
 
 var start: Vector2
 var is_jump_buffered: bool = false
+var is_falling: bool = false
 
 func enter() -> void:
-	player.sprite.play("sprint_jump")
+	play_entry_animation()
 	player.sprite.animation_finished.connect(_on_sprint_jump_animation_finished)
 	player.velocity.y = -player.sprint_speed * 1.4
 	player.velocity.x = player.sprint_speed * sign(player.direction) 
 	start = player.global_position
 
 func exit() -> void:
+	is_jump_buffered = false
+	is_falling = false
 	player.sprite.animation_finished.disconnect(_on_sprint_jump_animation_finished)
 
 func process_physics(delta: float) -> State:
@@ -40,4 +42,11 @@ func process_physics(delta: float) -> State:
 	return null
 
 func _on_sprint_jump_animation_finished() -> void:
-	player.sprite.play("sprint_jump_loop")
+	is_falling = true
+	play_entry_animation()
+
+func play_entry_animation() -> void:
+	if is_falling:
+		player.play_animation("sprint_jump_loop")
+	else:
+		player.play_animation("sprint_jump")	

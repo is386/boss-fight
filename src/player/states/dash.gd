@@ -1,7 +1,6 @@
 class_name PlayerDash
 extends State
 
-@export var player: Player
 @export var idle_state: State
 @export var run_state: State
 @export var fall_state: State
@@ -11,7 +10,7 @@ extends State
 var start: Vector2
 
 func enter() -> void:
-	player.sprite.play("dash")
+	play_entry_animation()
 	player.dashed = true
 	player.velocity.x = player.dash_speed 
 	player.velocity.y = 0
@@ -47,3 +46,6 @@ func process_physics(delta: float) -> State:
 
 	player.move_and_slide()
 	return null
+
+func play_entry_animation() -> void:
+	player.play_animation("dash")	
