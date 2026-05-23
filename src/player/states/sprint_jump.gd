@@ -30,7 +30,7 @@ func process_physics(delta: float) -> State:
 				return self 
 			if player.movement_component.can_crouch():
 				return crouch_state
-			if abs(player.movement_component.get_direction()) > 0:
+			if player.movement_component.can_move():
 				return move_state
 			return idle_state
 

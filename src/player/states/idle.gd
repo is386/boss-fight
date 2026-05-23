@@ -21,7 +21,7 @@ func process_physics(_delta: float) -> State:
 		return
 	if !player.is_on_floor():
 		return fall_state
-	if abs(player.movement_component.get_direction()) > 0:
+	if player.movement_component.can_move():
 		return move_state
 	if player.movement_component.can_jump():
 		return jump_state

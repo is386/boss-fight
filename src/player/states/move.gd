@@ -13,7 +13,7 @@ func enter() -> void:
 	player.sprite.play("run")
 
 func process_physics(_delta: float) -> State:
-	if player.movement_component.can_jump() and player.movement_component.can_sprint():
+	if player.movement_component.can_sprint_jump():
 		return sprint_jump_state
 	if player.movement_component.can_jump():
 		return jump_state
@@ -41,4 +41,3 @@ func _get_speed() -> float:
 		player.sprite.play("sprint")
 		return player.sprint_speed
 	return player.move_speed
-

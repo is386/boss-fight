@@ -13,7 +13,7 @@ func enter() -> void:
 func process_physics(_delta: float) -> State:
 	if player.movement_component.can_jump():
 		return jump_state
-	if abs(player.movement_component.get_direction()) > 0:
+	if player.movement_component.can_crouch_walk():
 		return crouch_walk_state 
 	if player.movement_component.can_dash():
 		return dash_state

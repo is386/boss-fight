@@ -28,11 +28,11 @@
 [ext_resource type="Script" uid="uid://dawi15qqfv47j" path="res://src/player/states/dash.gd" id="17_0ld40"]
 [ext_resource type="Texture2D" uid="uid://kq3bjpgyxbdb" path="res://assets/sprites/player/Crawl/Crawl08.png" id="17_k42av"]
 [ext_resource type="Texture2D" uid="uid://dipa2jeak7vt2" path="res://assets/sprites/player/Combat/SwordDash/SwordDash01.png" id="18_xrs0c"]
-[ext_resource type="Texture2D" uid="uid://2yjrxxu0dga3" path="res://assets/sprites/player/Combat/SwordDash/SwordDash02.png" id="19_xljpf"]
-[ext_resource type="Texture2D" uid="uid://veet8uo5dse7" path="res://assets/sprites/player/Combat/SwordDash/SwordDash03.png" id="20_j4bwh"]
-[ext_resource type="Texture2D" uid="uid://e56bcaekg63v" path="res://assets/sprites/player/Combat/SwordDash/SwordDash04.png" id="21_ksmap"]
+[ext_resource type="Texture2D" uid="uid://2yjrxxu0dga3" path="res://assets/sprites/player/Dash/Dash02.png" id="19_xljpf"]
+[ext_resource type="Texture2D" uid="uid://veet8uo5dse7" path="res://assets/sprites/player/Dash/Dash03.png" id="20_j4bwh"]
+[ext_resource type="Texture2D" uid="uid://e56bcaekg63v" path="res://assets/sprites/player/Dash/Dash04.png" id="21_ksmap"]
 [ext_resource type="Script" uid="uid://wbls3curd7op" path="res://src/player/states/sprint_jump.gd" id="21_pm3ni"]
-[ext_resource type="Texture2D" uid="uid://x4pdeylg6hh0" path="res://assets/sprites/player/Combat/SwordDash/SwordDash05.png" id="22_ygd8o"]
+[ext_resource type="Texture2D" uid="uid://x4pdeylg6hh0" path="res://assets/sprites/player/Dash/Dash05.png" id="22_ygd8o"]
 [ext_resource type="Texture2D" uid="uid://oh7wbmtyddt" path="res://assets/sprites/player/Combat/SwordJump/SwordJump02.png" id="23_xrs0c"]
 [ext_resource type="Texture2D" uid="uid://cg85j28lfben" path="res://assets/sprites/player/Combat/SwordJump/SwordJump03.png" id="24_xljpf"]
 [ext_resource type="Texture2D" uid="uid://dsmtxeuve7t4q" path="res://assets/sprites/player/Combat/SwordIdle/SwordIdle01.png" id="26_xljpf"]
@@ -316,15 +316,17 @@ distance = -256.0
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1628247919]
 zoom = Vector2(5, 5)
 
-[node name="Player" type="CharacterBody2D" parent="." unique_id=1520613645 node_paths=PackedStringArray("state_machine", "sprite", "movement_component", "velocity_component")]
+[node name="Player" type="CharacterBody2D" parent="." unique_id=1520613645 node_paths=PackedStringArray("sprite", "state_machine", "movement_component", "velocity_component")]
 script = ExtResource("1_tefeu")
-state_machine = NodePath("MovementStateMachine")
 sprite = NodePath("AnimatedSprite2D")
+state_machine = NodePath("MovementStateMachine")
 movement_component = NodePath("MovementComponent")
 velocity_component = NodePath("VelocityComponent")
 move_speed = 150.0
 sprint_speed = 300.0
 jump_speed = 400.0
+enable_crouch = false
+enable_crouch_walk = false
 crouch_walk_speed = 50.0
 dash_speed = 500.0
 dash_distance = 100.0
