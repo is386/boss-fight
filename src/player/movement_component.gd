@@ -30,10 +30,16 @@ func can_dash() -> bool:
 	return player.enable_dash and Input.is_action_just_pressed("dash") and !player.dashed
 
 func can_sprint() -> bool:
-	return player.enable_sprint and Input.is_action_pressed("dash") 
+	return player.enable_sprint and Input.is_action_pressed("sprint") 
 
 func can_sprint_jump() -> bool:
 	return player.enable_sprint_jump and can_jump() and can_sprint()
 
 func can_attack() -> bool:
 	return player.enable_attack and Input.is_action_just_pressed("attack")
+
+func is_holding_up() -> bool:
+	return Input.is_action_pressed("move_up")
+
+func is_holding_down() -> bool:
+	return Input.is_action_pressed("move_down")

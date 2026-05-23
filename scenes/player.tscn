@@ -2,8 +2,12 @@
 
 [ext_resource type="Script" uid="uid://bpqdxvutnb56n" path="res://src/player/player.gd" id="1_770dr"]
 [ext_resource type="Texture2D" uid="uid://cckcxvlogv0gt" path="res://assets/sprites/player/Land/Land02.png" id="2_8f1cb"]
+[ext_resource type="Texture2D" uid="uid://bfdhh3x443r0h" path="res://assets/sprites/player/Combat/AirSlash/AirSlash01.png" id="2_l7gmo"]
+[ext_resource type="Texture2D" uid="uid://bfll5urroiv68" path="res://assets/sprites/player/Combat/AirSlash/AirSlash02.png" id="3_kft7l"]
 [ext_resource type="Texture2D" uid="uid://dq6c81j5uoxu7" path="res://assets/sprites/player/Land/Land01.png" id="3_vdulj"]
+[ext_resource type="Texture2D" uid="uid://ch3y4v4vohtwj" path="res://assets/sprites/player/Combat/AirSlash/AirSlash03.png" id="4_2s4os"]
 [ext_resource type="Texture2D" uid="uid://dft57xfa7ctc3" path="res://assets/sprites/player/Crouch/Crouch01.png" id="4_vau08"]
+[ext_resource type="Texture2D" uid="uid://78ic8m15rrqc" path="res://assets/sprites/player/Combat/AirSlash/AirSlash04.png" id="5_2em0j"]
 [ext_resource type="Texture2D" uid="uid://c3sxyarchjt2c" path="res://assets/sprites/player/Crouch/Crouch02.png" id="5_qsb7e"]
 [ext_resource type="Texture2D" uid="uid://bjlofmbnocjib" path="res://assets/sprites/player/Crouch/Crouch03.png" id="6_qjsmb"]
 [ext_resource type="Texture2D" uid="uid://kmro0vhi5oms" path="res://assets/sprites/player/Crouch/Crouch04.png" id="7_mwp2n"]
@@ -27,10 +31,16 @@
 [ext_resource type="Texture2D" uid="uid://dsmtxeuve7t4q" path="res://assets/sprites/player/Combat/SwordIdle/SwordIdle01.png" id="25_fr8ja"]
 [ext_resource type="Texture2D" uid="uid://bnrysw1gch8yl" path="res://assets/sprites/player/Combat/SwordIdle/SwordIdle02.png" id="26_gvmy4"]
 [ext_resource type="Texture2D" uid="uid://wx4gvur65egn" path="res://assets/sprites/player/Combat/SwordIdle/SwordIdle03.png" id="27_fcu33"]
+[ext_resource type="Texture2D" uid="uid://ct0jkyptr24rc" path="res://assets/sprites/player/Combat/AirSlashDown/AirSlashDown01.png" id="27_qe2k6"]
+[ext_resource type="Texture2D" uid="uid://ck8lvuhxmf0xx" path="res://assets/sprites/player/Combat/AirSlashDown/AirSlashDown02.png" id="28_edwuo"]
 [ext_resource type="Texture2D" uid="uid://co61t5v6ou5rm" path="res://assets/sprites/player/Combat/SwordIdle/SwordIdle04.png" id="28_qmsq4"]
+[ext_resource type="Texture2D" uid="uid://cnebwcii7xhp3" path="res://assets/sprites/player/Combat/AirSlashDown/AirSlashDown03.png" id="29_5eiju"]
 [ext_resource type="Texture2D" uid="uid://dcqpcj4674r6u" path="res://assets/sprites/player/Combat/SwordIdle/SwordIdle05.png" id="29_5vs2b"]
 [ext_resource type="Texture2D" uid="uid://ceptr6dx4kxc8" path="res://assets/sprites/player/Combat/SwordIdle/SwordIdle06.png" id="30_a7i4v"]
+[ext_resource type="Texture2D" uid="uid://djpjwuhn7qo06" path="res://assets/sprites/player/Combat/AirSlashDown/AirSlashDown04.png" id="30_uukdq"]
+[ext_resource type="Texture2D" uid="uid://2jie1hg1w2pi" path="res://assets/sprites/player/Combat/AirSlashDown/AirSlashDown05.png" id="31_3k3j0"]
 [ext_resource type="Texture2D" uid="uid://dcr4oehigu75l" path="res://assets/sprites/player/Combat/SwordIdle/SwordIdle07.png" id="31_b5l0c"]
+[ext_resource type="Texture2D" uid="uid://dfdo70haxa145" path="res://assets/sprites/player/Combat/AirSlashDown/AirSlashDown06.png" id="32_0bpox"]
 [ext_resource type="Texture2D" uid="uid://dxy38uecr0l5w" path="res://assets/sprites/player/Combat/SwordJump/SwordJump01.png" id="32_2a33p"]
 [ext_resource type="Texture2D" uid="uid://c6phn8csevgxr" path="res://assets/sprites/player/Combat/SwordRun/SwordRun01.png" id="33_reqs7"]
 [ext_resource type="Texture2D" uid="uid://bw18xvs6fueg6" path="res://assets/sprites/player/Combat/SwordRun/SwordRun02.png" id="34_2yjfb"]
@@ -85,10 +95,36 @@
 [ext_resource type="Script" uid="uid://bjfdmweq7sd8f" path="res://src/player/velocity_component.gd" id="69_ealyq"]
 [ext_resource type="Script" uid="uid://bf455ukluloqy" path="res://src/player/states/idle_attack.gd" id="74_bpsgo"]
 [ext_resource type="Script" uid="uid://ddht0054isxxu" path="res://src/player/states/standing_attack.gd" id="75_jx8is"]
+[ext_resource type="Texture2D" uid="uid://cp1vbnlkag30o" path="res://assets/sprites/player/Combat/AirSlashUp/AirSlashUp01.png" id="83_5c21n"]
+[ext_resource type="Texture2D" uid="uid://8j4egecyk86b" path="res://assets/sprites/player/Combat/AirSlashUp/AirSlashUp02.png" id="84_e8m1u"]
 [ext_resource type="Script" uid="uid://cw35owvnt23c7" path="res://src/player/states/running_attack.gd" id="84_lw0jh"]
+[ext_resource type="Texture2D" uid="uid://b1grjpucc7lii" path="res://assets/sprites/player/Combat/AirSlashUp/AirSlashUp03.png" id="85_77pet"]
+[ext_resource type="Texture2D" uid="uid://dd6aq43swc4mh" path="res://assets/sprites/player/Combat/AirSlashUp/AirSlashUp04.png" id="86_tlhxf"]
+[ext_resource type="Texture2D" uid="uid://ud7ya7y3yfsy" path="res://assets/sprites/player/Combat/AirSlashUp/AirSlashUp05.png" id="87_hrkfm"]
+[ext_resource type="Texture2D" uid="uid://cdoqqm8nhrx14" path="res://assets/sprites/player/Combat/AirSlashUp/AirSlashUp06.png" id="88_oxcmq"]
+[ext_resource type="Script" uid="uid://cr0mffjfp8jlb" path="res://src/player/states/aerial_attack.gd" id="101_wylla"]
+[ext_resource type="Script" uid="uid://bfkmuq54u4pwv" path="res://src/player/states/upwards_aerial_attack.gd" id="102_a3eqm"]
+[ext_resource type="Script" uid="uid://df7iyrdk4hjre" path="res://src/player/states/downwards_aerial_attack.gd" id="103_plx2b"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_o5qli"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_l7gmo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kft7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2s4os")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2em0j")
+}],
+"loop": false,
+"name": &"aerial_attack",
+"speed": 15.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_8f1cb")
@@ -174,6 +210,29 @@ animations = [{
 "loop": false,
 "name": &"dash",
 "speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("27_qe2k6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_edwuo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_5eiju")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_uukdq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_3k3j0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_0bpox")
+}],
+"loop": false,
+"name": &"downwards_aerial_attack",
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -380,6 +439,29 @@ animations = [{
 "loop": false,
 "name": &"standing_attack",
 "speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("83_5c21n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_e8m1u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_77pet")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_tlhxf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_hrkfm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_oxcmq")
+}],
+"loop": false,
+"name": &"upwards_aerial_attack",
+"speed": 15.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0wfyh"]
@@ -398,9 +480,9 @@ dash_distance = 110.0
 texture_filter = 1
 position = Vector2(-2, -25)
 sprite_frames = SubResource("SpriteFrames_o5qli")
-animation = &"running_attack"
+animation = &"upwards_aerial_attack"
 autoplay = "idle"
-frame = 7
+frame = 5
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1358590442]
@@ -480,10 +562,13 @@ player = NodePath("../..")
 [node name="AttackStateMachine" type="Node" parent="." unique_id=934609042]
 script = ExtResource("59_2xkbm")
 
-[node name="IdleAttack" type="Node" parent="AttackStateMachine" unique_id=942466336 node_paths=PackedStringArray("standing_attack_state", "running_attack_state", "player")]
+[node name="IdleAttack" type="Node" parent="AttackStateMachine" unique_id=942466336 node_paths=PackedStringArray("standing_attack_state", "running_attack_state", "aerial_attack_state", "upwards_aerial_attack_state", "downwards_aerial_attack_state", "player")]
 script = ExtResource("74_bpsgo")
 standing_attack_state = NodePath("../StandingAttack")
 running_attack_state = NodePath("../RunningAttack")
+aerial_attack_state = NodePath("../AerialAttack")
+upwards_aerial_attack_state = NodePath("../UpwardsAerialAttack")
+downwards_aerial_attack_state = NodePath("../DownwardsAerialAttack")
 player = NodePath("../..")
 
 [node name="StandingAttack" type="Node" parent="AttackStateMachine" unique_id=1663022956 node_paths=PackedStringArray("idle_attack_state", "player")]
@@ -493,6 +578,21 @@ player = NodePath("../..")
 
 [node name="RunningAttack" type="Node" parent="AttackStateMachine" unique_id=180949624 node_paths=PackedStringArray("idle_attack_state", "player")]
 script = ExtResource("84_lw0jh")
+idle_attack_state = NodePath("../IdleAttack")
+player = NodePath("../..")
+
+[node name="AerialAttack" type="Node" parent="AttackStateMachine" unique_id=208217666 node_paths=PackedStringArray("idle_attack_state", "player")]
+script = ExtResource("101_wylla")
+idle_attack_state = NodePath("../IdleAttack")
+player = NodePath("../..")
+
+[node name="UpwardsAerialAttack" type="Node" parent="AttackStateMachine" unique_id=284285598 node_paths=PackedStringArray("idle_attack_state", "player")]
+script = ExtResource("102_a3eqm")
+idle_attack_state = NodePath("../IdleAttack")
+player = NodePath("../..")
+
+[node name="DownwardsAerialAttack" type="Node" parent="AttackStateMachine" unique_id=1533859707 node_paths=PackedStringArray("idle_attack_state", "player")]
+script = ExtResource("103_plx2b")
 idle_attack_state = NodePath("../IdleAttack")
 player = NodePath("../..")
 
