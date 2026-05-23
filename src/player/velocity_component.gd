@@ -4,7 +4,7 @@ extends Node
 @export var player: Player
 
 func apply_horizontal_velocity(speed: float) -> bool:
-	var direction := player.movement_component.get_direction()
+	var direction := player.movement_component.get_run_direction()
 	if direction:
 		player.velocity.x = direction * speed 
 		player.direction = direction

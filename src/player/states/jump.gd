@@ -18,7 +18,7 @@ func process_physics(delta: float) -> State:
 		return dash_state
 
 	player.velocity_component.apply_gravity(delta)
-	player.velocity_component.apply_horizontal_velocity(player.move_speed)
+	player.velocity_component.apply_horizontal_velocity(player.run_speed)
 	player.move_and_slide()
 
 	return null

@@ -3,11 +3,11 @@ extends Node
 
 @export var player: Player
 
-func can_move() -> bool:
-	return player.enable_move and abs(player.movement_component.get_direction()) > 0
+func can_run() -> bool:
+	return player.enable_run and abs(player.movement_component.get_run_direction()) > 0
 
-func get_direction() -> float:
-	if !player.enable_move:
+func get_run_direction() -> float:
+	if !player.enable_run:
 		return 0
 	return Input.get_axis("move_left", "move_right")
 
@@ -21,7 +21,7 @@ func can_crouch() -> bool:
 	return player.enable_crouch and is_crouching() and player.is_on_floor()
 
 func can_crouch_walk() -> bool:
-	return player.enable_crouch_walk and is_crouching() and can_move()
+	return player.enable_crouch_walk and is_crouching() and can_run()
 
 func is_crouching() -> bool:
 	return player.enable_crouch and Input.is_action_pressed("crouch")

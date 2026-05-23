@@ -3,7 +3,7 @@ extends State
 
 @export var player: Player
 @export var idle_state: State
-@export var move_state: State
+@export var run_state: State
 @export var fall_state: State
 @export var crouch_state: State
 @export var crouch_walk_state: State
@@ -39,7 +39,7 @@ func process_physics(delta: float) -> State:
 		if isCrouching and isMoving:
 			return crouch_walk_state
 		if !isCrouching and isMoving:
-			return move_state
+			return run_state
 		if isCrouching and !isMoving:
 			return crouch_state
 		if !isCrouching and !isMoving:

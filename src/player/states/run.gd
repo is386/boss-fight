@@ -1,4 +1,4 @@
-class_name PlayerMove
+class_name PlayerRun
 extends State
 
 @export var player: Player
@@ -40,4 +40,4 @@ func _get_speed() -> float:
 	if player.movement_component.can_sprint():
 		player.sprite.play("sprint")
 		return player.sprint_speed
-	return player.move_speed
+	return player.run_speed
