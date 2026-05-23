@@ -36,7 +36,10 @@ func can_sprint_jump() -> bool:
 	return player.enable_sprint_jump and can_jump() and can_sprint()
 
 func can_attack() -> bool:
-	return player.enable_attack and Input.is_action_just_pressed("attack")
+	return player.enable_attack and Input.is_action_just_pressed("attack") and player.is_on_floor()
+
+func can_aerial_attack() -> bool:
+	return player.enable_aerial_attack and Input.is_action_just_pressed("attack") and !player.is_on_floor()
 
 func is_holding_up() -> bool:
 	return Input.is_action_pressed("move_up")

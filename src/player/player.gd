@@ -32,6 +32,7 @@ extends CharacterBody2D
 
 @export_group("Attack Parameters")
 @export var enable_attack: bool = true
+@export var enable_aerial_attack: bool = true
 
 var dashed = false
 var direction = 1
