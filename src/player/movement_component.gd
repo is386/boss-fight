@@ -19,7 +19,7 @@ func can_dash() -> bool:
 	return Input.is_action_just_pressed("dash") and !player.dashed
 
 func is_crouching() -> bool:
-	return Input.is_action_pressed("crouch")
+	return false 
 
 func can_sprint() -> bool:
 	return Input.is_action_pressed("dash") and !player.dashed
