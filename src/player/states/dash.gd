@@ -22,6 +22,7 @@ func enter() -> void:
 		player.velocity.x *= -1
 
 func process_physics(delta: float) -> State:
+	player.sprite.flip_h = player.direction != 1
 	player.velocity_component.apply_gravity(delta*0.5)
 
 	var distance = player.global_position.distance_to(start)

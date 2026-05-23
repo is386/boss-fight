@@ -2,23 +2,42 @@ class_name PlayerSprintJump
 extends State
 
 @export var player: Player
-@export var fall_state: State
+@export var idle_state: State
+@export var move_state: State
+@export var crouch_state: State
 
 var start: Vector2
+var is_jump_buffered: bool = false
 
 func enter() -> void:
 	player.sprite.play("sprint_jump")
-	player.velocity.y = -player.sprint_speed
-	player.velocity.x = player.sprint_speed * 1.25 * sign(player.direction) 
+	player.sprite.animation_finished.connect(_on_sprint_jump_animation_finished)
+	player.velocity.y = -player.sprint_speed * 1.4
+	player.velocity.x = player.sprint_speed * sign(player.direction) 
 	start = player.global_position
 
-func process_physics(_delta: float) -> State:
-	var distance = player.global_position.distance_to(start)
-	if distance >= player.dash_distance * 1.5:
-		player.velocity.y = 0
-		return fall_state
+func exit() -> void:
+	player.sprite.animation_finished.disconnect(_on_sprint_jump_animation_finished)
 
+func process_physics(delta: float) -> State:
+	if player.velocity.y >= 0:
+		if player.movement_component.can_buffer_jump():
+			is_jump_buffered = true
+
+		if player.is_on_floor():
+			if is_jump_buffered:
+				is_jump_buffered = false
+				return self 
+			if player.movement_component.can_crouch():
+				return crouch_state
+			if abs(player.movement_component.get_direction()) > 0:
+				return move_state
+			return idle_state
+
+	player.velocity_component.apply_gravity(delta)
 	player.move_and_slide()
 
 	return null
-		
+
+func _on_sprint_jump_animation_finished() -> void:
+	player.sprite.play("sprint_jump_loop")
