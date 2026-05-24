@@ -1,0 +1,633 @@
+[gd_scene format=3 uid="uid://8lvucru68hra"]
+
+[ext_resource type="Script" uid="uid://bpqdxvutnb56n" path="res://player/player.gd" id="1_770dr"]
+[ext_resource type="Texture2D" uid="uid://bfdhh3x443r0h" path="res://player/assets/Combat/AirSlash/AirSlash01.png" id="2_l7gmo"]
+[ext_resource type="Texture2D" uid="uid://bfll5urroiv68" path="res://player/assets/Combat/AirSlash/AirSlash02.png" id="3_kft7l"]
+[ext_resource type="Texture2D" uid="uid://ch3y4v4vohtwj" path="res://player/assets/Combat/AirSlash/AirSlash03.png" id="4_2s4os"]
+[ext_resource type="Texture2D" uid="uid://78ic8m15rrqc" path="res://player/assets/Combat/AirSlash/AirSlash04.png" id="5_2em0j"]
+[ext_resource type="Texture2D" uid="uid://dfgn68qmocx4l" path="res://player/assets/Crawl/Crawl01.png" id="10_qk6i7"]
+[ext_resource type="Texture2D" uid="uid://dwqkh2ufe6gdo" path="res://player/assets/Crawl/Crawl02.png" id="11_6c3st"]
+[ext_resource type="Texture2D" uid="uid://oq8n81cifhwx" path="res://player/assets/Crawl/Crawl03.png" id="12_1da1t"]
+[ext_resource type="Texture2D" uid="uid://cgtjemt1t3pk7" path="res://player/assets/Crawl/Crawl04.png" id="13_p21yu"]
+[ext_resource type="Texture2D" uid="uid://j2s3hgfv16f8" path="res://player/assets/Crawl/Crawl05.png" id="14_irpag"]
+[ext_resource type="Texture2D" uid="uid://bwabnym5gixeg" path="res://player/assets/Crawl/Crawl06.png" id="15_bpsgo"]
+[ext_resource type="Texture2D" uid="uid://xskj34d3ydbf" path="res://player/assets/Crawl/Crawl07.png" id="16_jx8is"]
+[ext_resource type="Texture2D" uid="uid://kq3bjpgyxbdb" path="res://player/assets/Crawl/Crawl08.png" id="17_vx63k"]
+[ext_resource type="Texture2D" uid="uid://btim8iku3x2v7" path="res://player/assets/Combat/SwordDash/SwordDash01.png" id="18_lw0jh"]
+[ext_resource type="Texture2D" uid="uid://c556xjp0ghg81" path="res://player/assets/Combat/SwordDash/SwordDash02.png" id="19_770dr"]
+[ext_resource type="Texture2D" uid="uid://ctjhs4r5fu7qj" path="res://player/assets/Combat/SwordDash/SwordDash03.png" id="20_8f1cb"]
+[ext_resource type="Texture2D" uid="uid://f8871um0s0tb" path="res://player/assets/Combat/SwordDash/SwordDash04.png" id="21_vdulj"]
+[ext_resource type="Texture2D" uid="uid://cvjtb03rtepke" path="res://player/assets/Combat/SwordDash/SwordDash05.png" id="22_vau08"]
+[ext_resource type="Texture2D" uid="uid://oh7wbmtyddt" path="res://player/assets/Combat/SwordJump/SwordJump02.png" id="23_4vfid"]
+[ext_resource type="Texture2D" uid="uid://cg85j28lfben" path="res://player/assets/Combat/SwordJump/SwordJump03.png" id="24_ljgr3"]
+[ext_resource type="Texture2D" uid="uid://ct0jkyptr24rc" path="res://player/assets/Combat/AirSlashDown/AirSlashDown01.png" id="27_qe2k6"]
+[ext_resource type="Texture2D" uid="uid://ck8lvuhxmf0xx" path="res://player/assets/Combat/AirSlashDown/AirSlashDown02.png" id="28_edwuo"]
+[ext_resource type="Texture2D" uid="uid://cnebwcii7xhp3" path="res://player/assets/Combat/AirSlashDown/AirSlashDown03.png" id="29_5eiju"]
+[ext_resource type="Texture2D" uid="uid://djpjwuhn7qo06" path="res://player/assets/Combat/AirSlashDown/AirSlashDown04.png" id="30_uukdq"]
+[ext_resource type="Texture2D" uid="uid://2jie1hg1w2pi" path="res://player/assets/Combat/AirSlashDown/AirSlashDown05.png" id="31_3k3j0"]
+[ext_resource type="Texture2D" uid="uid://dfdo70haxa145" path="res://player/assets/Combat/AirSlashDown/AirSlashDown06.png" id="32_0bpox"]
+[ext_resource type="Texture2D" uid="uid://dxy38uecr0l5w" path="res://player/assets/Combat/SwordJump/SwordJump01.png" id="32_2a33p"]
+[ext_resource type="Texture2D" uid="uid://c6phn8csevgxr" path="res://player/assets/Combat/SwordRun/SwordRun01.png" id="33_reqs7"]
+[ext_resource type="Texture2D" uid="uid://bw18xvs6fueg6" path="res://player/assets/Combat/SwordRun/SwordRun02.png" id="34_2yjfb"]
+[ext_resource type="Texture2D" uid="uid://c5psm18awvqq6" path="res://player/assets/Combat/SwordRun/SwordRun03.png" id="35_dnnjp"]
+[ext_resource type="Texture2D" uid="uid://3r1p557bqhr3" path="res://player/assets/Combat/SwordRun/SwordRun04.png" id="36_wqna8"]
+[ext_resource type="Texture2D" uid="uid://bivpnjpno8adt" path="res://player/assets/Combat/SwordRun/SwordRun05.png" id="37_l7gmo"]
+[ext_resource type="Texture2D" uid="uid://dsfi4nav0y6mh" path="res://player/assets/Combat/SwordRun/SwordRun06.png" id="38_kft7l"]
+[ext_resource type="Texture2D" uid="uid://ckwn4mv0845wl" path="res://player/assets/Combat/SwordRun/SwordRun07.png" id="39_2s4os"]
+[ext_resource type="Texture2D" uid="uid://uyt28e1rcfau" path="res://player/assets/Combat/SwordRun/SwordRun08.png" id="40_2em0j"]
+[ext_resource type="Texture2D" uid="uid://clxpi7lgr56i8" path="res://player/assets/Combat/SwordSprint/SwordSprint01.png" id="41_qe2k6"]
+[ext_resource type="Texture2D" uid="uid://7cmy0hmp2bh2" path="res://player/assets/Combat/SwordSprint/SwordSprint02.png" id="42_edwuo"]
+[ext_resource type="Texture2D" uid="uid://c7det1yarn5ub" path="res://player/assets/Combat/SwordSprint/SwordSprint03.png" id="43_5eiju"]
+[ext_resource type="Texture2D" uid="uid://cea5wqaoa2uu7" path="res://player/assets/Combat/SwordSprint/SwordSprint04.png" id="44_uukdq"]
+[ext_resource type="Texture2D" uid="uid://l6jc6t8qktcq" path="res://player/assets/Combat/SwordSprint/SwordSprint05.png" id="45_3k3j0"]
+[ext_resource type="Texture2D" uid="uid://3smnnyxr4mjk" path="res://player/assets/Combat/SwordSprint/SwordSprint06.png" id="46_0bpox"]
+[ext_resource type="Texture2D" uid="uid://b812tuki3hptc" path="res://player/assets/FrontFlip/FrontFlip01.png" id="47_5c21n"]
+[ext_resource type="Texture2D" uid="uid://q6xma5yb37jm" path="res://player/assets/FrontFlip/FrontFlip02.png" id="48_e8m1u"]
+[ext_resource type="Texture2D" uid="uid://ceoutc32uigyi" path="res://player/assets/FrontFlip/FrontFlip03.png" id="49_77pet"]
+[ext_resource type="Texture2D" uid="uid://hwvgwt7whym7" path="res://player/assets/FrontFlip/FrontFlip04.png" id="50_tlhxf"]
+[ext_resource type="Texture2D" uid="uid://cbcjdcuvkx53q" path="res://player/assets/FrontFlip/FrontFlip05.png" id="51_hrkfm"]
+[ext_resource type="Texture2D" uid="uid://432n156dj53u" path="res://player/assets/FrontFlip/FrontFlip06.png" id="52_oxcmq"]
+[ext_resource type="Texture2D" uid="uid://dekug7obnmml0" path="res://player/assets/FrontFlip/FrontFlip07.png" id="53_wylla"]
+[ext_resource type="Texture2D" uid="uid://bo866mwgf0y6g" path="res://player/assets/FrontFlip/FrontFlip08.png" id="54_a3eqm"]
+[ext_resource type="Texture2D" uid="uid://qnlcgqyewd0g" path="res://player/assets/FrontFlip/FrontFlip09.png" id="55_plx2b"]
+[ext_resource type="Texture2D" uid="uid://c113wejvr20nq" path="res://player/assets/FrontFlip/FrontFlip10.png" id="56_3capk"]
+[ext_resource type="Texture2D" uid="uid://564bovl35v3u" path="res://player/assets/FrontFlip/FrontFlip11.png" id="57_kg5hq"]
+[ext_resource type="Texture2D" uid="uid://d2xy0kbk458vg" path="res://player/assets/FrontFlip/FrontFlip12.png" id="58_kp0if"]
+[ext_resource type="Script" uid="uid://bortqjpqumabx" path="res://state_machine/state_machine.gd" id="59_2xkbm"]
+[ext_resource type="Texture2D" uid="uid://c4dvb3fv2mixm" path="res://player/assets/Combat/SwordRunSlash/SwordRunSlash01.png" id="59_6c3st"]
+[ext_resource type="Texture2D" uid="uid://fn3xbxq813o6" path="res://player/assets/Combat/SwordRunSlash/SwordRunSlash02.png" id="60_1da1t"]
+[ext_resource type="Script" uid="uid://p7mblhvstqsw" path="res://player/states/movement/idle.gd" id="60_dqoq3"]
+[ext_resource type="Texture2D" uid="uid://bsr2fgiiqmif8" path="res://player/assets/Combat/SwordRunSlash/SwordRunSlash03.png" id="61_p21yu"]
+[ext_resource type="Script" uid="uid://twrptyjlulwr" path="res://player/states/movement/run.gd" id="61_y8tjj"]
+[ext_resource type="Script" uid="uid://bg2pcut6kqclx" path="res://player/states/movement/jump.gd" id="62_6ptwb"]
+[ext_resource type="Texture2D" uid="uid://l8aeab26udpu" path="res://player/assets/Combat/SwordRunSlash/SwordRunSlash04.png" id="62_irpag"]
+[ext_resource type="Script" uid="uid://v5033ylhxb4t" path="res://player/states/movement/fall.gd" id="63_8pj6w"]
+[ext_resource type="Texture2D" uid="uid://bsgsn0dobiskq" path="res://player/assets/Combat/SwordRunSlash/SwordRunSlash05.png" id="63_bpsgo"]
+[ext_resource type="Script" uid="uid://cbiq5njqfmy57" path="res://player/states/movement/crouch.gd" id="64_08upi"]
+[ext_resource type="Texture2D" uid="uid://dg6x484blhs6j" path="res://player/assets/Combat/SwordRunSlash/SwordRunSlash06.png" id="64_jx8is"]
+[ext_resource type="Script" uid="uid://babfsl71vtf4a" path="res://player/states/movement/crouch_walk.gd" id="65_4tsya"]
+[ext_resource type="Texture2D" uid="uid://t5stryd5nev6" path="res://player/assets/Combat/SwordRunSlash/SwordRunSlash07.png" id="65_vx63k"]
+[ext_resource type="Script" uid="uid://dawi15qqfv47j" path="res://player/states/movement/dash.gd" id="66_68qdx"]
+[ext_resource type="Texture2D" uid="uid://swvh4v4jqen1" path="res://player/assets/Combat/SwordRunSlash/SwordRunSlash08.png" id="66_lw0jh"]
+[ext_resource type="Script" uid="uid://wbls3curd7op" path="res://player/states/movement/sprint_jump.gd" id="67_ccnn6"]
+[ext_resource type="Script" uid="uid://bf455ukluloqy" path="res://player/states/attack/idle_attack.gd" id="74_bpsgo"]
+[ext_resource type="Script" uid="uid://ddht0054isxxu" path="res://player/states/attack/standing_attack.gd" id="75_jx8is"]
+[ext_resource type="Script" uid="uid://1nuvedab2bts" path="res://player/components/input_component.gd" id="76_j3o0i"]
+[ext_resource type="Script" uid="uid://bjfdmweq7sd8f" path="res://player/components/velocity_component.gd" id="77_pgo6y"]
+[ext_resource type="Texture2D" uid="uid://cj3a1m53tp5pa" path="res://player/assets/Combat/StandingSlash/StandingSlash01.png" id="77_wqna8"]
+[ext_resource type="Texture2D" uid="uid://bjxl8c45lef6n" path="res://player/assets/Combat/StandingSlash/StandingSlash02.png" id="78_l7gmo"]
+[ext_resource type="Texture2D" uid="uid://bs52myjkwxlbe" path="res://player/assets/Combat/StandingSlash/StandingSlash03.png" id="79_kft7l"]
+[ext_resource type="Texture2D" uid="uid://c5u5di1gkvqa0" path="res://player/assets/Combat/StandingSlash/StandingSlash04.png" id="80_2s4os"]
+[ext_resource type="Texture2D" uid="uid://blbxqoblh41ee" path="res://player/assets/Combat/StandingSlash/StandingSlash05.png" id="81_2em0j"]
+[ext_resource type="Texture2D" uid="uid://cp1vbnlkag30o" path="res://player/assets/Combat/AirSlashUp/AirSlashUp01.png" id="83_5c21n"]
+[ext_resource type="Texture2D" uid="uid://8j4egecyk86b" path="res://player/assets/Combat/AirSlashUp/AirSlashUp02.png" id="84_e8m1u"]
+[ext_resource type="Script" uid="uid://cw35owvnt23c7" path="res://player/states/attack/running_attack.gd" id="84_lw0jh"]
+[ext_resource type="Texture2D" uid="uid://b1grjpucc7lii" path="res://player/assets/Combat/AirSlashUp/AirSlashUp03.png" id="85_77pet"]
+[ext_resource type="Texture2D" uid="uid://dd6aq43swc4mh" path="res://player/assets/Combat/AirSlashUp/AirSlashUp04.png" id="86_tlhxf"]
+[ext_resource type="Texture2D" uid="uid://ud7ya7y3yfsy" path="res://player/assets/Combat/AirSlashUp/AirSlashUp05.png" id="87_hrkfm"]
+[ext_resource type="Texture2D" uid="uid://d05ldxcwp1j6h" path="res://player/assets/Combat/StandingSlashUp/StandingSlashUp01.png" id="88_2em0j"]
+[ext_resource type="Texture2D" uid="uid://cdoqqm8nhrx14" path="res://player/assets/Combat/AirSlashUp/AirSlashUp06.png" id="88_oxcmq"]
+[ext_resource type="Texture2D" uid="uid://cbay6rxde3udm" path="res://player/assets/Combat/StandingSlashUp/StandingSlashUp02.png" id="89_qe2k6"]
+[ext_resource type="Texture2D" uid="uid://br1t64psq5srd" path="res://player/assets/Combat/StandingSlashUp/StandingSlashUp03.png" id="90_edwuo"]
+[ext_resource type="Script" uid="uid://bhoj3a7rxsomr" path="res://player/states/attack/standing_attack_up.gd" id="99_l7gmo"]
+[ext_resource type="Script" uid="uid://cr0mffjfp8jlb" path="res://player/states/attack/air_attack.gd" id="101_wylla"]
+[ext_resource type="Script" uid="uid://bfkmuq54u4pwv" path="res://player/states/attack/air_attack_up.gd" id="102_a3eqm"]
+[ext_resource type="Script" uid="uid://df7iyrdk4hjre" path="res://player/states/attack/air_attack_down.gd" id="103_plx2b"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j3o0i"]
+load_path = "res://.godot/imported/Land02.png-0c53832d343decb6c284fe7eeb1c0b1d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pgo6y"]
+load_path = "res://.godot/imported/Land01.png-75a59d1d616b16906ad159de9c842ed4.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qm6yy"]
+load_path = "res://.godot/imported/Crouch01.png-97c1c5732ce962e1939fe8dd725278cb.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gcmgo"]
+load_path = "res://.godot/imported/Crouch02.png-b5b367b2917fb6e78c29559e4e926996.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rnncm"]
+load_path = "res://.godot/imported/Crouch03.png-dff9086a89e483277f92c851fb98cfb7.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nj2w7"]
+load_path = "res://.godot/imported/Crouch04.png-c4e60a95b98b63f9b73dff55167bbce8.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iojyt"]
+load_path = "res://.godot/imported/Crouch05.png-7f5c60c05e9d39578444aa9b64062ba0.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vhicv"]
+load_path = "res://.godot/imported/Crouch06.png-fc40fa426536b47a192ca3940f5490d7.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hrakr"]
+load_path = "res://.godot/imported/SwordIdle01.png-47d87a15f23ee581aa7c15e5362ca262.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wsa1w"]
+load_path = "res://.godot/imported/SwordIdle02.png-0e637d58606e841847a5db802d9d1851.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2s0vo"]
+load_path = "res://.godot/imported/SwordIdle03.png-0ee7850722efd47ecf1313cd6a2bc40f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hgm8h"]
+load_path = "res://.godot/imported/SwordIdle04.png-28ee4720bb915e5dc885577e5f15fbe7.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ig2t1"]
+load_path = "res://.godot/imported/SwordIdle05.png-9dd7dc1de18247a1a6c337f8dc3db3d8.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7xdiq"]
+load_path = "res://.godot/imported/SwordIdle06.png-7c7d3971d85ab92503f9b21da37dd367.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_d0gtc"]
+load_path = "res://.godot/imported/SwordIdle07.png-873cd8354c42fe28d22455e04567283e.ctex"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o5qli"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_l7gmo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kft7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_2s4os")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2em0j")
+}],
+"loop": false,
+"name": &"air_attack",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("27_qe2k6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_edwuo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_5eiju")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_uukdq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_3k3j0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_0bpox")
+}],
+"loop": false,
+"name": &"air_attack_down",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("83_5c21n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("84_e8m1u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("85_77pet")
+}, {
+"duration": 1.0,
+"texture": ExtResource("86_tlhxf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("87_hrkfm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("88_oxcmq")
+}],
+"loop": false,
+"name": &"air_attack_up",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_j3o0i")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_pgo6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_qm6yy")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_gcmgo")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_rnncm")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_nj2w7")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_iojyt")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_vhicv")
+}],
+"loop": false,
+"name": &"crouch",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_qk6i7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_6c3st")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_1da1t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_p21yu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_irpag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_bpsgo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_jx8is")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_vx63k")
+}],
+"loop": true,
+"name": &"crouch_walk",
+"speed": 7.5
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_lw0jh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_lw0jh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_770dr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_8f1cb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_vdulj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_vau08")
+}],
+"loop": false,
+"name": &"dash",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("23_4vfid")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_ljgr3")
+}],
+"loop": false,
+"name": &"fall",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_pgo6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_j3o0i")
+}],
+"loop": false,
+"name": &"get_up",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_hrakr")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_wsa1w")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_2s0vo")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_hgm8h")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_ig2t1")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_7xdiq")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_d0gtc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("32_2a33p")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("33_reqs7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_2yjfb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_dnnjp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_wqna8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_l7gmo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_kft7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_2s4os")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_2em0j")
+}],
+"loop": true,
+"name": &"run",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("59_6c3st")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_1da1t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_p21yu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_irpag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("63_bpsgo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("64_jx8is")
+}, {
+"duration": 1.0,
+"texture": ExtResource("65_vx63k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("66_lw0jh")
+}],
+"loop": false,
+"name": &"running_attack",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("41_qe2k6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_edwuo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_5eiju")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_uukdq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_3k3j0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_0bpox")
+}],
+"loop": true,
+"name": &"sprint",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("47_5c21n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_e8m1u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_77pet")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_tlhxf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("51_hrkfm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("52_oxcmq")
+}],
+"loop": false,
+"name": &"sprint_jump",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("53_wylla")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_a3eqm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_plx2b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_3capk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_kg5hq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_kp0if")
+}],
+"loop": true,
+"name": &"sprint_jump_loop",
+"speed": 25.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("77_wqna8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("78_l7gmo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("79_kft7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("80_2s4os")
+}, {
+"duration": 1.0,
+"texture": ExtResource("81_2em0j")
+}],
+"loop": false,
+"name": &"standing_attack",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("88_2em0j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("89_qe2k6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("90_edwuo")
+}],
+"loop": false,
+"name": &"standing_attack_up",
+"speed": 15.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0wfyh"]
+radius = 5.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1237580124 node_paths=PackedStringArray("sprite", "movement_state_machine", "attack_state_machine", "input_component", "velocity_component")]
+script = ExtResource("1_770dr")
+sprite = NodePath("AnimatedSprite2D")
+movement_state_machine = NodePath("MovementStateMachine")
+attack_state_machine = NodePath("AttackStateMachine")
+input_component = NodePath("InputComponent")
+velocity_component = NodePath("VelocityComponent")
+dash_distance = 110.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=575221577]
+texture_filter = 1
+position = Vector2(-2, -25)
+sprite_frames = SubResource("SpriteFrames_o5qli")
+animation = &"running_attack"
+autoplay = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1358590442]
+position = Vector2(-2, 3)
+shape = SubResource("CapsuleShape2D_0wfyh")
+
+[node name="InputComponent" type="Node" parent="." unique_id=1583714764 node_paths=PackedStringArray("player")]
+script = ExtResource("76_j3o0i")
+player = NodePath("..")
+
+[node name="VelocityComponent" type="Node" parent="." unique_id=1298188769 node_paths=PackedStringArray("player")]
+script = ExtResource("77_pgo6y")
+player = NodePath("..")
+
+[node name="MovementStateMachine" type="Node" parent="." unique_id=459590959]
+script = ExtResource("59_2xkbm")
+
+[node name="Idle" type="Node" parent="MovementStateMachine" unique_id=685101690 node_paths=PackedStringArray("run_state", "jump_state", "fall_state", "crouch_state", "dash_state")]
+script = ExtResource("60_dqoq3")
+run_state = NodePath("../Run")
+jump_state = NodePath("../Jump")
+fall_state = NodePath("../Fall")
+crouch_state = NodePath("../Crouch")
+dash_state = NodePath("../Dash")
+
+[node name="Run" type="Node" parent="MovementStateMachine" unique_id=957914163 node_paths=PackedStringArray("idle_state", "jump_state", "fall_state", "crouch_state", "dash_state", "sprint_jump_state")]
+script = ExtResource("61_y8tjj")
+idle_state = NodePath("../Idle")
+jump_state = NodePath("../Jump")
+fall_state = NodePath("../Fall")
+crouch_state = NodePath("../Crouch")
+dash_state = NodePath("../Dash")
+sprint_jump_state = NodePath("../SprintJump")
+
+[node name="Jump" type="Node" parent="MovementStateMachine" unique_id=1670460094 node_paths=PackedStringArray("fall_state", "dash_state")]
+script = ExtResource("62_6ptwb")
+fall_state = NodePath("../Fall")
+dash_state = NodePath("../Dash")
+
+[node name="Fall" type="Node" parent="MovementStateMachine" unique_id=529610699 node_paths=PackedStringArray("idle_state", "jump_state", "crouch_state", "dash_state")]
+script = ExtResource("63_8pj6w")
+idle_state = NodePath("../Idle")
+jump_state = NodePath("../Jump")
+crouch_state = NodePath("../Crouch")
+dash_state = NodePath("../Dash")
+
+[node name="Crouch" type="Node" parent="MovementStateMachine" unique_id=825503122 node_paths=PackedStringArray("idle_state", "jump_state", "crouch_walk_state", "dash_state")]
+script = ExtResource("64_08upi")
+idle_state = NodePath("../Idle")
+jump_state = NodePath("../Jump")
+crouch_walk_state = NodePath("../CrouchWalk")
+dash_state = NodePath("../Dash")
+
+[node name="CrouchWalk" type="Node" parent="MovementStateMachine" unique_id=1113212949 node_paths=PackedStringArray("idle_state", "run_state", "jump_state", "fall_state", "crouch_state", "dash_state")]
+script = ExtResource("65_4tsya")
+idle_state = NodePath("../Idle")
+run_state = NodePath("../Run")
+jump_state = NodePath("../Jump")
+fall_state = NodePath("../Fall")
+crouch_state = NodePath("../Crouch")
+dash_state = NodePath("../Dash")
+
+[node name="Dash" type="Node" parent="MovementStateMachine" unique_id=93188547 node_paths=PackedStringArray("idle_state", "run_state", "fall_state", "crouch_state", "crouch_walk_state")]
+script = ExtResource("66_68qdx")
+idle_state = NodePath("../Idle")
+run_state = NodePath("../Run")
+fall_state = NodePath("../Fall")
+crouch_state = NodePath("../Crouch")
+crouch_walk_state = NodePath("../CrouchWalk")
+
+[node name="SprintJump" type="Node" parent="MovementStateMachine" unique_id=1262224666 node_paths=PackedStringArray("idle_state", "run_state", "crouch_state")]
+script = ExtResource("67_ccnn6")
+idle_state = NodePath("../Idle")
+run_state = NodePath("../Run")
+crouch_state = NodePath("../Crouch")
+
+[node name="AttackStateMachine" type="Node" parent="." unique_id=934609042]
+script = ExtResource("59_2xkbm")
+
+[node name="IdleAttack" type="Node" parent="AttackStateMachine" unique_id=942466336 node_paths=PackedStringArray("standing_attack_state", "upwards_standing_attack_state", "running_attack_state", "aerial_attack_state", "upwards_aerial_attack_state", "downwards_aerial_attack_state")]
+script = ExtResource("74_bpsgo")
+standing_attack_state = NodePath("../StandingAttack")
+upwards_standing_attack_state = NodePath("../StandingAttackUp")
+running_attack_state = NodePath("../RunningAttack")
+aerial_attack_state = NodePath("../AirAttack")
+upwards_aerial_attack_state = NodePath("../AirAttackUp")
+downwards_aerial_attack_state = NodePath("../AirAttackDown")
+
+[node name="StandingAttack" type="Node" parent="AttackStateMachine" unique_id=1663022956 node_paths=PackedStringArray("idle_attack_state")]
+script = ExtResource("75_jx8is")
+idle_attack_state = NodePath("../IdleAttack")
+
+[node name="StandingAttackUp" type="Node" parent="AttackStateMachine" unique_id=585279495 node_paths=PackedStringArray("idle_attack_state")]
+script = ExtResource("99_l7gmo")
+idle_attack_state = NodePath("../IdleAttack")
+
+[node name="RunningAttack" type="Node" parent="AttackStateMachine" unique_id=180949624 node_paths=PackedStringArray("idle_attack_state")]
+script = ExtResource("84_lw0jh")
+idle_attack_state = NodePath("../IdleAttack")
+
+[node name="AirAttack" type="Node" parent="AttackStateMachine" unique_id=208217666 node_paths=PackedStringArray("idle_attack_state")]
+script = ExtResource("101_wylla")
+idle_attack_state = NodePath("../IdleAttack")
+
+[node name="AirAttackUp" type="Node" parent="AttackStateMachine" unique_id=284285598 node_paths=PackedStringArray("idle_attack_state")]
+script = ExtResource("102_a3eqm")
+idle_attack_state = NodePath("../IdleAttack")
+
+[node name="AirAttackDown" type="Node" parent="AttackStateMachine" unique_id=1533859707 node_paths=PackedStringArray("idle_attack_state")]
+script = ExtResource("103_plx2b")
+idle_attack_state = NodePath("../IdleAttack")

@@ -1,0 +1,37 @@
+class_name PlayerJump
+extends State
+
+@export var fall_state: State
+@export var dash_state: State
+
+var player: Player
+
+func _ready() -> void:
+	player = owner as Player
+
+func enter() -> void:
+	play_entry_animation()
+	player.velocity.y = -player.jump_speed
+
+func process_physics(delta: float) -> State:
+	player.sprite.flip_h = player.direction != 1
+
+	if player.velocity.y >= 0:
+		return fall_state
+	if player.input_component.can_dash():
+		return dash_state
+
+	player.velocity_component.apply_gravity(delta)
+	player.velocity_component.apply_horizontal_velocity(player.run_speed)
+	player.move_and_slide()
+
+	return null
+		
+func process_input(_event: InputEvent) -> State:
+	if Input.is_action_just_released("jump"):
+		player.velocity.y = 0
+		return fall_state
+	return null
+
+func play_entry_animation() -> void:
+	player.play_animation("jump")	
