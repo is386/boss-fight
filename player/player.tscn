@@ -53,7 +53,6 @@
 [ext_resource type="Texture2D" uid="uid://c113wejvr20nq" path="res://player/assets/FrontFlip/FrontFlip10.png" id="56_3capk"]
 [ext_resource type="Texture2D" uid="uid://564bovl35v3u" path="res://player/assets/FrontFlip/FrontFlip11.png" id="57_kg5hq"]
 [ext_resource type="Texture2D" uid="uid://d2xy0kbk458vg" path="res://player/assets/FrontFlip/FrontFlip12.png" id="58_kp0if"]
-[ext_resource type="Script" uid="uid://bortqjpqumabx" path="res://state_machine/state_machine.gd" id="59_2xkbm"]
 [ext_resource type="Texture2D" uid="uid://c4dvb3fv2mixm" path="res://player/assets/Combat/SwordRunSlash/SwordRunSlash01.png" id="59_6c3st"]
 [ext_resource type="Texture2D" uid="uid://fn3xbxq813o6" path="res://player/assets/Combat/SwordRunSlash/SwordRunSlash02.png" id="60_1da1t"]
 [ext_resource type="Script" uid="uid://p7mblhvstqsw" path="res://player/states/movement/idle.gd" id="60_dqoq3"]
@@ -72,9 +71,10 @@
 [ext_resource type="Script" uid="uid://wbls3curd7op" path="res://player/states/movement/sprint_jump.gd" id="67_ccnn6"]
 [ext_resource type="Script" uid="uid://bf455ukluloqy" path="res://player/states/attack/idle_attack.gd" id="74_bpsgo"]
 [ext_resource type="Script" uid="uid://ddht0054isxxu" path="res://player/states/attack/standing_attack.gd" id="75_jx8is"]
-[ext_resource type="Script" uid="uid://1nuvedab2bts" path="res://player/components/input_component.gd" id="76_j3o0i"]
-[ext_resource type="Script" uid="uid://bjfdmweq7sd8f" path="res://player/components/velocity_component.gd" id="77_pgo6y"]
+[ext_resource type="Script" uid="uid://1nuvedab2bts" path="res://player/components/player_input_component.gd" id="76_j3o0i"]
+[ext_resource type="PackedScene" uid="uid://vwyg1wvk7mjs" path="res://entity/components/velocity_component.tscn" id="77_j3o0i"]
 [ext_resource type="Texture2D" uid="uid://cj3a1m53tp5pa" path="res://player/assets/Combat/StandingSlash/StandingSlash01.png" id="77_wqna8"]
+[ext_resource type="PackedScene" uid="uid://egxjudl6mnat" path="res://state_machine/state_machine.tscn" id="78_j3o0i"]
 [ext_resource type="Texture2D" uid="uid://bjxl8c45lef6n" path="res://player/assets/Combat/StandingSlash/StandingSlash02.png" id="78_l7gmo"]
 [ext_resource type="Texture2D" uid="uid://bs52myjkwxlbe" path="res://player/assets/Combat/StandingSlash/StandingSlash03.png" id="79_kft7l"]
 [ext_resource type="Texture2D" uid="uid://c5u5di1gkvqa0" path="res://player/assets/Combat/StandingSlash/StandingSlash04.png" id="80_2s4os"]
@@ -283,7 +283,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"dash",
-"speed": 25.0
+"speed": 40.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -331,7 +331,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 10.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -339,7 +339,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"jump",
-"speed": 20.0
+"speed": 1.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -506,36 +506,36 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0wfyh"]
 radius = 5.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1237580124 node_paths=PackedStringArray("sprite", "movement_state_machine", "attack_state_machine", "input_component", "velocity_component")]
+[node name="Player" type="CharacterBody2D" unique_id=1237580124 node_paths=PackedStringArray("movement_state_machine", "attack_state_machine", "sprite", "input_component", "velocity_component")]
+collision_layer = 2
 script = ExtResource("1_770dr")
-sprite = NodePath("AnimatedSprite2D")
 movement_state_machine = NodePath("MovementStateMachine")
 attack_state_machine = NodePath("AttackStateMachine")
+enable_crouch = false
+enable_crouch_walk = false
+dash_distance = 110.0
+sprite = NodePath("AnimatedSprite2D")
 input_component = NodePath("InputComponent")
 velocity_component = NodePath("VelocityComponent")
-dash_distance = 110.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=575221577]
 texture_filter = 1
-position = Vector2(-2, -25)
+position = Vector2(0, -42)
 sprite_frames = SubResource("SpriteFrames_o5qli")
-animation = &"running_attack"
+animation = &"dash"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1358590442]
-position = Vector2(-2, 3)
+position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_0wfyh")
 
 [node name="InputComponent" type="Node" parent="." unique_id=1583714764 node_paths=PackedStringArray("player")]
 script = ExtResource("76_j3o0i")
 player = NodePath("..")
 
-[node name="VelocityComponent" type="Node" parent="." unique_id=1298188769 node_paths=PackedStringArray("player")]
-script = ExtResource("77_pgo6y")
-player = NodePath("..")
+[node name="VelocityComponent" parent="." unique_id=530710705 instance=ExtResource("77_j3o0i")]
 
-[node name="MovementStateMachine" type="Node" parent="." unique_id=459590959]
-script = ExtResource("59_2xkbm")
+[node name="MovementStateMachine" parent="." unique_id=1903698038 instance=ExtResource("78_j3o0i")]
 
 [node name="Idle" type="Node" parent="MovementStateMachine" unique_id=685101690 node_paths=PackedStringArray("run_state", "jump_state", "fall_state", "crouch_state", "dash_state")]
 script = ExtResource("60_dqoq3")
@@ -596,8 +596,7 @@ idle_state = NodePath("../Idle")
 run_state = NodePath("../Run")
 crouch_state = NodePath("../Crouch")
 
-[node name="AttackStateMachine" type="Node" parent="." unique_id=934609042]
-script = ExtResource("59_2xkbm")
+[node name="AttackStateMachine" parent="." unique_id=686622543 instance=ExtResource("78_j3o0i")]
 
 [node name="IdleAttack" type="Node" parent="AttackStateMachine" unique_id=942466336 node_paths=PackedStringArray("standing_attack_state", "upwards_standing_attack_state", "running_attack_state", "aerial_attack_state", "upwards_aerial_attack_state", "downwards_aerial_attack_state")]
 script = ExtResource("74_bpsgo")

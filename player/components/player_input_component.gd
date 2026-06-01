@@ -1,5 +1,5 @@
-class_name InputComponent
-extends Node
+class_name PlayerInputComponent
+extends InputComponent 
 
 @export var player: Player
 

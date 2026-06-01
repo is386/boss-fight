@@ -1,11 +1,8 @@
 class_name Player
-extends CharacterBody2D
+extends Entity 
 
-@export var sprite: AnimatedSprite2D 
 @export var movement_state_machine: StateMachine 
 @export var attack_state_machine: StateMachine 
-@export var input_component: InputComponent
-@export var velocity_component: VelocityComponent
 
 @export_group("Run Parameters")
 @export var enable_run: bool = true
@@ -35,7 +32,6 @@ extends CharacterBody2D
 @export var enable_aerial_attack: bool = true
 
 var dashed = false
-var direction = 1
 var was_crouching = false
 var is_attacking = false
 var is_idle = true
