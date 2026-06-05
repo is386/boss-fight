@@ -111,6 +111,7 @@
 [ext_resource type="PackedScene" uid="uid://egxjudl6mnat" path="res://state_machine/state_machine.tscn" id="85_n4he3"]
 [ext_resource type="Script" uid="uid://bg7bcfnqnqen" path="res://boss/states/appear.gd" id="86_3qgbb"]
 [ext_resource type="Script" uid="uid://xqmst670qy7k" path="res://boss/states/idle.gd" id="86_n4he3"]
+[ext_resource type="Script" uid="uid://bmue7hbo1lj2u" path="res://entity/components/hitbox_component.gd" id="107_mgimq"]
 [ext_resource type="Script" uid="uid://c414e2c1uh77j" path="res://boss/states/run.gd" id="112_qcvgs"]
 [ext_resource type="Script" uid="uid://gac0xb7ayvxr" path="res://boss/states/attack.gd" id="113_atfjh"]
 [ext_resource type="Script" uid="uid://c5gw0weopb2tk" path="res://boss/states/blast_charge.gd" id="114_883bk"]
@@ -497,11 +498,16 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8bwv6"]
-radius = 9.0
-height = 60.0
+height = 54.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ef1ye"]
 size = Vector2(100, 40)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jx3m5"]
+size = Vector2(20, 55)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mgimq"]
+size = Vector2(48, 14)
 
 [node name="Boss" type="CharacterBody2D" unique_id=125884711 node_paths=PackedStringArray("state_machine", "sprite", "input_component", "velocity_component")]
 collision_layer = 4
@@ -516,12 +522,14 @@ velocity_component = NodePath("VelocityComponent")
 position = Vector2(0, -63.000004)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_y10lg")
-animation = &"blast_charge"
+animation = &"attack"
 autoplay = "appear"
+frame = 5
+frame_progress = 1.0
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2139922582]
-position = Vector2(0, -30)
+position = Vector2(0, -27)
 shape = SubResource("CapsuleShape2D_8bwv6")
 
 [node name="PlayerDetectionArea" type="Area2D" parent="." unique_id=678405236]
@@ -531,7 +539,44 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea" unique_id=841392225]
 position = Vector2(0.5, -28)
 shape = SubResource("RectangleShape2D_ef1ye")
-debug_color = Color(0.99411815, 0, 0.23431402, 0.41960785)
+debug_color = Color(0.5112201, 0.5500437, 0.5111559, 0.41960785)
+
+[node name="BodyHitbox" type="Area2D" parent="." unique_id=2122564211]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("107_mgimq")
+damage = 1
+metadata/_custom_type_script = "uid://bmue7hbo1lj2u"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyHitbox" unique_id=384193091]
+position = Vector2(0, -27.5)
+shape = SubResource("RectangleShape2D_jx3m5")
+disabled = true
+debug_color = Color(0.99999994, 0.0053715846, 0.08322487, 0.41960785)
+
+[node name="LeftAttackHitbox" type="Area2D" parent="." unique_id=1544476285]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("107_mgimq")
+damage = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftAttackHitbox" unique_id=1574853075]
+position = Vector2(-34, -36)
+shape = SubResource("RectangleShape2D_mgimq")
+disabled = true
+debug_color = Color(0.9999998, 0, 0.10531009, 0.41960785)
+
+[node name="RightAttackHitbox" type="Area2D" parent="." unique_id=855699347]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("107_mgimq")
+damage = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightAttackHitbox" unique_id=83460944]
+position = Vector2(34, -36)
+shape = SubResource("RectangleShape2D_mgimq")
+disabled = true
+debug_color = Color(0.9999998, 0, 0.10531009, 0.41960785)
 
 [node name="CooldownTimer" type="Timer" parent="." unique_id=897068969]
 wait_time = 0.5
@@ -545,9 +590,10 @@ boss = NodePath("..")
 
 [node name="StateMachine" parent="." unique_id=1903698038 instance=ExtResource("85_n4he3")]
 
-[node name="Appear" type="Node" parent="StateMachine" unique_id=10249887 node_paths=PackedStringArray("idle_state")]
+[node name="Appear" type="Node" parent="StateMachine" unique_id=10249887 node_paths=PackedStringArray("idle_state", "body_hitbox")]
 script = ExtResource("86_3qgbb")
 idle_state = NodePath("../Idle")
+body_hitbox = NodePath("../../BodyHitbox/CollisionShape2D")
 
 [node name="Idle" type="Node" parent="StateMachine" unique_id=33543860 node_paths=PackedStringArray("run_state", "attack_state", "blast_charge_state", "jump_state")]
 script = ExtResource("86_n4he3")
@@ -561,10 +607,12 @@ script = ExtResource("112_qcvgs")
 idle_state = NodePath("../Idle")
 metadata/_custom_type_script = "uid://c414e2c1uh77j"
 
-[node name="Attack" type="Node" parent="StateMachine" unique_id=2049272301 node_paths=PackedStringArray("idle_state", "cooldown_timer")]
+[node name="Attack" type="Node" parent="StateMachine" unique_id=2049272301 node_paths=PackedStringArray("idle_state", "cooldown_timer", "right_hitbox", "left_hitbox")]
 script = ExtResource("113_atfjh")
 idle_state = NodePath("../Idle")
 cooldown_timer = NodePath("../../CooldownTimer")
+right_hitbox = NodePath("../../RightAttackHitbox/CollisionShape2D")
+left_hitbox = NodePath("../../LeftAttackHitbox/CollisionShape2D")
 
 [node name="BossBlastAttack" type="Node" parent="StateMachine" unique_id=187935999 node_paths=PackedStringArray("idle_state", "cooldown_timer")]
 script = ExtResource("114_qcc6b")

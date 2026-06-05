@@ -1,19 +1,16 @@
 class_name PlayerSprintJump
-extends State
+extends PlayerMoveState
 
 @export var idle_state: State
 @export var run_state: State
 @export var crouch_state: State
 
-var player: Player
 var start: Vector2
 var is_jump_buffered: bool = false
 var is_falling: bool = false
 
-func _ready() -> void:
-	player = owner as Player
-
 func enter() -> void:
+	super.enter()
 	play_entry_animation()
 	player.sprite.animation_finished.connect(_on_sprint_jump_animation_finished)
 	player.velocity.y = -player.sprint_speed * 1.4
@@ -21,6 +18,7 @@ func enter() -> void:
 	start = player.global_position
 
 func exit() -> void:
+	super.exit()
 	is_jump_buffered = false
 	is_falling = false
 	player.sprite.animation_finished.disconnect(_on_sprint_jump_animation_finished)

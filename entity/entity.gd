@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var sprite: AnimatedSprite2D 
 @export var input_component: InputComponent
 @export var velocity_component: VelocityComponent
+@export var hurtbox_component: HurtboxComponent
 
 var direction = 1
 

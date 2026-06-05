@@ -1,17 +1,13 @@
 class_name PlayerCrouch
-extends State
+extends PlayerMoveState
 
 @export var idle_state: State
 @export var jump_state: State
 @export var crouch_walk_state: State
 @export var dash_state: State
 
-var player: Player
-
-func _ready() -> void:
-	player = owner as Player
-
 func enter() -> void:
+	super.enter()
 	play_entry_animation()
 
 func process_physics(_delta: float) -> State:

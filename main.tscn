@@ -6,6 +6,16 @@
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0wfyh"]
 distance = -256.0
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_0xm2m"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_h2yge"]
+normal = Vector2(1, 0)
+distance = 16.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1bvp3"]
+normal = Vector2(-1, 0)
+
 [node name="Main" type="Node2D" unique_id=1078711876]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1628247919]
@@ -19,11 +29,27 @@ player = NodePath("../Player")
 [node name="Player" parent="." unique_id=1237580124 instance=ExtResource("1_o5qli")]
 position = Vector2(-38, 90)
 
-[node name="Ground" type="StaticBody2D" parent="." unique_id=1850636101]
-position = Vector2(3, 0)
-scale = Vector2(2.4583936, 0.82990164)
+[node name="Wall1" type="StaticBody2D" parent="." unique_id=1850636101]
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground" unique_id=1567585148]
-position = Vector2(-3, -147)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall1" unique_id=1567585148]
+position = Vector2(-2, -165)
 shape = SubResource("WorldBoundaryShape2D_0wfyh")
+
+[node name="Wall2" type="StaticBody2D" parent="." unique_id=893050884]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2" unique_id=721223616]
+position = Vector2(0, -90)
+shape = SubResource("WorldBoundaryShape2D_0xm2m")
+
+[node name="Wall3" type="StaticBody2D" parent="." unique_id=1300241786]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall3" unique_id=2139473480]
+position = Vector2(-176, 0)
+shape = SubResource("WorldBoundaryShape2D_h2yge")
+
+[node name="Wall4" type="StaticBody2D" parent="." unique_id=869868251]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall4" unique_id=1423256780]
+position = Vector2(160, 0)
+shape = SubResource("WorldBoundaryShape2D_1bvp3")

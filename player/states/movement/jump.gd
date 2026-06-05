@@ -1,15 +1,11 @@
 class_name PlayerJump
-extends State
+extends PlayerMoveState
 
 @export var fall_state: State
 @export var dash_state: State
 
-var player: Player
-
-func _ready() -> void:
-	player = owner as Player
-
 func enter() -> void:
+	super.enter()
 	play_entry_animation()
 	player.velocity.y = -player.jump_speed
 

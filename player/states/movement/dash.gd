@@ -1,5 +1,5 @@
 class_name PlayerDash
-extends State
+extends PlayerMoveState
 
 @export var idle_state: State
 @export var run_state: State
@@ -7,13 +7,10 @@ extends State
 @export var crouch_state: State
 @export var crouch_walk_state: State
 
-var player: Player
 var start: Vector2
 
-func _ready() -> void:
-	player = owner as Player
-
 func enter() -> void:
+	super.enter()
 	play_entry_animation()
 	player.dashed = true
 	player.velocity.x = player.dash_speed 
@@ -29,7 +26,7 @@ func process_physics(delta: float) -> State:
 	player.velocity_component.apply_gravity(delta*0.5)
 
 	var distance = player.global_position.distance_to(start)
-	if distance >= player.dash_distance:
+	if distance >= player.dash_distance or player.velocity.x == 0:
 		if !player.is_on_floor():
 			return fall_state
 

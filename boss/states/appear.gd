@@ -2,6 +2,7 @@ class_name BossAppear
 extends State
 
 @export var idle_state: State
+@export var body_hitbox: CollisionShape2D
 
 var boss: Boss
 
@@ -11,8 +12,10 @@ func _ready() -> void:
 func enter() -> void:
 	boss.play_animation("appear")	
 
+func exit() -> void:
+	body_hitbox.disabled = false
+
 func process(_delta: float) -> State:
 	if !boss.sprite.is_playing():	
 		return idle_state
 	return null
-

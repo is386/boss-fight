@@ -27,9 +27,12 @@
 [ext_resource type="Texture2D" uid="uid://2jie1hg1w2pi" path="res://player/assets/Combat/AirSlashDown/AirSlashDown05.png" id="31_3k3j0"]
 [ext_resource type="Texture2D" uid="uid://dfdo70haxa145" path="res://player/assets/Combat/AirSlashDown/AirSlashDown06.png" id="32_0bpox"]
 [ext_resource type="Texture2D" uid="uid://dxy38uecr0l5w" path="res://player/assets/Combat/SwordJump/SwordJump01.png" id="32_2a33p"]
+[ext_resource type="Texture2D" uid="uid://c3diba0xwyshm" path="res://player/assets/Combat/Hit/Hit01.png" id="33_pgo6y"]
 [ext_resource type="Texture2D" uid="uid://c6phn8csevgxr" path="res://player/assets/Combat/SwordRun/SwordRun01.png" id="33_reqs7"]
 [ext_resource type="Texture2D" uid="uid://bw18xvs6fueg6" path="res://player/assets/Combat/SwordRun/SwordRun02.png" id="34_2yjfb"]
+[ext_resource type="Texture2D" uid="uid://c8jfvb8iavwl1" path="res://player/assets/Combat/Hit/Hit02.png" id="34_qm6yy"]
 [ext_resource type="Texture2D" uid="uid://c5psm18awvqq6" path="res://player/assets/Combat/SwordRun/SwordRun03.png" id="35_dnnjp"]
+[ext_resource type="Texture2D" uid="uid://b44ovqdb5vfhd" path="res://player/assets/Combat/Hit/Hit03.png" id="35_gcmgo"]
 [ext_resource type="Texture2D" uid="uid://3r1p557bqhr3" path="res://player/assets/Combat/SwordRun/SwordRun04.png" id="36_wqna8"]
 [ext_resource type="Texture2D" uid="uid://bivpnjpno8adt" path="res://player/assets/Combat/SwordRun/SwordRun05.png" id="37_l7gmo"]
 [ext_resource type="Texture2D" uid="uid://dsfi4nav0y6mh" path="res://player/assets/Combat/SwordRun/SwordRun06.png" id="38_kft7l"]
@@ -65,6 +68,8 @@
 [ext_resource type="Script" uid="uid://babfsl71vtf4a" path="res://player/states/movement/crouch_walk.gd" id="65_4tsya"]
 [ext_resource type="Script" uid="uid://dawi15qqfv47j" path="res://player/states/movement/dash.gd" id="66_68qdx"]
 [ext_resource type="Script" uid="uid://wbls3curd7op" path="res://player/states/movement/sprint_jump.gd" id="67_ccnn6"]
+[ext_resource type="PackedScene" uid="uid://dxt6omt5qjgrk" path="res://entity/components/hurtbox_component.tscn" id="72_qjt2w"]
+[ext_resource type="PackedScene" uid="uid://cgcqvp80ib6c6" path="res://entity/components/health_component.tscn" id="73_2lfai"]
 [ext_resource type="Script" uid="uid://bf455ukluloqy" path="res://player/states/attack/idle_attack.gd" id="74_bpsgo"]
 [ext_resource type="Script" uid="uid://ddht0054isxxu" path="res://player/states/attack/standing_attack.gd" id="75_jx8is"]
 [ext_resource type="Script" uid="uid://1nuvedab2bts" path="res://player/components/player_input_component.gd" id="76_j3o0i"]
@@ -83,6 +88,7 @@
 [ext_resource type="Texture2D" uid="uid://ud7ya7y3yfsy" path="res://player/assets/Combat/AirSlashUp/AirSlashUp05.png" id="87_hrkfm"]
 [ext_resource type="Texture2D" uid="uid://d05ldxcwp1j6h" path="res://player/assets/Combat/StandingSlashUp/StandingSlashUp01.png" id="88_2em0j"]
 [ext_resource type="Texture2D" uid="uid://cdoqqm8nhrx14" path="res://player/assets/Combat/AirSlashUp/AirSlashUp06.png" id="88_oxcmq"]
+[ext_resource type="Script" uid="uid://dyr0ab7nrdr0c" path="res://player/states/movement/hurt.gd" id="88_qm6yy"]
 [ext_resource type="Texture2D" uid="uid://cbay6rxde3udm" path="res://player/assets/Combat/StandingSlashUp/StandingSlashUp02.png" id="89_qe2k6"]
 [ext_resource type="Texture2D" uid="uid://br1t64psq5srd" path="res://player/assets/Combat/StandingSlashUp/StandingSlashUp03.png" id="90_edwuo"]
 [ext_resource type="Script" uid="uid://bhoj3a7rxsomr" path="res://player/states/attack/standing_attack_up.gd" id="99_l7gmo"]
@@ -305,6 +311,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("33_pgo6y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_qm6yy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_gcmgo")
+}],
+"loop": false,
+"name": &"hurt",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("CompressedTexture2D_hrakr")
 }, {
 "duration": 1.0,
@@ -489,10 +509,13 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0wfyh"]
 radius = 5.0
+height = 40.0
 
-[node name="Player" type="CharacterBody2D" unique_id=1237580124 node_paths=PackedStringArray("movement_state_machine", "attack_state_machine", "sprite", "input_component", "velocity_component")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjt2w"]
+size = Vector2(12, 36)
+
+[node name="Player" type="CharacterBody2D" unique_id=1237580124 node_paths=PackedStringArray("movement_state_machine", "attack_state_machine", "sprite", "input_component", "velocity_component", "hurtbox_component")]
 collision_layer = 2
-collision_mask = 5
 script = ExtResource("1_770dr")
 movement_state_machine = NodePath("MovementStateMachine")
 attack_state_machine = NodePath("AttackStateMachine")
@@ -502,17 +525,34 @@ dash_distance = 110.0
 sprite = NodePath("AnimatedSprite2D")
 input_component = NodePath("InputComponent")
 velocity_component = NodePath("VelocityComponent")
+hurtbox_component = NodePath("HurtboxComponent")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=575221577]
 texture_filter = 1
 position = Vector2(0, -42)
 sprite_frames = SubResource("SpriteFrames_o5qli")
-animation = &"standing_attack"
+animation = &"hurt"
 autoplay = "idle"
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1358590442]
-position = Vector2(0, -15)
+position = Vector2(0, -19)
 shape = SubResource("CapsuleShape2D_0wfyh")
+
+[node name="HurtboxComponent" parent="." unique_id=1648363097 node_paths=PackedStringArray("health_component") instance=ExtResource("72_qjt2w")]
+collision_layer = 0
+collision_mask = 4
+health_component = NodePath("../HealthComponent")
+invulnerability_time = 0.75
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=837305921]
+position = Vector2(-1, -18)
+shape = SubResource("RectangleShape2D_qjt2w")
+debug_color = Color(3.85046e-07, 0.64576465, 0.25969562, 0.41960785)
+
+[node name="HealthComponent" parent="." unique_id=886111328 instance=ExtResource("73_2lfai")]
+max_health = 5
 
 [node name="InputComponent" type="Node" parent="." unique_id=1583714764 node_paths=PackedStringArray("player")]
 script = ExtResource("76_j3o0i")
@@ -522,15 +562,16 @@ player = NodePath("..")
 
 [node name="MovementStateMachine" parent="." unique_id=1903698038 instance=ExtResource("78_j3o0i")]
 
-[node name="Idle" type="Node" parent="MovementStateMachine" unique_id=685101690 node_paths=PackedStringArray("run_state", "jump_state", "fall_state", "crouch_state", "dash_state")]
+[node name="Idle" type="Node" parent="MovementStateMachine" unique_id=685101690 node_paths=PackedStringArray("run_state", "jump_state", "fall_state", "crouch_state", "dash_state", "hurt_state")]
 script = ExtResource("60_dqoq3")
 run_state = NodePath("../Run")
 jump_state = NodePath("../Jump")
 fall_state = NodePath("../Fall")
 crouch_state = NodePath("../Crouch")
 dash_state = NodePath("../Dash")
+hurt_state = NodePath("../PlayerHurt")
 
-[node name="Run" type="Node" parent="MovementStateMachine" unique_id=957914163 node_paths=PackedStringArray("idle_state", "jump_state", "fall_state", "crouch_state", "dash_state", "sprint_jump_state")]
+[node name="Run" type="Node" parent="MovementStateMachine" unique_id=957914163 node_paths=PackedStringArray("idle_state", "jump_state", "fall_state", "crouch_state", "dash_state", "sprint_jump_state", "hurt_state")]
 script = ExtResource("61_y8tjj")
 idle_state = NodePath("../Idle")
 jump_state = NodePath("../Jump")
@@ -538,25 +579,29 @@ fall_state = NodePath("../Fall")
 crouch_state = NodePath("../Crouch")
 dash_state = NodePath("../Dash")
 sprint_jump_state = NodePath("../SprintJump")
+hurt_state = NodePath("../PlayerHurt")
 
-[node name="Jump" type="Node" parent="MovementStateMachine" unique_id=1670460094 node_paths=PackedStringArray("fall_state", "dash_state")]
+[node name="Jump" type="Node" parent="MovementStateMachine" unique_id=1670460094 node_paths=PackedStringArray("fall_state", "dash_state", "hurt_state")]
 script = ExtResource("62_6ptwb")
 fall_state = NodePath("../Fall")
 dash_state = NodePath("../Dash")
+hurt_state = NodePath("../PlayerHurt")
 
-[node name="Fall" type="Node" parent="MovementStateMachine" unique_id=529610699 node_paths=PackedStringArray("idle_state", "jump_state", "crouch_state", "dash_state")]
+[node name="Fall" type="Node" parent="MovementStateMachine" unique_id=529610699 node_paths=PackedStringArray("idle_state", "jump_state", "crouch_state", "dash_state", "hurt_state")]
 script = ExtResource("63_8pj6w")
 idle_state = NodePath("../Idle")
 jump_state = NodePath("../Jump")
 crouch_state = NodePath("../Crouch")
 dash_state = NodePath("../Dash")
+hurt_state = NodePath("../PlayerHurt")
 
-[node name="Crouch" type="Node" parent="MovementStateMachine" unique_id=825503122 node_paths=PackedStringArray("idle_state", "jump_state", "crouch_walk_state", "dash_state")]
+[node name="Crouch" type="Node" parent="MovementStateMachine" unique_id=825503122 node_paths=PackedStringArray("idle_state", "jump_state", "crouch_walk_state", "dash_state", "hurt_state")]
 script = ExtResource("64_08upi")
 idle_state = NodePath("../Idle")
 jump_state = NodePath("../Jump")
 crouch_walk_state = NodePath("../CrouchWalk")
 dash_state = NodePath("../Dash")
+hurt_state = NodePath("../PlayerHurt")
 
 [node name="CrouchWalk" type="Node" parent="MovementStateMachine" unique_id=1113212949 node_paths=PackedStringArray("idle_state", "run_state", "jump_state", "fall_state", "crouch_state", "dash_state")]
 script = ExtResource("65_4tsya")
@@ -567,19 +612,28 @@ fall_state = NodePath("../Fall")
 crouch_state = NodePath("../Crouch")
 dash_state = NodePath("../Dash")
 
-[node name="Dash" type="Node" parent="MovementStateMachine" unique_id=93188547 node_paths=PackedStringArray("idle_state", "run_state", "fall_state", "crouch_state", "crouch_walk_state")]
+[node name="Dash" type="Node" parent="MovementStateMachine" unique_id=93188547 node_paths=PackedStringArray("idle_state", "run_state", "fall_state", "crouch_state", "crouch_walk_state", "hurt_state")]
 script = ExtResource("66_68qdx")
 idle_state = NodePath("../Idle")
 run_state = NodePath("../Run")
 fall_state = NodePath("../Fall")
 crouch_state = NodePath("../Crouch")
 crouch_walk_state = NodePath("../CrouchWalk")
+hurt_state = NodePath("../PlayerHurt")
 
-[node name="SprintJump" type="Node" parent="MovementStateMachine" unique_id=1262224666 node_paths=PackedStringArray("idle_state", "run_state", "crouch_state")]
+[node name="SprintJump" type="Node" parent="MovementStateMachine" unique_id=1262224666 node_paths=PackedStringArray("idle_state", "run_state", "crouch_state", "hurt_state")]
 script = ExtResource("67_ccnn6")
 idle_state = NodePath("../Idle")
 run_state = NodePath("../Run")
 crouch_state = NodePath("../Crouch")
+hurt_state = NodePath("../PlayerHurt")
+
+[node name="PlayerHurt" type="Node" parent="MovementStateMachine" unique_id=871358827 node_paths=PackedStringArray("idle_state", "fall_state", "hurt_state")]
+script = ExtResource("88_qm6yy")
+idle_state = NodePath("../Idle")
+fall_state = NodePath("../Fall")
+hurt_state = NodePath(".")
+metadata/_custom_type_script = "uid://dyr0ab7nrdr0c"
 
 [node name="AttackStateMachine" parent="." unique_id=686622543 instance=ExtResource("78_j3o0i")]
 

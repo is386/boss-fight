@@ -1,5 +1,5 @@
 class_name PlayerRun
-extends State
+extends PlayerMoveState
 
 @export var idle_state: State
 @export var jump_state: State
@@ -8,12 +8,8 @@ extends State
 @export var dash_state: State
 @export var sprint_jump_state: State
 
-var player: Player
-
-func _ready() -> void:
-	player = owner as Player
-
 func enter() -> void:
+	super.enter()
 	play_entry_animation()
 
 func process_physics(_delta: float) -> State:
