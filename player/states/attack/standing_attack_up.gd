@@ -18,7 +18,7 @@ func exit() -> void:
 	player.sprite.animation_finished.disconnect(_on_attack_animation_finished)
 
 func process(_delta: float) -> State:
-	if !player.is_attacking or !player.is_idle:
+	if !player.is_attacking:
 		return idle_attack_state
 	return null
 

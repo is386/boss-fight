@@ -107,10 +107,16 @@
 [ext_resource type="Texture2D" uid="uid://cllopone44nlr" path="res://boss/assets/PowerUp/PowerUp06.png" id="67_8gofb"]
 [ext_resource type="Texture2D" uid="uid://chrt06i0c12de" path="res://boss/assets/PowerUp/PowerUp07.png" id="68_t60c7"]
 [ext_resource type="PackedScene" uid="uid://vwyg1wvk7mjs" path="res://entity/components/velocity_component.tscn" id="82_ddtty"]
-[ext_resource type="Script" uid="uid://blkqjy5ape6bk" path="res://boss/components/boss_input_component.gd" id="83_iu7dr"]
+[ext_resource type="Script" uid="uid://xn6x2barbgkt" path="res://boss/components/boss_input_component.gd" id="83_iu7dr"]
 [ext_resource type="PackedScene" uid="uid://egxjudl6mnat" path="res://state_machine/state_machine.tscn" id="85_n4he3"]
 [ext_resource type="Script" uid="uid://bg7bcfnqnqen" path="res://boss/states/appear.gd" id="86_3qgbb"]
 [ext_resource type="Script" uid="uid://xqmst670qy7k" path="res://boss/states/idle.gd" id="86_n4he3"]
+[ext_resource type="Script" uid="uid://c414e2c1uh77j" path="res://boss/states/run.gd" id="112_qcvgs"]
+[ext_resource type="Script" uid="uid://gac0xb7ayvxr" path="res://boss/states/attack.gd" id="113_atfjh"]
+[ext_resource type="Script" uid="uid://c5gw0weopb2tk" path="res://boss/states/blast_charge.gd" id="114_883bk"]
+[ext_resource type="Script" uid="uid://hp3qn4mbbay8" path="res://boss/states/blast_attack.gd" id="114_qcc6b"]
+[ext_resource type="Script" uid="uid://b8ui01ehclm5x" path="res://boss/states/jump.gd" id="114_s0gb3"]
+[ext_resource type="Script" uid="uid://b6rt1konh5ks7" path="res://boss/states/fall.gd" id="115_883bk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y10lg"]
 animations = [{
@@ -232,7 +238,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"blast_attack",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -255,7 +261,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"blast_charge",
-"speed": 10.0
+"speed": 20.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -492,31 +498,48 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8bwv6"]
 radius = 9.0
-height = 40.0
+height = 60.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ef1ye"]
+size = Vector2(100, 40)
 
 [node name="Boss" type="CharacterBody2D" unique_id=125884711 node_paths=PackedStringArray("state_machine", "sprite", "input_component", "velocity_component")]
 collision_layer = 4
 script = ExtResource("1_sixat")
 state_machine = NodePath("StateMachine")
+run_speed = 200.0
 sprite = NodePath("AnimatedSprite2D")
 input_component = NodePath("InputComponent")
 velocity_component = NodePath("VelocityComponent")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=38547259]
-position = Vector2(0, -42)
+position = Vector2(0, -63.000004)
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_y10lg")
-animation = &"appear"
+animation = &"blast_charge"
 autoplay = "appear"
-frame = 23
-frame_progress = 1.0
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2139922582]
-position = Vector2(0, -20)
+position = Vector2(0, -30)
 shape = SubResource("CapsuleShape2D_8bwv6")
 
-[node name="InputComponent" type="Node" parent="." unique_id=1266284461]
+[node name="PlayerDetectionArea" type="Area2D" parent="." unique_id=678405236]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetectionArea" unique_id=841392225]
+position = Vector2(0.5, -28)
+shape = SubResource("RectangleShape2D_ef1ye")
+debug_color = Color(0.99411815, 0, 0.23431402, 0.41960785)
+
+[node name="CooldownTimer" type="Timer" parent="." unique_id=897068969]
+wait_time = 0.5
+one_shot = true
+
+[node name="InputComponent" type="Node" parent="." unique_id=1266284461 node_paths=PackedStringArray("boss")]
 script = ExtResource("83_iu7dr")
+boss = NodePath("..")
 
 [node name="VelocityComponent" parent="." unique_id=530710705 instance=ExtResource("82_ddtty")]
 
@@ -526,5 +549,42 @@ script = ExtResource("83_iu7dr")
 script = ExtResource("86_3qgbb")
 idle_state = NodePath("../Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" unique_id=33543860]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=33543860 node_paths=PackedStringArray("run_state", "attack_state", "blast_charge_state", "jump_state")]
 script = ExtResource("86_n4he3")
+run_state = NodePath("../Run")
+attack_state = NodePath("../Attack")
+blast_charge_state = NodePath("../BossBlastCharge")
+jump_state = NodePath("../BossJump")
+
+[node name="Run" type="Node" parent="StateMachine" unique_id=411404724 node_paths=PackedStringArray("idle_state")]
+script = ExtResource("112_qcvgs")
+idle_state = NodePath("../Idle")
+metadata/_custom_type_script = "uid://c414e2c1uh77j"
+
+[node name="Attack" type="Node" parent="StateMachine" unique_id=2049272301 node_paths=PackedStringArray("idle_state", "cooldown_timer")]
+script = ExtResource("113_atfjh")
+idle_state = NodePath("../Idle")
+cooldown_timer = NodePath("../../CooldownTimer")
+
+[node name="BossBlastAttack" type="Node" parent="StateMachine" unique_id=187935999 node_paths=PackedStringArray("idle_state", "cooldown_timer")]
+script = ExtResource("114_qcc6b")
+idle_state = NodePath("../Idle")
+cooldown_timer = NodePath("../../CooldownTimer")
+
+[node name="BossBlastCharge" type="Node" parent="StateMachine" unique_id=1623577695 node_paths=PackedStringArray("blast_attack_state")]
+script = ExtResource("114_883bk")
+blast_attack_state = NodePath("../BossBlastAttack")
+charge_time = 1.0
+metadata/_custom_type_script = "uid://c5gw0weopb2tk"
+
+[node name="BossJump" type="Node" parent="StateMachine" unique_id=1380129082 node_paths=PackedStringArray("fall_state")]
+script = ExtResource("114_s0gb3")
+fall_state = NodePath("../BossFall")
+
+[node name="BossFall" type="Node" parent="StateMachine" unique_id=255046856 node_paths=PackedStringArray("idle_state")]
+script = ExtResource("115_883bk")
+idle_state = NodePath("../Idle")
+
+[connection signal="body_entered" from="PlayerDetectionArea" to="StateMachine/Run" method="_on_player_detection_area_entered"]
+[connection signal="body_exited" from="PlayerDetectionArea" to="StateMachine/Idle" method="player_detection_area_exited"]
+[connection signal="timeout" from="CooldownTimer" to="StateMachine/Idle" method="_on_cooldown_timer_timeout"]

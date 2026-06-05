@@ -27,11 +27,15 @@ func process_physics(_delta: float) -> State:
 		return crouch_state
 	if player.input_component.can_dash():
 		return dash_state
+
 	var prev_direction = player.direction
+
 	if !player.velocity_component.apply_horizontal_velocity(_get_speed()):
 		return idle_state
+
 	if prev_direction != player.direction:
 		player.sprite.flip_h = player.direction != 1
+
 	player.move_and_slide()
 	return null
 

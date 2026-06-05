@@ -1,7 +1,12 @@
 class_name Boss
 extends Entity
 
+@export var player: Player
 @export var state_machine: StateMachine
+@export var run_speed: float = 150
+@export var jump_speed: float = 400
+
+var isPlayerInRange: bool = false
 
 func _ready() -> void:
 	state_machine.init()

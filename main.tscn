@@ -12,11 +12,12 @@ distance = -256.0
 scale = Vector2(0.6885209, 0.81085306)
 zoom = Vector2(2, 2)
 
+[node name="Boss" parent="." unique_id=125884711 node_paths=PackedStringArray("player") instance=ExtResource("2_0xm2m")]
+position = Vector2(125, 90)
+player = NodePath("../Player")
+
 [node name="Player" parent="." unique_id=1237580124 instance=ExtResource("1_o5qli")]
 position = Vector2(-38, 90)
-
-[node name="Boss" parent="." unique_id=125884711 instance=ExtResource("2_0xm2m")]
-position = Vector2(39, 90)
 
 [node name="Ground" type="StaticBody2D" parent="." unique_id=1850636101]
 position = Vector2(3, 0)

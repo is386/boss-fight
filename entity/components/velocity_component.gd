@@ -8,7 +8,9 @@ func _ready() -> void:
 
 func apply_horizontal_velocity(speed: float) -> bool:
 	var direction := entity.input_component.get_run_direction()
-
+	return apply_horizontal_velocity_direction(speed, direction)
+	
+func apply_horizontal_velocity_direction(speed: float, direction: float) -> bool:
 	if !direction:
 		entity.velocity.x = 0 
 		return false
