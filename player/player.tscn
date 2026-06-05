@@ -91,6 +91,7 @@
 [ext_resource type="Script" uid="uid://dyr0ab7nrdr0c" path="res://player/states/movement/hurt.gd" id="88_qm6yy"]
 [ext_resource type="Texture2D" uid="uid://cbay6rxde3udm" path="res://player/assets/Combat/StandingSlashUp/StandingSlashUp02.png" id="89_qe2k6"]
 [ext_resource type="Texture2D" uid="uid://br1t64psq5srd" path="res://player/assets/Combat/StandingSlashUp/StandingSlashUp03.png" id="90_edwuo"]
+[ext_resource type="Script" uid="uid://bmue7hbo1lj2u" path="res://entity/components/hitbox_component.gd" id="96_gcmgo"]
 [ext_resource type="Script" uid="uid://bhoj3a7rxsomr" path="res://player/states/attack/standing_attack_up.gd" id="99_l7gmo"]
 [ext_resource type="Script" uid="uid://cr0mffjfp8jlb" path="res://player/states/attack/air_attack.gd" id="101_wylla"]
 [ext_resource type="Script" uid="uid://bfkmuq54u4pwv" path="res://player/states/attack/air_attack_up.gd" id="102_a3eqm"]
@@ -514,6 +515,18 @@ height = 40.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qjt2w"]
 size = Vector2(12, 36)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iojyt"]
+size = Vector2(40, 35.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gcmgo"]
+size = Vector2(40, 35.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rnncm"]
+size = Vector2(40, 35.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nj2w7"]
+size = Vector2(40, 35.5)
+
 [node name="Player" type="CharacterBody2D" unique_id=1237580124 node_paths=PackedStringArray("movement_state_machine", "attack_state_machine", "sprite", "input_component", "velocity_component", "hurtbox_component")]
 collision_layer = 2
 script = ExtResource("1_770dr")
@@ -531,9 +544,9 @@ hurtbox_component = NodePath("HurtboxComponent")
 texture_filter = 1
 position = Vector2(0, -42)
 sprite_frames = SubResource("SpriteFrames_o5qli")
-animation = &"hurt"
+animation = &"air_attack_down"
 autoplay = "idle"
-frame = 2
+frame = 5
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1358590442]
@@ -550,6 +563,58 @@ invulnerability_time = 0.75
 position = Vector2(-1, -18)
 shape = SubResource("RectangleShape2D_qjt2w")
 debug_color = Color(3.85046e-07, 0.64576465, 0.25969562, 0.41960785)
+
+[node name="RightHitboxComponent" type="Area2D" parent="." unique_id=469348437]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("96_gcmgo")
+damage = 1
+metadata/_custom_type_script = "uid://bmue7hbo1lj2u"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightHitboxComponent" unique_id=743357017]
+position = Vector2(26, -19)
+shape = SubResource("RectangleShape2D_iojyt")
+disabled = true
+debug_color = Color(0.9957481, 0, 0.20788833, 0.41960785)
+
+[node name="LeftHitboxComponent" type="Area2D" parent="." unique_id=50847259]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("96_gcmgo")
+damage = 1
+metadata/_custom_type_script = "uid://bmue7hbo1lj2u"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftHitboxComponent" unique_id=1702785625]
+position = Vector2(-28, -19)
+shape = SubResource("RectangleShape2D_gcmgo")
+disabled = true
+debug_color = Color(0.9957481, 0, 0.20788833, 0.41960785)
+
+[node name="DownHitboxComponent" type="Area2D" parent="." unique_id=2144290192]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("96_gcmgo")
+damage = 1
+metadata/_custom_type_script = "uid://bmue7hbo1lj2u"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DownHitboxComponent" unique_id=676309225]
+position = Vector2(0, -14)
+shape = SubResource("RectangleShape2D_rnncm")
+disabled = true
+debug_color = Color(0.9957481, 0, 0.20788833, 0.41960785)
+
+[node name="UpHitboxComponent" type="Area2D" parent="." unique_id=1640136760]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("96_gcmgo")
+damage = 1
+metadata/_custom_type_script = "uid://bmue7hbo1lj2u"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpHitboxComponent" unique_id=2129921217]
+position = Vector2(0, -55)
+shape = SubResource("RectangleShape2D_nj2w7")
+disabled = true
+debug_color = Color(0.9957481, 0, 0.20788833, 0.41960785)
 
 [node name="HealthComponent" parent="." unique_id=886111328 instance=ExtResource("73_2lfai")]
 max_health = 5
@@ -646,26 +711,35 @@ aerial_attack_state = NodePath("../AirAttack")
 upwards_aerial_attack_state = NodePath("../AirAttackUp")
 downwards_aerial_attack_state = NodePath("../AirAttackDown")
 
-[node name="StandingAttack" type="Node" parent="AttackStateMachine" unique_id=1663022956 node_paths=PackedStringArray("idle_attack_state")]
+[node name="StandingAttack" type="Node" parent="AttackStateMachine" unique_id=1663022956 node_paths=PackedStringArray("idle_attack_state", "right_hitbox", "left_hitbox")]
 script = ExtResource("75_jx8is")
 idle_attack_state = NodePath("../IdleAttack")
+right_hitbox = NodePath("../../RightHitboxComponent")
+left_hitbox = NodePath("../../LeftHitboxComponent")
 
-[node name="StandingAttackUp" type="Node" parent="AttackStateMachine" unique_id=585279495 node_paths=PackedStringArray("idle_attack_state")]
+[node name="StandingAttackUp" type="Node" parent="AttackStateMachine" unique_id=585279495 node_paths=PackedStringArray("idle_attack_state", "hitbox")]
 script = ExtResource("99_l7gmo")
 idle_attack_state = NodePath("../IdleAttack")
+hitbox = NodePath("../../UpHitboxComponent")
 
-[node name="RunningAttack" type="Node" parent="AttackStateMachine" unique_id=180949624 node_paths=PackedStringArray("idle_attack_state")]
+[node name="RunningAttack" type="Node" parent="AttackStateMachine" unique_id=180949624 node_paths=PackedStringArray("idle_attack_state", "right_hitbox", "left_hitbox")]
 script = ExtResource("84_lw0jh")
 idle_attack_state = NodePath("../IdleAttack")
+right_hitbox = NodePath("../../RightHitboxComponent")
+left_hitbox = NodePath("../../LeftHitboxComponent")
 
-[node name="AirAttack" type="Node" parent="AttackStateMachine" unique_id=208217666 node_paths=PackedStringArray("idle_attack_state")]
+[node name="AirAttack" type="Node" parent="AttackStateMachine" unique_id=208217666 node_paths=PackedStringArray("idle_attack_state", "right_hitbox", "left_hitbox")]
 script = ExtResource("101_wylla")
 idle_attack_state = NodePath("../IdleAttack")
+right_hitbox = NodePath("../../RightHitboxComponent")
+left_hitbox = NodePath("../../LeftHitboxComponent")
 
-[node name="AirAttackUp" type="Node" parent="AttackStateMachine" unique_id=284285598 node_paths=PackedStringArray("idle_attack_state")]
+[node name="AirAttackUp" type="Node" parent="AttackStateMachine" unique_id=284285598 node_paths=PackedStringArray("idle_attack_state", "hitbox")]
 script = ExtResource("102_a3eqm")
 idle_attack_state = NodePath("../IdleAttack")
+hitbox = NodePath("../../UpHitboxComponent")
 
-[node name="AirAttackDown" type="Node" parent="AttackStateMachine" unique_id=1533859707 node_paths=PackedStringArray("idle_attack_state")]
+[node name="AirAttackDown" type="Node" parent="AttackStateMachine" unique_id=1533859707 node_paths=PackedStringArray("idle_attack_state", "hitbox")]
 script = ExtResource("103_plx2b")
 idle_attack_state = NodePath("../IdleAttack")
+hitbox = NodePath("../../DownHitboxComponent")

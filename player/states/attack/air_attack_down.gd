@@ -3,6 +3,7 @@ class_name PlayerAirAttackDown
 extends State
 
 @export var idle_attack_state: State
+@export var hitbox: HitboxComponent
 
 var player: Player
 
@@ -13,8 +14,10 @@ func enter() -> void:
 	play_entry_animation()	
 	player.is_attacking = true
 	player.sprite.animation_finished.connect(_on_attack_animation_finished)
+	hitbox.enable()
 
 func exit() -> void:
+	hitbox.disable()
 	player.is_attacking = false
 	player.sprite.animation_finished.disconnect(_on_attack_animation_finished)
 

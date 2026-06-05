@@ -3,11 +3,11 @@ extends State
 
 @export var idle_state: State
 @export var cooldown_timer: Timer
-@export var right_hitbox: CollisionShape2D
-@export var left_hitbox: CollisionShape2D
+@export var right_hitbox: HitboxComponent 
+@export var left_hitbox: HitboxComponent
 
 var boss: Boss
-var hitbox: CollisionShape2D
+var hitbox: HitboxComponent
 
 func _ready() -> void:
 	boss = owner as Boss
@@ -20,11 +20,11 @@ func enter() -> void:
 		hitbox = left_hitbox
 
 func exit() -> void:
-	hitbox.disabled = true
+	hitbox.disable()
 
 func process(_delta: float) -> State:
 	if boss.sprite.frame == 1:
-		hitbox.disabled = false
+		hitbox.enable()
 	if !boss.sprite.is_playing():
 		cooldown_timer.start()
 		return idle_state

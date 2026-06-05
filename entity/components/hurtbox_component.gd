@@ -6,11 +6,19 @@ extends Area2D
 
 var knockback_direction: Vector2 = Vector2.ZERO
 var is_invulnerable: bool = false
+var collision_shape: CollisionShape2D
 
 signal hit_received 
 
+func disable() -> void:
+	collision_shape.disabled = true
+
+func enable() -> void:
+	collision_shape.disabled = false
+
 func _ready() -> void:
 	area_entered.connect(_on_hurtbox_entered)
+	collision_shape = $CollisionShape2D
 	
 func _on_hurtbox_entered(area2d: Area2D) -> void:
 	if is_invulnerable:
@@ -23,6 +31,10 @@ func _on_hurtbox_entered(area2d: Area2D) -> void:
 	health_component.subtract_health(hitbox.damage)
 	knockback_direction = global_position.direction_to(hitbox.global_position).normalized() * -1
 
+	hit_received.emit()
+	if invulnerability_time <= 0:
+		return
+
 	is_invulnerable = true
 	var invulnerability_timer = Timer.new()
 	invulnerability_timer.wait_time = invulnerability_time
@@ -30,8 +42,6 @@ func _on_hurtbox_entered(area2d: Area2D) -> void:
 	invulnerability_timer.timeout.connect(_on_invulnerability_timer_timeout)
 	add_child(invulnerability_timer)
 	invulnerability_timer.start()
-
-	hit_received.emit()
 
 func _on_invulnerability_timer_timeout() -> void:
 	is_invulnerable = false
