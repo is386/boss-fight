@@ -1,18 +1,15 @@
 class_name BossAttackState
-extends State
+extends BossState
 
 @export var idle_state: State
 @export var cooldown_timer: Timer
 @export var right_hitbox: HitboxComponent 
 @export var left_hitbox: HitboxComponent
 
-var boss: Boss
 var hitbox: HitboxComponent
 
-func _ready() -> void:
-	boss = owner as Boss
-
 func enter() -> void:
+	super.enter()
 	boss.play_animation('attack')
 	if boss.input_component.get_run_direction() == 1:
 		hitbox = right_hitbox
@@ -20,9 +17,14 @@ func enter() -> void:
 		hitbox = left_hitbox
 
 func exit() -> void:
+	super.exit()
 	hitbox.disable()
 
-func process(_delta: float) -> State:
+func process(delta: float) -> State:
+	var state = super.process(delta)
+	if state:
+		return state
+
 	if boss.sprite.frame == 1:
 		hitbox.enable()
 	if boss.sprite.frame == 3:

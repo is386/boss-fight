@@ -7,6 +7,8 @@ extends Entity
 @export var jump_speed: float = 400
 
 var isPlayerInRange: bool = false
+var isInCooldown: bool
+var canJump: bool = true
 
 func _ready() -> void:
 	state_machine.init()

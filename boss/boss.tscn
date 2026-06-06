@@ -111,9 +111,17 @@
 [ext_resource type="PackedScene" uid="uid://egxjudl6mnat" path="res://state_machine/state_machine.tscn" id="85_n4he3"]
 [ext_resource type="Script" uid="uid://bg7bcfnqnqen" path="res://boss/states/appear.gd" id="86_3qgbb"]
 [ext_resource type="Script" uid="uid://xqmst670qy7k" path="res://boss/states/idle.gd" id="86_n4he3"]
+[ext_resource type="Texture2D" uid="uid://deqihxanu6wbf" path="res://boss/assets/Knockback/Knockback02.png" id="100_qngmm"]
+[ext_resource type="Texture2D" uid="uid://yjvcojg0fa7a" path="res://boss/assets/Knockback/Knockback03.png" id="101_ju6v1"]
+[ext_resource type="Texture2D" uid="uid://dgku6luysqtm5" path="res://boss/assets/Knockback/Knockback04.png" id="102_iotse"]
+[ext_resource type="Texture2D" uid="uid://b0fbmrqup0p2u" path="res://boss/assets/Knockback/Knockback05.png" id="103_qsars"]
+[ext_resource type="Texture2D" uid="uid://d4bqpvqhllj08" path="res://boss/assets/Knockback/Knockback06.png" id="104_ac60u"]
+[ext_resource type="Texture2D" uid="uid://dwaf7di3h351m" path="res://boss/assets/Knockback/Knockback07.png" id="105_gq7ai"]
+[ext_resource type="Texture2D" uid="uid://c458jj8y00ycq" path="res://boss/assets/Knockback/Knockback08.png" id="106_a2ck6"]
+[ext_resource type="Texture2D" uid="uid://jvt2k25cvfrn" path="res://boss/assets/Knockback/Knockback09.png" id="107_4kk32"]
 [ext_resource type="Script" uid="uid://bmue7hbo1lj2u" path="res://entity/components/hitbox_component.gd" id="107_mgimq"]
 [ext_resource type="Script" uid="uid://1swhe7mpj1lb" path="res://entity/components/hurtbox_component.gd" id="108_1x7qe"]
-[ext_resource type="Script" uid="uid://ch0xb8i3slb0s" path="res://entity/components/health_component.gd" id="108_jx3m5"]
+[ext_resource type="Script" uid="uid://ygaekfnygi54" path="res://boss/components/boss_health_component.gd" id="109_6kjei"]
 [ext_resource type="Script" uid="uid://c414e2c1uh77j" path="res://boss/states/run.gd" id="112_qcvgs"]
 [ext_resource type="Script" uid="uid://gac0xb7ayvxr" path="res://boss/states/attack.gd" id="113_atfjh"]
 [ext_resource type="Script" uid="uid://c5gw0weopb2tk" path="res://boss/states/blast_charge.gd" id="114_883bk"]
@@ -121,6 +129,7 @@
 [ext_resource type="Script" uid="uid://b8ui01ehclm5x" path="res://boss/states/jump.gd" id="114_s0gb3"]
 [ext_resource type="Script" uid="uid://b6rt1konh5ks7" path="res://boss/states/fall.gd" id="115_883bk"]
 [ext_resource type="PackedScene" uid="uid://bxyhxem2clh2v" path="res://laser/laser.tscn" id="121_6kjei"]
+[ext_resource type="Script" uid="uid://4ban7th8wd3q" path="res://boss/states/stunned.gd" id="122_h4alf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y10lg"]
 animations = [{
@@ -475,6 +484,35 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("100_qngmm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("101_ju6v1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("102_iotse")
+}, {
+"duration": 1.0,
+"texture": ExtResource("103_qsars")
+}, {
+"duration": 1.0,
+"texture": ExtResource("104_ac60u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("105_gq7ai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("106_a2ck6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("107_4kk32")
+}],
+"loop": false,
+"name": &"stunned",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("54_ck37f")
 }, {
 "duration": 1.0,
@@ -533,8 +571,10 @@ hurtbox_component = NodePath("HurtboxComponent")
 position = Vector2(0, -63.000004)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_y10lg")
-animation = &"blast_attack"
+animation = &"stunned"
 autoplay = "appear"
+frame = 7
+frame_progress = 1.0
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2139922582]
@@ -591,7 +631,7 @@ debug_color = Color(0.9999998, 0, 0.10531009, 0.41960785)
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("108_1x7qe")
-health_component = NodePath("../HealthComponent")
+health_component = NodePath("../BossHealthComponent")
 metadata/_custom_type_script = "uid://1swhe7mpj1lb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=888829065]
@@ -600,10 +640,11 @@ shape = SubResource("RectangleShape2D_1x7qe")
 disabled = true
 debug_color = Color(0, 0.6470472, 0.22957921, 0.41960785)
 
-[node name="HealthComponent" type="Node" parent="." unique_id=1012202014]
-script = ExtResource("108_jx3m5")
+[node name="BossHealthComponent" type="Node" parent="." unique_id=1520694109]
+script = ExtResource("109_6kjei")
+num_stuns = 2
+phase_two_health_ratio = 0.5
 max_health = 50
-metadata/_custom_type_script = "uid://ch0xb8i3slb0s"
 
 [node name="CooldownTimer" type="Timer" parent="." unique_id=897068969]
 wait_time = 0.75
@@ -617,50 +658,64 @@ boss = NodePath("..")
 
 [node name="StateMachine" parent="." unique_id=1903698038 instance=ExtResource("85_n4he3")]
 
-[node name="Appear" type="Node" parent="StateMachine" unique_id=10249887 node_paths=PackedStringArray("idle_state", "body_hitbox", "hurtbox")]
+[node name="Appear" type="Node" parent="StateMachine" unique_id=10249887 node_paths=PackedStringArray("idle_state", "body_hitbox", "hurtbox", "stun_state")]
 script = ExtResource("86_3qgbb")
 idle_state = NodePath("../Idle")
 body_hitbox = NodePath("../../BodyHitbox")
 hurtbox = NodePath("../../HurtboxComponent")
+stun_state = NodePath("../BossStunned")
 
-[node name="Idle" type="Node" parent="StateMachine" unique_id=33543860 node_paths=PackedStringArray("run_state", "attack_state", "blast_charge_state", "jump_state")]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=33543860 node_paths=PackedStringArray("run_state", "attack_state", "blast_charge_state", "jump_state", "stun_state")]
 script = ExtResource("86_n4he3")
 run_state = NodePath("../Run")
 attack_state = NodePath("../Attack")
 blast_charge_state = NodePath("../BossBlastCharge")
 jump_state = NodePath("../BossJump")
+stun_state = NodePath("../BossStunned")
 
-[node name="Run" type="Node" parent="StateMachine" unique_id=411404724 node_paths=PackedStringArray("idle_state")]
+[node name="Run" type="Node" parent="StateMachine" unique_id=411404724 node_paths=PackedStringArray("idle_state", "stun_state")]
 script = ExtResource("112_qcvgs")
 idle_state = NodePath("../Idle")
+stun_state = NodePath("../BossStunned")
 metadata/_custom_type_script = "uid://c414e2c1uh77j"
 
-[node name="Attack" type="Node" parent="StateMachine" unique_id=2049272301 node_paths=PackedStringArray("idle_state", "cooldown_timer", "right_hitbox", "left_hitbox")]
+[node name="Attack" type="Node" parent="StateMachine" unique_id=2049272301 node_paths=PackedStringArray("idle_state", "cooldown_timer", "right_hitbox", "left_hitbox", "stun_state")]
 script = ExtResource("113_atfjh")
 idle_state = NodePath("../Idle")
 cooldown_timer = NodePath("../../CooldownTimer")
 right_hitbox = NodePath("../../RightAttackHitbox")
 left_hitbox = NodePath("../../LeftAttackHitbox")
+stun_state = NodePath("../BossStunned")
 
-[node name="BossBlastAttack" type="Node" parent="StateMachine" unique_id=187935999 node_paths=PackedStringArray("idle_state", "cooldown_timer")]
+[node name="BossBlastAttack" type="Node" parent="StateMachine" unique_id=187935999 node_paths=PackedStringArray("idle_state", "cooldown_timer", "stun_state")]
 script = ExtResource("114_qcc6b")
 idle_state = NodePath("../Idle")
 cooldown_timer = NodePath("../../CooldownTimer")
 laser_scene = ExtResource("121_6kjei")
+stun_state = NodePath("../BossStunned")
 
-[node name="BossBlastCharge" type="Node" parent="StateMachine" unique_id=1623577695 node_paths=PackedStringArray("blast_attack_state")]
+[node name="BossBlastCharge" type="Node" parent="StateMachine" unique_id=1623577695 node_paths=PackedStringArray("blast_attack_state", "stun_state")]
 script = ExtResource("114_883bk")
 blast_attack_state = NodePath("../BossBlastAttack")
 charge_time = 1.0
+stun_state = NodePath("../BossStunned")
 metadata/_custom_type_script = "uid://c5gw0weopb2tk"
 
-[node name="BossJump" type="Node" parent="StateMachine" unique_id=1380129082 node_paths=PackedStringArray("fall_state")]
+[node name="BossJump" type="Node" parent="StateMachine" unique_id=1380129082 node_paths=PackedStringArray("fall_state", "stun_state")]
 script = ExtResource("114_s0gb3")
 fall_state = NodePath("../BossFall")
+stun_state = NodePath("../BossStunned")
 
-[node name="BossFall" type="Node" parent="StateMachine" unique_id=255046856 node_paths=PackedStringArray("idle_state")]
+[node name="BossFall" type="Node" parent="StateMachine" unique_id=255046856 node_paths=PackedStringArray("idle_state", "stun_state")]
 script = ExtResource("115_883bk")
 idle_state = NodePath("../Idle")
+stun_state = NodePath("../BossStunned")
+
+[node name="BossStunned" type="Node" parent="StateMachine" unique_id=1144672558 node_paths=PackedStringArray("idle_state", "body_hitbox")]
+script = ExtResource("122_h4alf")
+idle_state = NodePath("../Idle")
+stunned_time = 3.0
+body_hitbox = NodePath("../../BodyHitbox")
 
 [connection signal="body_entered" from="PlayerDetectionArea" to="StateMachine/Run" method="_on_player_detection_area_entered"]
 [connection signal="body_exited" from="PlayerDetectionArea" to="StateMachine/Idle" method="player_detection_area_exited"]

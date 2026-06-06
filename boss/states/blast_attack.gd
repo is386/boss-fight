@@ -1,16 +1,12 @@
 class_name BossBlastAttack
-extends State
+extends BossState
 
 @export var idle_state: State
 @export var cooldown_timer: Timer
 @export var laser_scene: PackedScene
 
-var boss: Boss
-
-func _ready() -> void:
-	boss = owner as Boss
-
 func enter() -> void:
+	super.enter()
 	boss.play_animation('blast_attack')
 	var laser = laser_scene.instantiate() as Laser
 	laser.scale.x = sign(boss.direction)
@@ -19,7 +15,11 @@ func enter() -> void:
 	laser.global_position.y += -2 
 	add_child(laser)
 
-func process(_delta: float) -> State:
+func process(delta: float) -> State:
+	var state = super.process(delta)
+	if state:
+		return state
+
 	if !boss.sprite.is_playing():
 		cooldown_timer.start()
 		return idle_state

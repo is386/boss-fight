@@ -153,3 +153,4 @@ damage = 1
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=160114448]
 position = Vector2(206, -35)
 shape = SubResource("RectangleShape2D_ibm4k")
+debug_color = Color(0.9995014, 0, 0.1253142, 0.41960785)

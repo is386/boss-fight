@@ -1,14 +1,10 @@
 class_name BossJump
-extends State
+extends BossState
 
 @export var fall_state: State
 
-var boss: Boss
-
-func _ready() -> void:
-	boss = owner as Boss
-
 func enter() -> void:
+	super.enter()
 	boss.play_animation('jump')
 	boss.velocity.y = -boss.jump_speed
 	boss.direction = boss.input_component.get_run_direction()

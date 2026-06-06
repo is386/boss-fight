@@ -1,14 +1,10 @@
 class_name BossFall
-extends State
+extends BossState
 
 @export var idle_state: State
 
-var boss: Boss
-
-func _ready() -> void:
-	boss = owner as Boss
-
 func enter() -> void:
+	super.enter()
 	boss.play_animation("fall")	
 
 func process_physics(delta: float) -> State:
