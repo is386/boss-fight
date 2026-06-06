@@ -9,8 +9,8 @@ func _ready() -> void:
 	collision_shape = $CollisionShape2D
 
 func disable() -> void:
-	collision_shape.disabled = true
+	collision_shape.set_deferred("disabled", true)
 
 func enable() -> void:
-	collision_shape.disabled = false
+	collision_shape.set_deferred("disabled", false)
 

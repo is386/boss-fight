@@ -11,10 +11,10 @@ var collision_shape: CollisionShape2D
 signal hit_received 
 
 func disable() -> void:
-	collision_shape.disabled = true
+	collision_shape.set_deferred("disabled", true)
 
 func enable() -> void:
-	collision_shape.disabled = false
+	collision_shape.set_deferred("disabled", false)
 
 func _ready() -> void:
 	area_entered.connect(_on_hurtbox_entered)

@@ -38,18 +38,28 @@ var is_attacking = false
 var is_idle = true
 
 func _ready() -> void:
+	super._ready()
 	movement_state_machine.init()
 	attack_state_machine.init()
 
 func _process(delta: float) -> void:
+	if is_dead():
+		return
+
 	movement_state_machine.process(delta)
 	attack_state_machine.process(delta)
 
 func _physics_process(delta: float) -> void:
+	if is_dead():
+		return
+
 	movement_state_machine.process_physics(delta)
 	attack_state_machine.process_physics(delta)
 
 func _unhandled_input(event: InputEvent) -> void:
+	if is_dead():
+		return
+
 	movement_state_machine.process_input(event)
 	attack_state_machine.process_input(event)
 

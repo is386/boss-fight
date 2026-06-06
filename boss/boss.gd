@@ -14,15 +14,21 @@ var num_attacks = 0
 var starting_position: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
+	super._ready()
 	starting_position = global_position
 	state_machine.init()
 
 func _process(delta: float) -> void:
+	if is_dead() || !is_instance_valid(player):
+		return
 	state_machine.process(delta)
 
 func _physics_process(delta: float) -> void:
+	if is_dead() || !is_instance_valid(player):
+		return
 	state_machine.process_physics(delta)
 
 func _unhandled_input(event: InputEvent) -> void:
+	if is_dead() || !is_instance_valid(player):
+		return
 	state_machine.process_input(event)
-

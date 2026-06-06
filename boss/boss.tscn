@@ -88,17 +88,24 @@
 [ext_resource type="Texture2D" uid="uid://cprt5ynpglio" path="res://boss/assets/Vanish/Vanish01.png" id="54_ck37f"]
 [ext_resource type="Texture2D" uid="uid://cxry5dlktc5bi" path="res://boss/assets/Vanish/Vanish02.png" id="55_0vqq5"]
 [ext_resource type="Texture2D" uid="uid://dq1ynoy2qh0c8" path="res://boss/assets/Jump/Jump01.png" id="55_3qgbb"]
+[ext_resource type="Texture2D" uid="uid://dxvmjh651mwv0" path="res://boss/assets/Die/Die01.png" id="56_khh84"]
 [ext_resource type="Texture2D" uid="uid://d0a0l68y7ww2c" path="res://boss/assets/Vanish/Vanish03.png" id="56_lxtcg"]
 [ext_resource type="Texture2D" uid="uid://bphdbyakbp5rq" path="res://boss/assets/Jump/Jump02.png" id="56_mf8ow"]
 [ext_resource type="Texture2D" uid="uid://dxsrdfgt7gedp" path="res://boss/assets/Jump/Jump03.png" id="57_e8ui4"]
 [ext_resource type="Texture2D" uid="uid://dvfr66bmclmxn" path="res://boss/assets/Vanish/Vanish04.png" id="57_rru2c"]
+[ext_resource type="Texture2D" uid="uid://divhn0q18g0x1" path="res://boss/assets/Die/Die02.png" id="57_wvknw"]
 [ext_resource type="Texture2D" uid="uid://bcoao2cit283f" path="res://boss/assets/Jump/Jump04.png" id="58_jf1em"]
+[ext_resource type="Texture2D" uid="uid://bjgcka1t5cir3" path="res://boss/assets/Die/Die03.png" id="58_myjee"]
 [ext_resource type="Texture2D" uid="uid://dduivj1fd32lg" path="res://boss/assets/Vanish/Vanish05.png" id="58_ocfu5"]
 [ext_resource type="Texture2D" uid="uid://dw4nnnyfi32fo" path="res://boss/assets/Jump/Jump05.png" id="59_8oqgg"]
+[ext_resource type="Texture2D" uid="uid://s37fgv4krlo1" path="res://boss/assets/Die/Die04.png" id="59_dpfug"]
 [ext_resource type="Texture2D" uid="uid://c3b6ibamyf7fe" path="res://boss/assets/Vanish/Vanish06.png" id="59_ef1ye"]
 [ext_resource type="Texture2D" uid="uid://bg7ml3thrywmy" path="res://boss/assets/Jump/Jump06.png" id="60_1hsj5"]
+[ext_resource type="Texture2D" uid="uid://dq6ofnjr3kwtx" path="res://boss/assets/Die/Die05.png" id="60_fj1h8"]
 [ext_resource type="Texture2D" uid="uid://t0u82fr3i032" path="res://boss/assets/Vanish/Vanish07.png" id="60_qcvgs"]
 [ext_resource type="Texture2D" uid="uid://v5mion5s0faq" path="res://boss/assets/Jump/Jump07.png" id="61_g6cje"]
+[ext_resource type="Texture2D" uid="uid://5oaqmi31qsky" path="res://boss/assets/Die/Die06.png" id="61_vj72p"]
+[ext_resource type="Texture2D" uid="uid://br63sox3cdupv" path="res://boss/assets/Die/Die07.png" id="62_5u6tc"]
 [ext_resource type="Texture2D" uid="uid://bbkf2o4usoiul" path="res://boss/assets/PowerUp/PowerUp01.png" id="62_xlly7"]
 [ext_resource type="Texture2D" uid="uid://bc2w6cl7hkw6o" path="res://boss/assets/PowerUp/PowerUp02.png" id="63_fufvl"]
 [ext_resource type="Texture2D" uid="uid://dnyq1jb0t5hv2" path="res://boss/assets/PowerUp/PowerUp03.png" id="64_3ac5h"]
@@ -321,6 +328,32 @@ animations = [{
 "loop": false,
 "name": &"dash",
 "speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("56_khh84")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_wvknw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_myjee")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_dpfug")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_fj1h8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_vj72p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("62_5u6tc")
+}],
+"loop": false,
+"name": &"die",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -559,6 +592,9 @@ size = Vector2(48, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1x7qe"]
 size = Vector2(24, 51.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_khh84"]
+size = Vector2(51, 21)
+
 [sub_resource type="Gradient" id="Gradient_ju6v1"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(1, 0, 0, 0.13725491)
@@ -583,8 +619,10 @@ hurtbox_component = NodePath("HurtboxComponent")
 position = Vector2(0, -63.000004)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_y10lg")
-animation = &"ground_slam"
+animation = &"stunned"
 autoplay = "appear"
+frame = 7
+frame_progress = 1.0
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2139922582]
@@ -650,6 +688,18 @@ shape = SubResource("RectangleShape2D_1x7qe")
 disabled = true
 debug_color = Color(0, 0.6470472, 0.22957921, 0.41960785)
 
+[node name="StunnedHurtboxComponent" type="Area2D" parent="." unique_id=867485589 node_paths=PackedStringArray("health_component")]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("108_1x7qe")
+health_component = NodePath("../BossHealthComponent")
+metadata/_custom_type_script = "uid://1swhe7mpj1lb"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StunnedHurtboxComponent" unique_id=1309563703]
+position = Vector2(13.5, -11.5)
+shape = SubResource("RectangleShape2D_khh84")
+debug_color = Color(0, 0.6470472, 0.22957921, 0.41960785)
+
 [node name="GroundSlamAreaSprite" type="Sprite2D" parent="." unique_id=2127137150]
 visible = false
 position = Vector2(0, -134.375)
@@ -671,8 +721,8 @@ debug_color = Color(0.99999994, 0.008672535, 0.06872495, 0.41960785)
 
 [node name="BossHealthComponent" type="Node" parent="." unique_id=1520694109]
 script = ExtResource("109_6kjei")
-num_stuns = 2
-phase_two_health_ratio = 1.0
+num_stuns = 25
+phase_two_health_ratio = 0.5
 max_health = 50
 
 [node name="CooldownTimer" type="Timer" parent="." unique_id=897068969]
@@ -749,11 +799,12 @@ idle_state = NodePath("../Idle")
 stun_state = NodePath("../BossStunned")
 power_up_state = NodePath("../BossPowerUp")
 
-[node name="BossStunned" type="Node" parent="StateMachine" unique_id=1144672558 node_paths=PackedStringArray("idle_state", "body_hitbox")]
+[node name="BossStunned" type="Node" parent="StateMachine" unique_id=1144672558 node_paths=PackedStringArray("idle_state", "body_hitbox", "stunned_hurtbox_component")]
 script = ExtResource("122_h4alf")
 idle_state = NodePath("../Idle")
 stunned_time = 3.0
 body_hitbox = NodePath("../../BodyHitbox")
+stunned_hurtbox_component = NodePath("../../StunnedHurtboxComponent")
 
 [node name="BossPowerUp" type="Node" parent="StateMachine" unique_id=1484927714 node_paths=PackedStringArray("idle_state")]
 script = ExtResource("131_ju6v1")

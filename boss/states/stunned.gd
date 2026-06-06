@@ -4,10 +4,14 @@ extends BossState
 @export var idle_state: State
 @export var stunned_time: float
 @export var body_hitbox: HitboxComponent
+@export var stunned_hurtbox_component: HurtboxComponent
 
 func enter() -> void:
 	boss.play_animation('stunned')	
 	body_hitbox.disable()
+	boss.hurtbox_component.disable()
+	stunned_hurtbox_component.enable()
+	stunned_hurtbox_component.scale.x = -boss.direction
 	isStunned = true
 	boss.velocity.x = 0
 
@@ -22,6 +26,8 @@ func exit() -> void:
 	boss.canJump = true
 	boss.isInCooldown = false
 	body_hitbox.enable()
+	boss.hurtbox_component.enable()
+	stunned_hurtbox_component.disable()
 
 func process(_delta: float) -> State:
 	if !isStunned:

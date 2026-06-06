@@ -25,18 +25,27 @@
 [ext_resource type="Texture2D" uid="uid://cnebwcii7xhp3" path="res://player/assets/Combat/AirSlashDown/AirSlashDown03.png" id="29_5eiju"]
 [ext_resource type="Texture2D" uid="uid://djpjwuhn7qo06" path="res://player/assets/Combat/AirSlashDown/AirSlashDown04.png" id="30_uukdq"]
 [ext_resource type="Texture2D" uid="uid://2jie1hg1w2pi" path="res://player/assets/Combat/AirSlashDown/AirSlashDown05.png" id="31_3k3j0"]
+[ext_resource type="Texture2D" uid="uid://20xpj0dwy4ki" path="res://player/assets/Die/Die01.png" id="31_ig2t1"]
 [ext_resource type="Texture2D" uid="uid://dfdo70haxa145" path="res://player/assets/Combat/AirSlashDown/AirSlashDown06.png" id="32_0bpox"]
 [ext_resource type="Texture2D" uid="uid://dxy38uecr0l5w" path="res://player/assets/Combat/SwordJump/SwordJump01.png" id="32_2a33p"]
+[ext_resource type="Texture2D" uid="uid://cpg2ulv7jhyho" path="res://player/assets/Die/Die02.png" id="32_7xdiq"]
+[ext_resource type="Texture2D" uid="uid://b61i6xiy0x53i" path="res://player/assets/Die/Die03.png" id="33_d0gtc"]
 [ext_resource type="Texture2D" uid="uid://c3diba0xwyshm" path="res://player/assets/Combat/Hit/Hit01.png" id="33_pgo6y"]
 [ext_resource type="Texture2D" uid="uid://c6phn8csevgxr" path="res://player/assets/Combat/SwordRun/SwordRun01.png" id="33_reqs7"]
 [ext_resource type="Texture2D" uid="uid://bw18xvs6fueg6" path="res://player/assets/Combat/SwordRun/SwordRun02.png" id="34_2yjfb"]
 [ext_resource type="Texture2D" uid="uid://c8jfvb8iavwl1" path="res://player/assets/Combat/Hit/Hit02.png" id="34_qm6yy"]
+[ext_resource type="Texture2D" uid="uid://hxtpyv2v3sf1" path="res://player/assets/Die/Die04.png" id="34_ycggl"]
+[ext_resource type="Texture2D" uid="uid://dxci1bfwxmnmg" path="res://player/assets/Die/Die05.png" id="35_5ntu2"]
 [ext_resource type="Texture2D" uid="uid://c5psm18awvqq6" path="res://player/assets/Combat/SwordRun/SwordRun03.png" id="35_dnnjp"]
 [ext_resource type="Texture2D" uid="uid://b44ovqdb5vfhd" path="res://player/assets/Combat/Hit/Hit03.png" id="35_gcmgo"]
+[ext_resource type="Texture2D" uid="uid://ci4t405o8ldpd" path="res://player/assets/Die/Die06.png" id="36_0iv1a"]
 [ext_resource type="Texture2D" uid="uid://3r1p557bqhr3" path="res://player/assets/Combat/SwordRun/SwordRun04.png" id="36_wqna8"]
 [ext_resource type="Texture2D" uid="uid://bivpnjpno8adt" path="res://player/assets/Combat/SwordRun/SwordRun05.png" id="37_l7gmo"]
+[ext_resource type="Texture2D" uid="uid://bpp18gqh8eqhg" path="res://player/assets/Die/Die07.png" id="37_oevg7"]
 [ext_resource type="Texture2D" uid="uid://dsfi4nav0y6mh" path="res://player/assets/Combat/SwordRun/SwordRun06.png" id="38_kft7l"]
+[ext_resource type="Texture2D" uid="uid://dersjgihhlig7" path="res://player/assets/Die/Die08.png" id="38_teerl"]
 [ext_resource type="Texture2D" uid="uid://ckwn4mv0845wl" path="res://player/assets/Combat/SwordRun/SwordRun07.png" id="39_2s4os"]
+[ext_resource type="Texture2D" uid="uid://bwbgvyonw2prx" path="res://player/assets/Die/Die09.png" id="39_ama2g"]
 [ext_resource type="Texture2D" uid="uid://uyt28e1rcfau" path="res://player/assets/Combat/SwordRun/SwordRun08.png" id="40_2em0j"]
 [ext_resource type="Texture2D" uid="uid://clxpi7lgr56i8" path="res://player/assets/Combat/SwordSprint/SwordSprint01.png" id="41_qe2k6"]
 [ext_resource type="Texture2D" uid="uid://7cmy0hmp2bh2" path="res://player/assets/Combat/SwordSprint/SwordSprint02.png" id="42_edwuo"]
@@ -287,6 +296,38 @@ animations = [{
 "loop": false,
 "name": &"dash",
 "speed": 40.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("31_ig2t1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_7xdiq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_d0gtc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_ycggl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_5ntu2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_0iv1a")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_oevg7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_teerl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_ama2g")
+}],
+"loop": false,
+"name": &"die",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -544,9 +585,9 @@ hurtbox_component = NodePath("HurtboxComponent")
 texture_filter = 1
 position = Vector2(0, -42)
 sprite_frames = SubResource("SpriteFrames_o5qli")
-animation = &"air_attack_down"
+animation = &"die"
 autoplay = "idle"
-frame = 5
+frame = 8
 frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1358590442]
@@ -617,7 +658,7 @@ disabled = true
 debug_color = Color(0.9957481, 0, 0.20788833, 0.41960785)
 
 [node name="HealthComponent" parent="." unique_id=886111328 instance=ExtResource("73_2lfai")]
-max_health = 5
+max_health = 8
 
 [node name="InputComponent" type="Node" parent="." unique_id=1583714764 node_paths=PackedStringArray("player")]
 script = ExtResource("76_j3o0i")

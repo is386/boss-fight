@@ -9,5 +9,3 @@ func get_run_direction() -> float:
 		return boss.direction
 	boss.direction = direction
 	return direction
-
-
