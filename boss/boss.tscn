@@ -130,6 +130,7 @@
 [ext_resource type="Script" uid="uid://b6rt1konh5ks7" path="res://boss/states/fall.gd" id="115_883bk"]
 [ext_resource type="PackedScene" uid="uid://bxyhxem2clh2v" path="res://laser/laser.tscn" id="121_6kjei"]
 [ext_resource type="Script" uid="uid://4ban7th8wd3q" path="res://boss/states/stunned.gd" id="122_h4alf"]
+[ext_resource type="Script" uid="uid://htxo6q8v0fea" path="res://boss/states/power_up.gd" id="131_ju6v1"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y10lg"]
 animations = [{
@@ -571,10 +572,9 @@ hurtbox_component = NodePath("HurtboxComponent")
 position = Vector2(0, -63.000004)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_y10lg")
-animation = &"stunned"
+animation = &"power_up"
 autoplay = "appear"
-frame = 7
-frame_progress = 1.0
+frame_progress = 0.41834366
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2139922582]
@@ -658,64 +658,77 @@ boss = NodePath("..")
 
 [node name="StateMachine" parent="." unique_id=1903698038 instance=ExtResource("85_n4he3")]
 
-[node name="Appear" type="Node" parent="StateMachine" unique_id=10249887 node_paths=PackedStringArray("idle_state", "body_hitbox", "hurtbox", "stun_state")]
+[node name="Appear" type="Node" parent="StateMachine" unique_id=10249887 node_paths=PackedStringArray("idle_state", "body_hitbox", "hurtbox", "stun_state", "power_up_state")]
 script = ExtResource("86_3qgbb")
 idle_state = NodePath("../Idle")
 body_hitbox = NodePath("../../BodyHitbox")
 hurtbox = NodePath("../../HurtboxComponent")
 stun_state = NodePath("../BossStunned")
+power_up_state = NodePath("../BossPowerUp")
 
-[node name="Idle" type="Node" parent="StateMachine" unique_id=33543860 node_paths=PackedStringArray("run_state", "attack_state", "blast_charge_state", "jump_state", "stun_state")]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=33543860 node_paths=PackedStringArray("run_state", "attack_state", "blast_charge_state", "jump_state", "stun_state", "power_up_state")]
 script = ExtResource("86_n4he3")
 run_state = NodePath("../Run")
 attack_state = NodePath("../Attack")
 blast_charge_state = NodePath("../BossBlastCharge")
 jump_state = NodePath("../BossJump")
 stun_state = NodePath("../BossStunned")
+power_up_state = NodePath("../BossPowerUp")
 
-[node name="Run" type="Node" parent="StateMachine" unique_id=411404724 node_paths=PackedStringArray("idle_state", "stun_state")]
+[node name="Run" type="Node" parent="StateMachine" unique_id=411404724 node_paths=PackedStringArray("idle_state", "stun_state", "power_up_state")]
 script = ExtResource("112_qcvgs")
 idle_state = NodePath("../Idle")
 stun_state = NodePath("../BossStunned")
+power_up_state = NodePath("../BossPowerUp")
 metadata/_custom_type_script = "uid://c414e2c1uh77j"
 
-[node name="Attack" type="Node" parent="StateMachine" unique_id=2049272301 node_paths=PackedStringArray("idle_state", "cooldown_timer", "right_hitbox", "left_hitbox", "stun_state")]
+[node name="Attack" type="Node" parent="StateMachine" unique_id=2049272301 node_paths=PackedStringArray("idle_state", "cooldown_timer", "right_hitbox", "left_hitbox", "stun_state", "power_up_state")]
 script = ExtResource("113_atfjh")
 idle_state = NodePath("../Idle")
 cooldown_timer = NodePath("../../CooldownTimer")
 right_hitbox = NodePath("../../RightAttackHitbox")
 left_hitbox = NodePath("../../LeftAttackHitbox")
 stun_state = NodePath("../BossStunned")
+power_up_state = NodePath("../BossPowerUp")
 
-[node name="BossBlastAttack" type="Node" parent="StateMachine" unique_id=187935999 node_paths=PackedStringArray("idle_state", "cooldown_timer", "stun_state")]
+[node name="BossBlastAttack" type="Node" parent="StateMachine" unique_id=187935999 node_paths=PackedStringArray("idle_state", "cooldown_timer", "stun_state", "power_up_state")]
 script = ExtResource("114_qcc6b")
 idle_state = NodePath("../Idle")
 cooldown_timer = NodePath("../../CooldownTimer")
 laser_scene = ExtResource("121_6kjei")
 stun_state = NodePath("../BossStunned")
+power_up_state = NodePath("../BossPowerUp")
 
-[node name="BossBlastCharge" type="Node" parent="StateMachine" unique_id=1623577695 node_paths=PackedStringArray("blast_attack_state", "stun_state")]
+[node name="BossBlastCharge" type="Node" parent="StateMachine" unique_id=1623577695 node_paths=PackedStringArray("blast_attack_state", "stun_state", "power_up_state")]
 script = ExtResource("114_883bk")
 blast_attack_state = NodePath("../BossBlastAttack")
 charge_time = 1.0
 stun_state = NodePath("../BossStunned")
+power_up_state = NodePath("../BossPowerUp")
 metadata/_custom_type_script = "uid://c5gw0weopb2tk"
 
-[node name="BossJump" type="Node" parent="StateMachine" unique_id=1380129082 node_paths=PackedStringArray("fall_state", "stun_state")]
+[node name="BossJump" type="Node" parent="StateMachine" unique_id=1380129082 node_paths=PackedStringArray("fall_state", "stun_state", "power_up_state")]
 script = ExtResource("114_s0gb3")
 fall_state = NodePath("../BossFall")
 stun_state = NodePath("../BossStunned")
+power_up_state = NodePath("../BossPowerUp")
 
-[node name="BossFall" type="Node" parent="StateMachine" unique_id=255046856 node_paths=PackedStringArray("idle_state", "stun_state")]
+[node name="BossFall" type="Node" parent="StateMachine" unique_id=255046856 node_paths=PackedStringArray("idle_state", "stun_state", "power_up_state")]
 script = ExtResource("115_883bk")
 idle_state = NodePath("../Idle")
 stun_state = NodePath("../BossStunned")
+power_up_state = NodePath("../BossPowerUp")
 
 [node name="BossStunned" type="Node" parent="StateMachine" unique_id=1144672558 node_paths=PackedStringArray("idle_state", "body_hitbox")]
 script = ExtResource("122_h4alf")
 idle_state = NodePath("../Idle")
 stunned_time = 3.0
 body_hitbox = NodePath("../../BodyHitbox")
+
+[node name="BossPowerUp" type="Node" parent="StateMachine" unique_id=1484927714 node_paths=PackedStringArray("idle_state")]
+script = ExtResource("131_ju6v1")
+idle_state = NodePath("../Idle")
+metadata/_custom_type_script = "uid://htxo6q8v0fea"
 
 [connection signal="body_entered" from="PlayerDetectionArea" to="StateMachine/Run" method="_on_player_detection_area_entered"]
 [connection signal="body_exited" from="PlayerDetectionArea" to="StateMachine/Idle" method="player_detection_area_exited"]

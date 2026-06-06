@@ -9,6 +9,7 @@ extends Entity
 var isPlayerInRange: bool = false
 var isInCooldown: bool
 var canJump: bool = true
+var is_phase_two: bool = false
 
 func _ready() -> void:
 	state_machine.init()

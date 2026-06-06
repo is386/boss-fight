@@ -9,6 +9,7 @@ func enter() -> void:
 	boss.play_animation('stunned')	
 	body_hitbox.disable()
 	isStunned = true
+	boss.velocity.x = 0
 
 	var stunned_timer = Timer.new()
 	stunned_timer.wait_time = stunned_time
