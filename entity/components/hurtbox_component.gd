@@ -32,6 +32,7 @@ func _on_hurtbox_entered(area2d: Area2D) -> void:
 	knockback_direction = global_position.direction_to(hitbox.global_position).normalized() * -1
 
 	hit_received.emit()
+	
 	if invulnerability_time <= 0:
 		return
 

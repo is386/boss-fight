@@ -120,6 +120,7 @@
 [ext_resource type="Script" uid="uid://hp3qn4mbbay8" path="res://boss/states/blast_attack.gd" id="114_qcc6b"]
 [ext_resource type="Script" uid="uid://b8ui01ehclm5x" path="res://boss/states/jump.gd" id="114_s0gb3"]
 [ext_resource type="Script" uid="uid://b6rt1konh5ks7" path="res://boss/states/fall.gd" id="115_883bk"]
+[ext_resource type="PackedScene" uid="uid://bxyhxem2clh2v" path="res://laser/laser.tscn" id="121_6kjei"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y10lg"]
 animations = [{
@@ -500,6 +501,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8bwv6"]
+radius = 11.0
 height = 54.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ef1ye"]
@@ -517,7 +519,7 @@ size = Vector2(48, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1x7qe"]
 size = Vector2(24, 51.5)
 
-[node name="Boss" type="CharacterBody2D" unique_id=125884711 node_paths=PackedStringArray("state_machine", "sprite", "input_component", "velocity_component")]
+[node name="Boss" type="CharacterBody2D" unique_id=125884711 node_paths=PackedStringArray("state_machine", "sprite", "input_component", "velocity_component", "hurtbox_component")]
 collision_layer = 4
 script = ExtResource("1_sixat")
 state_machine = NodePath("StateMachine")
@@ -525,15 +527,14 @@ run_speed = 200.0
 sprite = NodePath("AnimatedSprite2D")
 input_component = NodePath("InputComponent")
 velocity_component = NodePath("VelocityComponent")
+hurtbox_component = NodePath("HurtboxComponent")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=38547259]
 position = Vector2(0, -63.000004)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_y10lg")
-animation = &"attack"
+animation = &"blast_attack"
 autoplay = "appear"
-frame = 5
-frame_progress = 1.0
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2139922582]
@@ -605,7 +606,7 @@ max_health = 50
 metadata/_custom_type_script = "uid://ch0xb8i3slb0s"
 
 [node name="CooldownTimer" type="Timer" parent="." unique_id=897068969]
-wait_time = 0.5
+wait_time = 0.75
 one_shot = true
 
 [node name="InputComponent" type="Node" parent="." unique_id=1266284461 node_paths=PackedStringArray("boss")]
@@ -645,6 +646,7 @@ left_hitbox = NodePath("../../LeftAttackHitbox")
 script = ExtResource("114_qcc6b")
 idle_state = NodePath("../Idle")
 cooldown_timer = NodePath("../../CooldownTimer")
+laser_scene = ExtResource("121_6kjei")
 
 [node name="BossBlastCharge" type="Node" parent="StateMachine" unique_id=1623577695 node_paths=PackedStringArray("blast_attack_state")]
 script = ExtResource("114_883bk")

@@ -1,0 +1,155 @@
+[gd_scene format=3 uid="uid://bxyhxem2clh2v"]
+
+[ext_resource type="Texture2D" uid="uid://c7g25t018utlq" path="res://laser/assets/Blast/Blast01.png" id="1_1x7wp"]
+[ext_resource type="Script" uid="uid://bmue7hbo1lj2u" path="res://entity/components/hitbox_component.gd" id="1_u35a5"]
+[ext_resource type="Texture2D" uid="uid://d3x24gv54fr5j" path="res://laser/assets/Blast/Blast02.png" id="2_3d53e"]
+[ext_resource type="Texture2D" uid="uid://4gllt6yuchgv" path="res://laser/assets/Blast/Blast03.png" id="3_jsk4g"]
+[ext_resource type="Texture2D" uid="uid://dchf32jjhepod" path="res://laser/assets/Blast/Blast04.png" id="4_i7du0"]
+[ext_resource type="Texture2D" uid="uid://bo1hkmsg8ojga" path="res://laser/assets/Blast/Blast05.png" id="5_kdtjb"]
+[ext_resource type="Texture2D" uid="uid://ctd565rrxwoma" path="res://laser/assets/Blast/Blast06.png" id="6_8w2t0"]
+[ext_resource type="Texture2D" uid="uid://bhlmnigm43vwa" path="res://laser/assets/Blast/Blast07.png" id="7_aussj"]
+[ext_resource type="Texture2D" uid="uid://b6cxumum7p1lu" path="res://laser/assets/Blast/Blast08.png" id="8_7goyl"]
+[ext_resource type="Texture2D" uid="uid://dmurytc82cxgo" path="res://laser/assets/Blast/Blast09.png" id="9_0bhv4"]
+[ext_resource type="Texture2D" uid="uid://cugloxygviw8i" path="res://laser/assets/BlastCenter/BlastCenter01.png" id="11_0bhv4"]
+[ext_resource type="Texture2D" uid="uid://bdas5x54y08gr" path="res://laser/assets/BlastCenter/BlastCenter02.png" id="12_u35a5"]
+[ext_resource type="Texture2D" uid="uid://60g1f2t83nux" path="res://laser/assets/BlastCenter/BlastCenter03.png" id="13_ibm4k"]
+[ext_resource type="Texture2D" uid="uid://dkxsetjvagkhi" path="res://laser/assets/BlastCenter/BlastCenter04.png" id="14_avn28"]
+[ext_resource type="Texture2D" uid="uid://cpcj0y0oqnocq" path="res://laser/assets/BlastCenter/BlastCenter05.png" id="15_gtdiu"]
+[ext_resource type="Texture2D" uid="uid://61pksq0fqapf" path="res://laser/assets/BlastCenter/BlastCenter06.png" id="16_nd6fo"]
+[ext_resource type="Texture2D" uid="uid://luu1kpeuo0uw" path="res://laser/assets/BlastCenter/BlastCenter07.png" id="17_aff60"]
+[ext_resource type="Script" uid="uid://dtqbr0s00njuf" path="res://laser/laser.gd" id="18_0bhv4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rf1mf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_1x7wp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_3d53e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jsk4g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_i7du0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_kdtjb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8w2t0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_aussj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_7goyl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0bhv4")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ibm4k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_0bhv4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_u35a5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ibm4k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_avn28")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_gtdiu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_nd6fo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_aff60")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0bhv4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_0bhv4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_u35a5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_ibm4k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_avn28")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_gtdiu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_nd6fo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_aff60")
+}],
+"loop": false,
+"name": &"default",
+"speed": 20.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ibm4k"]
+size = Vector2(417, 7)
+
+[node name="Laser" type="Node2D" unique_id=2090117360 node_paths=PackedStringArray("sprite")]
+script = ExtResource("18_0bhv4")
+sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=805232197]
+position = Vector2(53, -60)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_rf1mf")
+autoplay = "default"
+frame = 1
+frame_progress = 0.7897762
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=362705331]
+position = Vector2(197, -60)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_ibm4k")
+autoplay = "default"
+frame = 6
+frame_progress = 1.0
+
+[node name="AnimatedSprite2D3" type="AnimatedSprite2D" parent="." unique_id=1443385064]
+position = Vector2(341, -60)
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_0bhv4")
+autoplay = "default"
+frame = 6
+frame_progress = 1.0
+script = ExtResource("18_0bhv4")
+
+[node name="HitboxComponent" type="Area2D" parent="." unique_id=498554898]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_u35a5")
+damage = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=160114448]
+position = Vector2(206, -35)
+shape = SubResource("RectangleShape2D_ibm4k")

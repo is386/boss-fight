@@ -25,6 +25,8 @@ func exit() -> void:
 func process(_delta: float) -> State:
 	if boss.sprite.frame == 1:
 		hitbox.enable()
+	if boss.sprite.frame == 3:
+		hitbox.disable()
 	if !boss.sprite.is_playing():
 		cooldown_timer.start()
 		return idle_state
