@@ -5,9 +5,9 @@ extends BossState
 @export var attack_state: State
 @export var blast_charge_state: State
 @export var jump_state: State
+@export var ground_slam_state: State
 
 var randVal: float = 1
-var num_attacks = 0
 
 func enter() -> void:
 	super.enter()
@@ -24,9 +24,9 @@ func process(delta: float) -> State:
 
 	boss.sprite.flip_h = boss.input_component.get_run_direction() == -1
 
-	if boss.is_phase_two and num_attacks == 2:
-		print("PHASE TWO ATTACK")
-		num_attacks = 0
+	if boss.is_phase_two and boss.num_attacks >= 2:
+		boss.num_attacks = 0
+		return ground_slam_state
 
 	if boss.canJump:
 		boss.canJump = false
@@ -34,14 +34,14 @@ func process(delta: float) -> State:
 
 	if randVal < 0.5:
 		boss.isInCooldown = true
-		num_attacks += 1
+		boss.num_attacks += 1
 		return blast_charge_state
 
 	if !boss.isPlayerInRange:
 		return run_state
 	
 	boss.isInCooldown = true
-	num_attacks += 1
+	boss.num_attacks += 1
 	return attack_state
 
 

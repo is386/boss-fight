@@ -10,8 +10,11 @@ var isPlayerInRange: bool = false
 var isInCooldown: bool
 var canJump: bool = true
 var is_phase_two: bool = false
+var num_attacks = 0
+var starting_position: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
+	starting_position = global_position
 	state_machine.init()
 
 func _process(delta: float) -> void:

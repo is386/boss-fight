@@ -131,6 +131,7 @@
 [ext_resource type="PackedScene" uid="uid://bxyhxem2clh2v" path="res://laser/laser.tscn" id="121_6kjei"]
 [ext_resource type="Script" uid="uid://4ban7th8wd3q" path="res://boss/states/stunned.gd" id="122_h4alf"]
 [ext_resource type="Script" uid="uid://htxo6q8v0fea" path="res://boss/states/power_up.gd" id="131_ju6v1"]
+[ext_resource type="Script" uid="uid://pkjucxdxn6g4" path="res://boss/states/ground_slam.gd" id="132_iotse"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y10lg"]
 animations = [{
@@ -380,7 +381,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"ground_slam",
-"speed": 10.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -558,6 +559,16 @@ size = Vector2(48, 14)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1x7qe"]
 size = Vector2(24, 51.5)
 
+[sub_resource type="Gradient" id="Gradient_ju6v1"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0, 0, 0.13725491)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_iotse"]
+gradient = SubResource("Gradient_ju6v1")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iotse"]
+size = Vector2(110, 46)
+
 [node name="Boss" type="CharacterBody2D" unique_id=125884711 node_paths=PackedStringArray("state_machine", "sprite", "input_component", "velocity_component", "hurtbox_component")]
 collision_layer = 4
 script = ExtResource("1_sixat")
@@ -572,9 +583,8 @@ hurtbox_component = NodePath("HurtboxComponent")
 position = Vector2(0, -63.000004)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_y10lg")
-animation = &"power_up"
+animation = &"ground_slam"
 autoplay = "appear"
-frame_progress = 0.41834366
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2139922582]
@@ -640,10 +650,29 @@ shape = SubResource("RectangleShape2D_1x7qe")
 disabled = true
 debug_color = Color(0, 0.6470472, 0.22957921, 0.41960785)
 
+[node name="GroundSlamAreaSprite" type="Sprite2D" parent="." unique_id=2127137150]
+visible = false
+position = Vector2(0, -134.375)
+scale = Vector2(0.3984375, 268.75)
+texture = SubResource("GradientTexture1D_iotse")
+
+[node name="GroundSlamHitbox" type="Area2D" parent="." unique_id=694638131]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("107_mgimq")
+damage = 1
+metadata/_custom_type_script = "uid://bmue7hbo1lj2u"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GroundSlamHitbox" unique_id=415168604]
+position = Vector2(-5, -23)
+shape = SubResource("RectangleShape2D_iotse")
+disabled = true
+debug_color = Color(0.99999994, 0.008672535, 0.06872495, 0.41960785)
+
 [node name="BossHealthComponent" type="Node" parent="." unique_id=1520694109]
 script = ExtResource("109_6kjei")
 num_stuns = 2
-phase_two_health_ratio = 0.5
+phase_two_health_ratio = 1.0
 max_health = 50
 
 [node name="CooldownTimer" type="Timer" parent="." unique_id=897068969]
@@ -666,12 +695,13 @@ hurtbox = NodePath("../../HurtboxComponent")
 stun_state = NodePath("../BossStunned")
 power_up_state = NodePath("../BossPowerUp")
 
-[node name="Idle" type="Node" parent="StateMachine" unique_id=33543860 node_paths=PackedStringArray("run_state", "attack_state", "blast_charge_state", "jump_state", "stun_state", "power_up_state")]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=33543860 node_paths=PackedStringArray("run_state", "attack_state", "blast_charge_state", "jump_state", "ground_slam_state", "stun_state", "power_up_state")]
 script = ExtResource("86_n4he3")
 run_state = NodePath("../Run")
 attack_state = NodePath("../Attack")
 blast_charge_state = NodePath("../BossBlastCharge")
 jump_state = NodePath("../BossJump")
+ground_slam_state = NodePath("../BossGroundSlamState")
 stun_state = NodePath("../BossStunned")
 power_up_state = NodePath("../BossPowerUp")
 
@@ -729,6 +759,15 @@ body_hitbox = NodePath("../../BodyHitbox")
 script = ExtResource("131_ju6v1")
 idle_state = NodePath("../Idle")
 metadata/_custom_type_script = "uid://htxo6q8v0fea"
+
+[node name="BossGroundSlamState" type="Node" parent="StateMachine" unique_id=383678017 node_paths=PackedStringArray("idle_state", "body_hitbox", "ground_slam_hitbox", "sprite")]
+script = ExtResource("132_iotse")
+idle_state = NodePath("../Idle")
+body_hitbox = NodePath("../../BodyHitbox")
+ground_slam_hitbox = NodePath("../../GroundSlamHitbox")
+sprite = NodePath("../../GroundSlamAreaSprite")
+delay = 2.0
+metadata/_custom_type_script = "uid://pkjucxdxn6g4"
 
 [connection signal="body_entered" from="PlayerDetectionArea" to="StateMachine/Run" method="_on_player_detection_area_entered"]
 [connection signal="body_exited" from="PlayerDetectionArea" to="StateMachine/Idle" method="player_detection_area_exited"]

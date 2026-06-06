@@ -3,6 +3,7 @@ extends Entity
 
 @export var movement_state_machine: StateMachine 
 @export var attack_state_machine: StateMachine 
+@export var boss: Boss
 
 @export_group("Run Parameters")
 @export var enable_run: bool = true

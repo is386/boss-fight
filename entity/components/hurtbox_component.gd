@@ -29,7 +29,14 @@ func _on_hurtbox_entered(area2d: Area2D) -> void:
 		return
 
 	health_component.subtract_health(hitbox.damage)
-	knockback_direction = global_position.direction_to(hitbox.global_position).normalized() * -1
+	var target_dir = hitbox.global_position.direction_to(global_position) 
+	if is_equal_approx(target_dir.x, 0.0):
+		if hitbox.owner and "direction" in hitbox.owner:
+			target_dir.x = hitbox.owner.direction
+		else:
+			target_dir.x = 1.0 
+
+	knockback_direction = target_dir
 
 	hit_received.emit()
 	

@@ -113,7 +113,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ibm4k"]
-size = Vector2(417, 7)
+size = Vector2(465.5, 7)
 
 [node name="Laser" type="Node2D" unique_id=2090117360 node_paths=PackedStringArray("sprite")]
 script = ExtResource("18_0bhv4")
@@ -124,8 +124,8 @@ position = Vector2(53, -60)
 scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_rf1mf")
 autoplay = "default"
-frame = 1
-frame_progress = 0.7897762
+frame = 8
+frame_progress = 1.0
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=362705331]
 position = Vector2(197, -60)
@@ -151,6 +151,6 @@ script = ExtResource("1_u35a5")
 damage = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=160114448]
-position = Vector2(206, -35)
+position = Vector2(181.75, -35)
 shape = SubResource("RectangleShape2D_ibm4k")
 debug_color = Color(0.9995014, 0, 0.1253142, 0.41960785)

@@ -15,6 +15,7 @@ func enter() -> void:
 	power_up_timer.start()
 
 func exit() -> void:
+	boss.num_attacks = 2
 	boss.canJump = true
 	boss.isInCooldown = false
 	boss.hurtbox_component.enable()
