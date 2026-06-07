@@ -12,6 +12,10 @@ func enter() -> void:
 	super.enter()
 	play_entry_animation()
 
+func exit() -> void:
+	super.exit()
+	player.play_effect("idle")
+
 func process_physics(_delta: float) -> State:
 	if player.input_component.can_sprint_jump():
 		return sprint_jump_state
@@ -31,6 +35,8 @@ func process_physics(_delta: float) -> State:
 
 	if prev_direction != player.direction:
 		player.sprite.flip_h = player.direction != 1
+		player.effect_sprite.flip_h = player.direction != 1
+		play_effect()
 
 	player.move_and_slide()
 	return null
@@ -51,4 +57,11 @@ func play_entry_animation() -> void:
 		player.play_animation("sprint")	
 	else:
 		player.play_animation("run")
-	
+	play_effect()
+
+func play_effect() -> void:
+	if player.direction == 1:
+		player.play_effect("run_back")
+	else:
+		player.play_effect("run_front")
+

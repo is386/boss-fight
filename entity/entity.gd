@@ -2,6 +2,7 @@ class_name Entity
 extends CharacterBody2D
 
 @export var sprite: AnimatedSprite2D 
+@export var effect_sprite: AnimatedSprite2D 
 @export var input_component: InputComponent
 @export var velocity_component: VelocityComponent
 @export var hurtbox_component: HurtboxComponent
@@ -13,6 +14,9 @@ func _ready() -> void:
 
 func play_animation(animation_name: String) -> void:
 	sprite.play(animation_name)
+
+func play_effect(effect_name: String) -> void:
+	effect_sprite.play(effect_name)
 
 func _on_died() -> void:
 	play_animation("die")

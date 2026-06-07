@@ -43,3 +43,4 @@ func _on_get_up_animation_finished() -> void:
 
 func play_entry_animation() -> void:
 	player.play_animation("idle")	
+	player.play_effect("idle")

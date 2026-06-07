@@ -12,6 +12,7 @@ var randVal: float = 1
 func enter() -> void:
 	super.enter()
 	boss.play_animation("idle")	
+	boss.play_effect("idle")
 	boss.velocity.x = 0
 
 func process(delta: float) -> State:

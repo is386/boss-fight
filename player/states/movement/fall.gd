@@ -14,6 +14,7 @@ func enter() -> void:
 
 func process_physics(delta: float) -> State:
 	player.sprite.flip_h = player.direction != 1
+	player.effect_sprite.flip_h = player.direction != 1
 
 	if player.input_component.can_buffer_jump():
 		is_jump_buffered = true
