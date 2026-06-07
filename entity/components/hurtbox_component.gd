@@ -3,6 +3,8 @@ extends Area2D
 
 @export var health_component: HealthComponent
 @export var invulnerability_time: float
+@export var sprite_flash: SpriteFlash
+@export var enable_hitstop: bool = false
 
 var knockback_direction: Vector2 = Vector2.ZERO
 var is_invulnerable: bool = false
@@ -27,6 +29,14 @@ func _on_hurtbox_entered(area2d: Area2D) -> void:
 	var hitbox = area2d as HitboxComponent
 	if hitbox == null:
 		return
+
+	if sprite_flash:
+		sprite_flash.flash()
+
+	if enable_hitstop:
+		Engine.time_scale = 0 
+		await get_tree().create_timer(0.05, true, false, true).timeout
+		Engine.time_scale = 1.0
 
 	health_component.subtract_health(hitbox.damage)
 	var target_dir = hitbox.global_position.direction_to(global_position) 

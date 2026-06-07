@@ -139,6 +139,7 @@
 [ext_resource type="Script" uid="uid://4ban7th8wd3q" path="res://boss/states/stunned.gd" id="122_h4alf"]
 [ext_resource type="Script" uid="uid://htxo6q8v0fea" path="res://boss/states/power_up.gd" id="131_ju6v1"]
 [ext_resource type="Script" uid="uid://pkjucxdxn6g4" path="res://boss/states/ground_slam.gd" id="132_iotse"]
+[ext_resource type="Script" uid="uid://bcw1ay652lhxo" path="res://effects/sprite_flash.gd" id="140_wvknw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y10lg"]
 animations = [{
@@ -675,11 +676,12 @@ shape = SubResource("RectangleShape2D_6kjei")
 disabled = true
 debug_color = Color(0.9999998, 0, 0.10531009, 0.41960785)
 
-[node name="HurtboxComponent" type="Area2D" parent="." unique_id=666338982 node_paths=PackedStringArray("health_component")]
+[node name="HurtboxComponent" type="Area2D" parent="." unique_id=666338982 node_paths=PackedStringArray("health_component", "sprite_flash")]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("108_1x7qe")
 health_component = NodePath("../BossHealthComponent")
+sprite_flash = NodePath("../SpriteFlash")
 metadata/_custom_type_script = "uid://1swhe7mpj1lb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=888829065]
@@ -688,11 +690,12 @@ shape = SubResource("RectangleShape2D_1x7qe")
 disabled = true
 debug_color = Color(0, 0.6470472, 0.22957921, 0.41960785)
 
-[node name="StunnedHurtboxComponent" type="Area2D" parent="." unique_id=867485589 node_paths=PackedStringArray("health_component")]
+[node name="StunnedHurtboxComponent" type="Area2D" parent="." unique_id=867485589 node_paths=PackedStringArray("health_component", "sprite_flash")]
 collision_layer = 0
 collision_mask = 2
 script = ExtResource("108_1x7qe")
 health_component = NodePath("../BossHealthComponent")
+sprite_flash = NodePath("../SpriteFlash")
 metadata/_custom_type_script = "uid://1swhe7mpj1lb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StunnedHurtboxComponent" unique_id=1309563703]
@@ -721,7 +724,7 @@ debug_color = Color(0.99999994, 0.008672535, 0.06872495, 0.41960785)
 
 [node name="BossHealthComponent" type="Node" parent="." unique_id=1520694109]
 script = ExtResource("109_6kjei")
-num_stuns = 25
+num_stuns = 2
 phase_two_health_ratio = 0.5
 max_health = 50
 
@@ -734,6 +737,10 @@ script = ExtResource("83_iu7dr")
 boss = NodePath("..")
 
 [node name="VelocityComponent" parent="." unique_id=530710705 instance=ExtResource("82_ddtty")]
+
+[node name="SpriteFlash" type="Node" parent="." unique_id=254003027]
+script = ExtResource("140_wvknw")
+metadata/_custom_type_script = "uid://bcw1ay652lhxo"
 
 [node name="StateMachine" parent="." unique_id=1903698038 instance=ExtResource("85_n4he3")]
 
@@ -802,7 +809,7 @@ power_up_state = NodePath("../BossPowerUp")
 [node name="BossStunned" type="Node" parent="StateMachine" unique_id=1144672558 node_paths=PackedStringArray("idle_state", "body_hitbox", "stunned_hurtbox_component")]
 script = ExtResource("122_h4alf")
 idle_state = NodePath("../Idle")
-stunned_time = 3.0
+stunned_time = 2.0
 body_hitbox = NodePath("../../BodyHitbox")
 stunned_hurtbox_component = NodePath("../../StunnedHurtboxComponent")
 

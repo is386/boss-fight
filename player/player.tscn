@@ -90,6 +90,7 @@
 [ext_resource type="Texture2D" uid="uid://c5u5di1gkvqa0" path="res://player/assets/Combat/StandingSlash/StandingSlash04.png" id="80_2s4os"]
 [ext_resource type="Texture2D" uid="uid://blbxqoblh41ee" path="res://player/assets/Combat/StandingSlash/StandingSlash05.png" id="81_2em0j"]
 [ext_resource type="Texture2D" uid="uid://cp1vbnlkag30o" path="res://player/assets/Combat/AirSlashUp/AirSlashUp01.png" id="83_5c21n"]
+[ext_resource type="Script" uid="uid://bcw1ay652lhxo" path="res://effects/sprite_flash.gd" id="84_7xdiq"]
 [ext_resource type="Texture2D" uid="uid://8j4egecyk86b" path="res://player/assets/Combat/AirSlashUp/AirSlashUp02.png" id="84_e8m1u"]
 [ext_resource type="Script" uid="uid://cw35owvnt23c7" path="res://player/states/attack/running_attack.gd" id="84_lw0jh"]
 [ext_resource type="Texture2D" uid="uid://b1grjpucc7lii" path="res://player/assets/Combat/AirSlashUp/AirSlashUp03.png" id="85_77pet"]
@@ -594,11 +595,13 @@ frame_progress = 1.0
 position = Vector2(0, -19)
 shape = SubResource("CapsuleShape2D_0wfyh")
 
-[node name="HurtboxComponent" parent="." unique_id=1648363097 node_paths=PackedStringArray("health_component") instance=ExtResource("72_qjt2w")]
+[node name="HurtboxComponent" parent="." unique_id=1648363097 node_paths=PackedStringArray("health_component", "sprite_flash") instance=ExtResource("72_qjt2w")]
 collision_layer = 0
 collision_mask = 4
 health_component = NodePath("../HealthComponent")
 invulnerability_time = 0.75
+sprite_flash = NodePath("../SpriteFlash")
+enable_hitstop = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=837305921]
 position = Vector2(-1, -18)
@@ -656,6 +659,9 @@ position = Vector2(0, -55)
 shape = SubResource("RectangleShape2D_nj2w7")
 disabled = true
 debug_color = Color(0.9957481, 0, 0.20788833, 0.41960785)
+
+[node name="SpriteFlash" type="Node" parent="." unique_id=1625462612]
+script = ExtResource("84_7xdiq")
 
 [node name="HealthComponent" parent="." unique_id=886111328 instance=ExtResource("73_2lfai")]
 max_health = 8
