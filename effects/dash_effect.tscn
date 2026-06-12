@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://dh6ty8tkbwlwa"]
+
+[ext_resource type="Script" uid="uid://dbkqdhqvb7xip" path="res://effects/spawnable_effect.gd" id="1_c7exd"]
+[ext_resource type="Texture2D" uid="uid://0mddq6ft5qf8" path="res://effects/assets/player/DashDust/DashDust01.png" id="2_wdoy4"]
+[ext_resource type="Texture2D" uid="uid://7rtcenxgdot0" path="res://effects/assets/player/DashDust/DashDust02.png" id="3_7p4nc"]
+[ext_resource type="Texture2D" uid="uid://dh37ircamwg5l" path="res://effects/assets/player/DashDust/DashDust03.png" id="4_gjpr1"]
+[ext_resource type="Texture2D" uid="uid://dk1ptrpaoe7si" path="res://effects/assets/player/DashDust/DashDust04.png" id="5_qmrw7"]
+[ext_resource type="Texture2D" uid="uid://cd2olp2gibqfb" path="res://effects/assets/player/DashDust/DashDust05.png" id="6_a8toy"]
+[ext_resource type="Texture2D" uid="uid://m1n3ih3wy8co" path="res://effects/assets/player/DashDust/DashDust06.png" id="7_vj7bc"]
+[ext_resource type="Texture2D" uid="uid://bpif2incwd1lt" path="res://effects/assets/player/DashDust/DashDust07.png" id="8_bc7c3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m25fc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wdoy4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7p4nc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_gjpr1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qmrw7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_a8toy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vj7bc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_bc7c3")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_txpce"]
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="DashEffect" type="Node2D" unique_id=72592681 node_paths=PackedStringArray("player_sprite", "boss_sprite")]
+script = ExtResource("1_c7exd")
+player_sprite = NodePath("PlayerSprite")
+boss_sprite = NodePath("BossSprite")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=144994923]
+position = Vector2(0, -42)
+sprite_frames = SubResource("SpriteFrames_m25fc")
+frame = 7
+frame_progress = 1.0
+
+[node name="BossSprite" type="AnimatedSprite2D" parent="." unique_id=938478228]
+position = Vector2(0, -42)
+sprite_frames = SubResource("SpriteFrames_txpce")
+frame_progress = 1.0

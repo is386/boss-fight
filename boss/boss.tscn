@@ -156,6 +156,8 @@
 [ext_resource type="Texture2D" uid="uid://x2hr0top707f" path="res://effects/assets/boss/RunDustFront/RunDustFront07.png" id="136_8egsg"]
 [ext_resource type="Texture2D" uid="uid://bej1pr2nyhxqu" path="res://effects/assets/boss/RunDustFront/RunDustFront08.png" id="137_5s8sj"]
 [ext_resource type="Script" uid="uid://bcw1ay652lhxo" path="res://effects/sprite_flash.gd" id="140_wvknw"]
+[ext_resource type="PackedScene" uid="uid://bg46nrnfdbgc4" path="res://effects/jump_effect.tscn" id="153_r7qb4"]
+[ext_resource type="PackedScene" uid="uid://bstlvaocgek5x" path="res://effects/landing_effect.tscn" id="155_7s336"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_y10lg"]
 animations = [{
@@ -793,6 +795,7 @@ metadata/_custom_type_script = "uid://1swhe7mpj1lb"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StunnedHurtboxComponent" unique_id=1309563703]
 position = Vector2(13.5, -11.5)
 shape = SubResource("RectangleShape2D_khh84")
+disabled = true
 debug_color = Color(0, 0.6470472, 0.22957921, 0.41960785)
 
 [node name="GroundSlamAreaSprite" type="Sprite2D" parent="." unique_id=2127137150]
@@ -889,12 +892,14 @@ metadata/_custom_type_script = "uid://c5gw0weopb2tk"
 [node name="BossJump" type="Node" parent="StateMachine" unique_id=1380129082 node_paths=PackedStringArray("fall_state", "stun_state", "power_up_state")]
 script = ExtResource("114_s0gb3")
 fall_state = NodePath("../BossFall")
+jump_effect_scene = ExtResource("153_r7qb4")
 stun_state = NodePath("../BossStunned")
 power_up_state = NodePath("../BossPowerUp")
 
 [node name="BossFall" type="Node" parent="StateMachine" unique_id=255046856 node_paths=PackedStringArray("idle_state", "stun_state", "power_up_state")]
 script = ExtResource("115_883bk")
 idle_state = NodePath("../Idle")
+falling_effect_scene = ExtResource("155_7s336")
 stun_state = NodePath("../BossStunned")
 power_up_state = NodePath("../BossPowerUp")
 

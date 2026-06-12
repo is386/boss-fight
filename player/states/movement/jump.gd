@@ -3,11 +3,17 @@ extends PlayerMoveState
 
 @export var fall_state: State
 @export var dash_state: State
+@export var jump_effect_scene: PackedScene
 
 func enter() -> void:
 	super.enter()
 	play_entry_animation()
 	player.velocity.y = -player.jump_speed
+	
+	var jump_effect = jump_effect_scene.instantiate() as SpawnableEffect
+	jump_effect.isPlayer = true
+	jump_effect.global_position = player.global_position 
+	add_child(jump_effect)
 
 func process_physics(delta: float) -> State:
 	player.sprite.flip_h = player.direction != 1

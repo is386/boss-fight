@@ -4,6 +4,8 @@ extends PlayerMoveState
 @export var idle_state: State
 @export var run_state: State
 @export var crouch_state: State
+@export var jump_effect_scene: PackedScene
+@export var landing_effect_scene: PackedScene
 
 var start: Vector2
 var is_jump_buffered: bool = false
@@ -17,6 +19,11 @@ func enter() -> void:
 	player.velocity.x = player.sprint_speed * sign(player.direction) 
 	start = player.global_position
 
+	var jump_effect = jump_effect_scene.instantiate() as SpawnableEffect
+	jump_effect.isPlayer = true
+	jump_effect.global_position = player.global_position 
+	add_child(jump_effect)
+
 func exit() -> void:
 	super.exit()
 	is_jump_buffered = false
@@ -29,6 +36,11 @@ func process_physics(delta: float) -> State:
 			is_jump_buffered = true
 
 		if player.is_on_floor():
+			var landing_effect = landing_effect_scene.instantiate() as SpawnableEffect
+			landing_effect.isPlayer = true
+			landing_effect.global_position = player.global_position 
+			add_child(landing_effect)
+
 			if is_jump_buffered:
 				is_jump_buffered = false
 				return self 

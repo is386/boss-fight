@@ -6,6 +6,7 @@ extends PlayerMoveState
 @export var fall_state: State
 @export var crouch_state: State
 @export var crouch_walk_state: State
+@export var dash_effect_scene: PackedScene
 
 var start: Vector2
 
@@ -20,6 +21,13 @@ func enter() -> void:
 
 	if player.sprite.flip_h:
 		player.velocity.x *= -1
+
+	var dash_effect = dash_effect_scene.instantiate() as SpawnableEffect
+	dash_effect.isPlayer = true
+	dash_effect.global_position = player.global_position 
+	dash_effect.global_position.x += 20 * sign(player.direction)
+	dash_effect.player_sprite.flip_h = player.sprite.flip_h
+	add_child(dash_effect)
 
 func process_physics(delta: float) -> State:
 	player.sprite.flip_h = player.direction != 1

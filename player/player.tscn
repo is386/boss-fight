@@ -113,7 +113,10 @@
 [ext_resource type="Script" uid="uid://bhoj3a7rxsomr" path="res://player/states/attack/standing_attack_up.gd" id="99_l7gmo"]
 [ext_resource type="Script" uid="uid://cr0mffjfp8jlb" path="res://player/states/attack/air_attack.gd" id="101_wylla"]
 [ext_resource type="Script" uid="uid://bfkmuq54u4pwv" path="res://player/states/attack/air_attack_up.gd" id="102_a3eqm"]
+[ext_resource type="PackedScene" uid="uid://bg46nrnfdbgc4" path="res://effects/jump_effect.tscn" id="102_v0nfp"]
 [ext_resource type="Script" uid="uid://df7iyrdk4hjre" path="res://player/states/attack/air_attack_down.gd" id="103_plx2b"]
+[ext_resource type="PackedScene" uid="uid://bstlvaocgek5x" path="res://effects/landing_effect.tscn" id="103_wyvah"]
+[ext_resource type="PackedScene" uid="uid://dh6ty8tkbwlwa" path="res://effects/dash_effect.tscn" id="108_1g4h8"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j3o0i"]
 load_path = "res://.godot/imported/Land02.png-0c53832d343decb6c284fe7eeb1c0b1d.ctex"
@@ -632,7 +635,7 @@ radius = 5.0
 height = 40.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qjt2w"]
-size = Vector2(12, 36)
+size = Vector2(12, 33)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iojyt"]
 size = Vector2(40, 35.5)
@@ -687,7 +690,7 @@ sprite_flash = NodePath("../SpriteFlash")
 enable_hitstop = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=837305921]
-position = Vector2(-1, -18)
+position = Vector2(-1, -16.5)
 shape = SubResource("RectangleShape2D_qjt2w")
 debug_color = Color(3.85046e-07, 0.64576465, 0.25969562, 0.41960785)
 
@@ -780,6 +783,7 @@ hurt_state = NodePath("../PlayerHurt")
 script = ExtResource("62_6ptwb")
 fall_state = NodePath("../Fall")
 dash_state = NodePath("../Dash")
+jump_effect_scene = ExtResource("102_v0nfp")
 hurt_state = NodePath("../PlayerHurt")
 
 [node name="Fall" type="Node" parent="MovementStateMachine" unique_id=529610699 node_paths=PackedStringArray("idle_state", "jump_state", "crouch_state", "dash_state", "hurt_state")]
@@ -788,6 +792,7 @@ idle_state = NodePath("../Idle")
 jump_state = NodePath("../Jump")
 crouch_state = NodePath("../Crouch")
 dash_state = NodePath("../Dash")
+landing_effect_scene = ExtResource("103_wyvah")
 hurt_state = NodePath("../PlayerHurt")
 
 [node name="Crouch" type="Node" parent="MovementStateMachine" unique_id=825503122 node_paths=PackedStringArray("idle_state", "jump_state", "crouch_walk_state", "dash_state", "hurt_state")]
@@ -814,6 +819,7 @@ run_state = NodePath("../Run")
 fall_state = NodePath("../Fall")
 crouch_state = NodePath("../Crouch")
 crouch_walk_state = NodePath("../CrouchWalk")
+dash_effect_scene = ExtResource("108_1g4h8")
 hurt_state = NodePath("../PlayerHurt")
 
 [node name="SprintJump" type="Node" parent="MovementStateMachine" unique_id=1262224666 node_paths=PackedStringArray("idle_state", "run_state", "crouch_state", "hurt_state")]
@@ -821,6 +827,8 @@ script = ExtResource("67_ccnn6")
 idle_state = NodePath("../Idle")
 run_state = NodePath("../Run")
 crouch_state = NodePath("../Crouch")
+jump_effect_scene = ExtResource("102_v0nfp")
+landing_effect_scene = ExtResource("103_wyvah")
 hurt_state = NodePath("../PlayerHurt")
 
 [node name="PlayerHurt" type="Node" parent="MovementStateMachine" unique_id=871358827 node_paths=PackedStringArray("idle_state", "fall_state", "hurt_state")]

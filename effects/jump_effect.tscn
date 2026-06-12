@@ -1,0 +1,98 @@
+[gd_scene format=3 uid="uid://bg46nrnfdbgc4"]
+
+[ext_resource type="Script" uid="uid://dbkqdhqvb7xip" path="res://effects/spawnable_effect.gd" id="1_mams8"]
+[ext_resource type="Texture2D" uid="uid://b8f71m2shsrvp" path="res://effects/assets/player/JumpDust/JumpDust01.png" id="2_35gk7"]
+[ext_resource type="Texture2D" uid="uid://c4xhyul0qrin" path="res://effects/assets/player/JumpDust/JumpDust02.png" id="3_syppq"]
+[ext_resource type="Texture2D" uid="uid://m30xptwdq1h4" path="res://effects/assets/player/JumpDust/JumpDust03.png" id="4_jri35"]
+[ext_resource type="Texture2D" uid="uid://dhg7o83xlpnfd" path="res://effects/assets/player/JumpDust/JumpDust04.png" id="5_k4rsf"]
+[ext_resource type="Texture2D" uid="uid://crwxgg40qqcb6" path="res://effects/assets/player/JumpDust/JumpDust05.png" id="6_7trb2"]
+[ext_resource type="Texture2D" uid="uid://6i1m8dm2lntv" path="res://effects/assets/player/JumpDust/JumpDust06.png" id="7_aqsa3"]
+[ext_resource type="Texture2D" uid="uid://x8webr3pduuw" path="res://effects/assets/player/JumpDust/JumpDust07.png" id="8_03tep"]
+[ext_resource type="Texture2D" uid="uid://0pcudlxwe4nr" path="res://effects/assets/boss/JumpDust/JumpDust01.png" id="9_syppq"]
+[ext_resource type="Texture2D" uid="uid://csdl8b58dsst4" path="res://effects/assets/boss/JumpDust/JumpDust02.png" id="10_jri35"]
+[ext_resource type="Texture2D" uid="uid://b0846ximubw4i" path="res://effects/assets/boss/JumpDust/JumpDust03.png" id="11_k4rsf"]
+[ext_resource type="Texture2D" uid="uid://bdup2rpviij6u" path="res://effects/assets/boss/JumpDust/JumpDust04.png" id="12_7trb2"]
+[ext_resource type="Texture2D" uid="uid://dj5oi6jye54dp" path="res://effects/assets/boss/JumpDust/JumpDust05.png" id="13_aqsa3"]
+[ext_resource type="Texture2D" uid="uid://cjhit4xl0ly5e" path="res://effects/assets/boss/JumpDust/JumpDust06.png" id="14_2gs8d"]
+[ext_resource type="Texture2D" uid="uid://dbjikqyqfknn5" path="res://effects/assets/boss/JumpDust/JumpDust07.png" id="15_03tep"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m25fc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_35gk7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_syppq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jri35")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_k4rsf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_7trb2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_aqsa3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_03tep")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_txpce"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_syppq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_jri35")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_k4rsf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_7trb2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_aqsa3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_2gs8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_03tep")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="JumpEffect" type="Node2D" unique_id=72592681 node_paths=PackedStringArray("player_sprite", "boss_sprite")]
+script = ExtResource("1_mams8")
+player_sprite = NodePath("PlayerSprite")
+boss_sprite = NodePath("BossSprite")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=144994923]
+position = Vector2(0, -42)
+sprite_frames = SubResource("SpriteFrames_m25fc")
+frame = 7
+frame_progress = 1.0
+
+[node name="BossSprite" type="AnimatedSprite2D" parent="." unique_id=938478228]
+position = Vector2(0, -42)
+sprite_frames = SubResource("SpriteFrames_txpce")
+frame = 7
+frame_progress = 1.0

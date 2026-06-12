@@ -5,6 +5,7 @@ extends PlayerMoveState
 @export var jump_state: State
 @export var crouch_state: State
 @export var dash_state: State
+@export var landing_effect_scene: PackedScene
 
 var is_jump_buffered: bool = false
 
@@ -20,6 +21,11 @@ func process_physics(delta: float) -> State:
 		is_jump_buffered = true
 
 	if player.is_on_floor():
+		var landing_effect = landing_effect_scene.instantiate() as SpawnableEffect
+		landing_effect.isPlayer = true
+		landing_effect.global_position = player.global_position 
+		add_child(landing_effect)
+
 		player.dashed = false
 		if is_jump_buffered:
 			is_jump_buffered = false

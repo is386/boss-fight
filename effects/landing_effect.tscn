@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://bstlvaocgek5x"]
+
+[ext_resource type="Script" uid="uid://dbkqdhqvb7xip" path="res://effects/spawnable_effect.gd" id="1_kpcdq"]
+[ext_resource type="Texture2D" uid="uid://boalh7qbhj10f" path="res://effects/assets/player/LandingDust/LandingDust01.png" id="1_o87wy"]
+[ext_resource type="Texture2D" uid="uid://8io6ju0n501s" path="res://effects/assets/player/LandingDust/LandingDust02.png" id="2_eay62"]
+[ext_resource type="Texture2D" uid="uid://bkqlcfrajvs7a" path="res://effects/assets/player/LandingDust/LandingDust03.png" id="3_lbuym"]
+[ext_resource type="Texture2D" uid="uid://cuddxoqio2oem" path="res://effects/assets/player/LandingDust/LandingDust04.png" id="4_u8ck3"]
+[ext_resource type="Texture2D" uid="uid://c413w1u0cn2pd" path="res://effects/assets/player/LandingDust/LandingDust05.png" id="5_eto3k"]
+[ext_resource type="Texture2D" uid="uid://0mmbub74trm8" path="res://effects/assets/player/LandingDust/LandingDust06.png" id="6_us0fh"]
+[ext_resource type="Texture2D" uid="uid://dxqyyc1aakkta" path="res://effects/assets/boss/LandingDust/LandingDust01.png" id="7_fbmmx"]
+[ext_resource type="Texture2D" uid="uid://c8vwroe7buig8" path="res://effects/assets/boss/LandingDust/LandingDust02.png" id="8_i7lmu"]
+[ext_resource type="Texture2D" uid="uid://dk53powissowl" path="res://effects/assets/boss/LandingDust/LandingDust03.png" id="9_83sd7"]
+[ext_resource type="Texture2D" uid="uid://bck2sq7unjpgc" path="res://effects/assets/boss/LandingDust/LandingDust04.png" id="10_aay6i"]
+[ext_resource type="Texture2D" uid="uid://d4bguuwik1ihn" path="res://effects/assets/boss/LandingDust/LandingDust05.png" id="11_nsfy1"]
+[ext_resource type="Texture2D" uid="uid://bamqft3b41yfo" path="res://effects/assets/boss/LandingDust/LandingDust06.png" id="12_847ep"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m25fc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_o87wy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_eay62")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lbuym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_u8ck3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_eto3k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_us0fh")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_txpce"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_fbmmx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_i7lmu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_83sd7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_aay6i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_nsfy1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_847ep")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="LandingEffect" type="Node2D" unique_id=72592681 node_paths=PackedStringArray("player_sprite", "boss_sprite")]
+script = ExtResource("1_kpcdq")
+player_sprite = NodePath("PlayerSprite")
+boss_sprite = NodePath("BossSprite")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="." unique_id=144994923]
+position = Vector2(0, -42)
+sprite_frames = SubResource("SpriteFrames_m25fc")
+frame = 6
+frame_progress = 1.0
+
+[node name="BossSprite" type="AnimatedSprite2D" parent="." unique_id=938478228]
+position = Vector2(0, -42)
+sprite_frames = SubResource("SpriteFrames_txpce")
+frame = 6
+frame_progress = 1.0
