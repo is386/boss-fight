@@ -36,11 +36,6 @@ func _on_hurtbox_entered(area2d: Area2D) -> void:
 	if sprite_flash:
 		sprite_flash.flash()
 
-	if enable_hitstop:
-		Engine.time_scale = 0 
-		await get_tree().create_timer(0.07, true, false, true).timeout
-		Engine.time_scale = 1.0
-
 	if enable_camera_shake:
 		camera.screen_shake(1, 1)
 

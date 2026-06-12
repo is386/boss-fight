@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://dxt6omt5qjgrk"]
 
 [ext_resource type="Script" uid="uid://1swhe7mpj1lb" path="res://entity/components/hurtbox_component.gd" id="1_15sks"]
+[ext_resource type="PackedScene" uid="uid://m1y2uh8rnrfl" path="res://effects/hit_particles.tscn" id="2_fsy1y"]
 
 [node name="HurtboxComponent" type="Area2D" unique_id=1648363097]
 script = ExtResource("1_15sks")
+hit_particles_scene = ExtResource("2_fsy1y")
 metadata/_custom_type_script = "uid://1swhe7mpj1lb"

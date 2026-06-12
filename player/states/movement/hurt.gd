@@ -11,6 +11,9 @@ func enter() -> void:
 	player.play_animation('hurt')
 	player.velocity.x = 125 * sign(player.hurtbox_component.knockback_direction.x)
 	player.velocity.y = 0
+	Engine.time_scale = 0 
+	await get_tree().create_timer(0.2, true, false, true).timeout
+	Engine.time_scale = 1.0
 
 func exit() -> void:
 	player.dashed = false

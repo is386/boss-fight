@@ -155,6 +155,7 @@
 [ext_resource type="Texture2D" uid="uid://b4uwcvlvr86qe" path="res://effects/assets/boss/RunDustFront/RunDustFront06.png" id="135_txtl4"]
 [ext_resource type="Texture2D" uid="uid://x2hr0top707f" path="res://effects/assets/boss/RunDustFront/RunDustFront07.png" id="136_8egsg"]
 [ext_resource type="Texture2D" uid="uid://bej1pr2nyhxqu" path="res://effects/assets/boss/RunDustFront/RunDustFront08.png" id="137_5s8sj"]
+[ext_resource type="PackedScene" uid="uid://m1y2uh8rnrfl" path="res://effects/hit_particles.tscn" id="140_7s336"]
 [ext_resource type="Script" uid="uid://bcw1ay652lhxo" path="res://effects/sprite_flash.gd" id="140_wvknw"]
 [ext_resource type="PackedScene" uid="uid://bg46nrnfdbgc4" path="res://effects/jump_effect.tscn" id="153_r7qb4"]
 [ext_resource type="PackedScene" uid="uid://bstlvaocgek5x" path="res://effects/landing_effect.tscn" id="155_7s336"]
@@ -776,6 +777,7 @@ collision_mask = 2
 script = ExtResource("108_1x7qe")
 health_component = NodePath("../BossHealthComponent")
 sprite_flash = NodePath("../SpriteFlash")
+hit_particles_scene = ExtResource("140_7s336")
 metadata/_custom_type_script = "uid://1swhe7mpj1lb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=888829065]
@@ -790,6 +792,7 @@ collision_mask = 2
 script = ExtResource("108_1x7qe")
 health_component = NodePath("../BossHealthComponent")
 sprite_flash = NodePath("../SpriteFlash")
+hit_particles_scene = ExtResource("140_7s336")
 metadata/_custom_type_script = "uid://1swhe7mpj1lb"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StunnedHurtboxComponent" unique_id=1309563703]
@@ -820,7 +823,7 @@ debug_color = Color(0.99999994, 0.008672535, 0.06872495, 0.41960785)
 [node name="BossHealthComponent" type="Node" parent="." unique_id=1520694109]
 script = ExtResource("109_6kjei")
 num_stuns = 2
-phase_two_health_ratio = 0.95
+phase_two_health_ratio = 0.5
 max_health = 50
 
 [node name="CooldownTimer" type="Timer" parent="." unique_id=897068969]
