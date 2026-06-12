@@ -5,10 +5,12 @@ extends Area2D
 @export var invulnerability_time: float
 @export var sprite_flash: SpriteFlash
 @export var enable_hitstop: bool = false
+@export var enable_camera_shake: bool = false
 
 var knockback_direction: Vector2 = Vector2.ZERO
 var is_invulnerable: bool = false
 var collision_shape: CollisionShape2D
+var camera: ShakingCamera
 
 signal hit_received 
 
@@ -19,6 +21,7 @@ func enable() -> void:
 	collision_shape.set_deferred("disabled", false)
 
 func _ready() -> void:
+	camera = get_tree().get_first_node_in_group("Camera")
 	area_entered.connect(_on_hurtbox_entered)
 	collision_shape = $CollisionShape2D
 	
@@ -35,8 +38,11 @@ func _on_hurtbox_entered(area2d: Area2D) -> void:
 
 	if enable_hitstop:
 		Engine.time_scale = 0 
-		await get_tree().create_timer(0.05, true, false, true).timeout
+		await get_tree().create_timer(0.07, true, false, true).timeout
 		Engine.time_scale = 1.0
+
+	if enable_camera_shake:
+		camera.screen_shake(1, 1)
 
 	health_component.subtract_health(hitbox.damage)
 	var target_dir = hitbox.global_position.direction_to(global_position) 

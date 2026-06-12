@@ -688,6 +688,7 @@ health_component = NodePath("../HealthComponent")
 invulnerability_time = 0.75
 sprite_flash = NodePath("../SpriteFlash")
 enable_hitstop = true
+enable_camera_shake = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=837305921]
 position = Vector2(-1, -16.5)

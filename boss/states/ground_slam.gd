@@ -10,6 +10,11 @@ extends BossState
 var is_following_player: bool = false 
 var is_attacking: bool = false
 var attack_count: int = 0
+var camera: ShakingCamera
+
+func _ready() -> void:
+	super._ready()
+	camera = get_tree().get_first_node_in_group("Camera")
 
 func enter() -> void:
 	boss.play_animation("vanish")
@@ -43,6 +48,7 @@ func process(_delta: float) -> State:
 
 	if boss.sprite.animation == "ground_slam" and boss.sprite.frame == 4:
 		ground_slam_hitbox.enable()
+		camera.screen_shake(2, 5)
 
 	if boss.sprite.animation == "ground_slam" and boss.sprite.frame == 8:
 		ground_slam_hitbox.disable()
