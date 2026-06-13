@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bvggcro3ab3tm"]
+
+[ext_resource type="Script" uid="uid://dhid54042d88x" path="res://ui/player_health_bar/player_health_unit.gd" id="1_euwhf"]
+[ext_resource type="Texture2D" uid="uid://cfiw4rqrbnjd1" path="res://ui/player_health_bar/assets/AngledBarBackground.png" id="1_ppkxr"]
+[ext_resource type="Texture2D" uid="uid://b4c733grthiv" path="res://ui/player_health_bar/assets/AngledBarFill.png" id="2_ok8b2"]
+[ext_resource type="Texture2D" uid="uid://h3jwsy54i2yh" path="res://ui/player_health_bar/assets/AngledBarForeground.png" id="3_lkh0k"]
+[ext_resource type="Texture2D" uid="uid://dfq48yk8icocs" path="res://ui/player_health_bar/assets/AngledBarEmpty.png" id="4_u4uln"]
+
+[node name="PlayerHealthUnit" type="Control" unique_id=1678454008 node_paths=PackedStringArray("empty_texture")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_euwhf")
+empty_texture = NodePath("Empty")
+
+[node name="Background" type="TextureRect" parent="." unique_id=439938788]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_ppkxr")
+stretch_mode = 2
+
+[node name="Background2" type="TextureRect" parent="." unique_id=2142505892]
+layout_mode = 0
+offset_left = 2.0
+offset_right = 42.0
+offset_bottom = 40.0
+texture = ExtResource("1_ppkxr")
+stretch_mode = 2
+
+[node name="Fill" type="TextureRect" parent="." unique_id=1305082230]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 2.0
+offset_right = 44.0
+offset_bottom = 42.0
+texture = ExtResource("2_ok8b2")
+stretch_mode = 2
+
+[node name="Foreground" type="TextureRect" parent="." unique_id=1699908102]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 42.0
+offset_bottom = 41.0
+texture = ExtResource("3_lkh0k")
+stretch_mode = 2
+
+[node name="Empty" type="TextureRect" parent="." unique_id=1009778175]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("4_u4uln")
+stretch_mode = 2

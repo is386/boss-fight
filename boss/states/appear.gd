@@ -4,10 +4,12 @@ extends BossState
 @export var idle_state: State
 @export var body_hitbox: HitboxComponent 
 @export var hurtbox: HurtboxComponent
+@export var audio_player: AudioStreamPlayer2D
 
 func enter() -> void:
 	super.enter()
 	boss.play_animation("appear")	
+	audio_player.play()
 
 func exit() -> void:
 	super.exit()

@@ -6,6 +6,7 @@ extends Area2D
 @export var sprite_flash: SpriteFlash
 @export var enable_hitstop: bool = false
 @export var enable_camera_shake: bool = false
+@export var audio_player: AudioStreamPlayer2D
 
 var knockback_direction: Vector2 = Vector2.ZERO
 var is_invulnerable: bool = false
@@ -37,7 +38,7 @@ func _on_hurtbox_entered(area2d: Area2D) -> void:
 		sprite_flash.flash()
 
 	if enable_camera_shake:
-		camera.screen_shake(1, 1)
+		camera.screen_shake(1, 0.25)
 
 	health_component.subtract_health(hitbox.damage)
 	var target_dir = hitbox.global_position.direction_to(global_position) 
@@ -48,6 +49,8 @@ func _on_hurtbox_entered(area2d: Area2D) -> void:
 			target_dir.x = 1.0 
 
 	knockback_direction = target_dir
+
+	audio_player.play()
 
 	hit_received.emit()
 	

@@ -8,8 +8,17 @@ func can_run() -> bool:
 
 func get_run_direction() -> float:
 	if !player.enable_run:
-		return 0
-	return Input.get_axis("move_left", "move_right")
+		return 0.0
+	
+	var right_strength = Input.get_action_raw_strength("move_right")
+	var left_strength = Input.get_action_raw_strength("move_left")
+	var raw_axis = right_strength - left_strength
+	
+	var threshold = 0.2 
+	if abs(raw_axis) > threshold:
+		return sign(raw_axis)
+
+	return 0.0
 
 func can_jump() -> bool:
 	return player.enable_jump and Input.is_action_just_pressed("jump") and player.is_on_floor()

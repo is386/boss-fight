@@ -5,6 +5,7 @@ extends BossState
 @export var stunned_time: float
 @export var body_hitbox: HitboxComponent
 @export var stunned_hurtbox_component: HurtboxComponent
+@export var audio_player: AudioStreamPlayer2D
 
 func enter() -> void:
 	boss.play_animation('stunned')	
@@ -14,6 +15,11 @@ func enter() -> void:
 	stunned_hurtbox_component.scale.x = -boss.direction
 	isStunned = true
 	boss.velocity.x = 0
+	audio_player.play()
+
+	Engine.time_scale = 0 
+	await get_tree().create_timer(0.2, true, false, true).timeout
+	Engine.time_scale = 1.0
 
 	var stunned_timer = Timer.new()
 	stunned_timer.wait_time = stunned_time

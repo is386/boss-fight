@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cjgvhws3exxpu"]
+
+[ext_resource type="Texture2D" uid="uid://cb81pqrcjyq8s" path="res://ui/player_health_bar/assets/PlayerSmallFrame.png" id="1_3p05j"]
+[ext_resource type="PackedScene" uid="uid://bvggcro3ab3tm" path="res://ui/player_health_bar/player_health_unit.tscn" id="1_6lhos"]
+[ext_resource type="Texture2D" uid="uid://cfiw4rqrbnjd1" path="res://ui/player_health_bar/assets/AngledBarBackground.png" id="1_ca8e3"]
+[ext_resource type="Script" uid="uid://c1hfdwg2plesu" path="res://ui/player_health_bar/player_health_bar.gd" id="1_vlsqj"]
+
+[node name="PlayerHealthBar" type="Control" unique_id=446204917 node_paths=PackedStringArray("health_container")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 112.0
+offset_right = 112.0
+offset_bottom = 6.0
+script = ExtResource("1_vlsqj")
+health_container = NodePath("PlayerHealthContainer")
+player_health_unit_scene = ExtResource("1_6lhos")
+
+[node name="PortraitBackground" type="TextureRect" parent="." unique_id=45440913]
+layout_mode = 0
+offset_left = -104.0
+offset_top = 6.0
+offset_right = -64.0
+offset_bottom = 46.0
+texture = ExtResource("1_ca8e3")
+stretch_mode = 2
+
+[node name="Portrait" type="TextureRect" parent="." unique_id=1928979857]
+layout_mode = 0
+offset_left = -112.0
+offset_right = -72.0
+offset_bottom = 40.0
+texture = ExtResource("1_3p05j")
+stretch_mode = 2
+
+[node name="PlayerHealthContainer" type="HBoxContainer" parent="." unique_id=1992519519]
+layout_mode = 0
+offset_left = -99.0
+offset_top = 6.0
+offset_right = 19.0
+offset_bottom = 12.0
+theme_override_constants/separation = 13

@@ -7,6 +7,7 @@ extends State
 @export var aerial_attack_state: State
 @export var upwards_aerial_attack_state: State
 @export var downwards_aerial_attack_state: State
+@export var sword_audio_player: AudioStreamPlayer2D
 
 var player: Player
 
@@ -21,6 +22,7 @@ func process_input(_event: InputEvent) -> State:
 		return
 
 	if player.input_component.can_attack():
+		sword_audio_player.play()
 		if player.input_component.can_run():
 			return running_attack_state 
 		if player.input_component.is_holding_up():
@@ -28,6 +30,7 @@ func process_input(_event: InputEvent) -> State:
 		return standing_attack_state
 
 	if player.input_component.can_aerial_attack():
+		sword_audio_player.play()
 		if player.input_component.is_holding_up():
 			return upwards_aerial_attack_state
 		if player.input_component.is_holding_down():

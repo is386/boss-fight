@@ -5,11 +5,13 @@ extends BossState
 @export var cooldown_timer: Timer
 @export var right_hitbox: HitboxComponent 
 @export var left_hitbox: HitboxComponent
+@export var audio_player: AudioStreamPlayer2D
 
 var hitbox: HitboxComponent
 
 func enter() -> void:
 	super.enter()
+	audio_player.play()
 	boss.play_animation('attack')
 	if boss.input_component.get_run_direction() == 1:
 		hitbox = right_hitbox

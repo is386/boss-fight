@@ -6,6 +6,9 @@ extends BossState
 @export var ground_slam_hitbox: HitboxComponent
 @export var sprite: Sprite2D
 @export var delay: float
+@export var ground_slam_audio_player: AudioStreamPlayer2D
+@export var ground_slam_charge_audio_player: AudioStreamPlayer2D
+@export var vanish_audio_player: AudioStreamPlayer2D
 
 var is_following_player: bool = false 
 var is_attacking: bool = false
@@ -17,6 +20,7 @@ func _ready() -> void:
 	camera = get_tree().get_first_node_in_group("Camera")
 
 func enter() -> void:
+	vanish_audio_player.play()
 	boss.play_animation("vanish")
 	boss.hurtbox_component.disable()
 	body_hitbox.disable()
@@ -35,6 +39,7 @@ func exit() -> void:
 
 func process(_delta: float) -> State:
 	if !boss.sprite.is_playing() and !is_following_player and !is_attacking:
+		ground_slam_charge_audio_player.play()
 		sprite.visible = true
 		is_following_player = true
 		boss.global_position.y = boss.starting_position.y 
@@ -48,7 +53,9 @@ func process(_delta: float) -> State:
 
 	if boss.sprite.animation == "ground_slam" and boss.sprite.frame == 4:
 		ground_slam_hitbox.enable()
-		camera.screen_shake(2, 5)
+		camera.screen_shake(2, 0.5)
+		ground_slam_charge_audio_player.stop()
+		ground_slam_audio_player.play()
 
 	if boss.sprite.animation == "ground_slam" and boss.sprite.frame == 8:
 		ground_slam_hitbox.disable()

@@ -109,7 +109,10 @@
 [ext_resource type="Texture2D" uid="uid://br1t64psq5srd" path="res://player/assets/Combat/StandingSlashUp/StandingSlashUp03.png" id="90_edwuo"]
 [ext_resource type="Texture2D" uid="uid://dm8kug7kqsmjg" path="res://effects/assets/player/RunDustFront/RunDustFront07.png" id="90_vuyvy"]
 [ext_resource type="Texture2D" uid="uid://c0byiaabyxxnh" path="res://effects/assets/player/RunDustFront/RunDustFront08.png" id="91_0yt84"]
+[ext_resource type="AudioStream" uid="uid://cml5y2vqwouo7" path="res://sounds/sword.wav" id="94_0toqm"]
+[ext_resource type="AudioStream" uid="uid://cy5bllw5bt3x4" path="res://sounds/player_hurt.wav" id="95_wh3n5"]
 [ext_resource type="Script" uid="uid://bmue7hbo1lj2u" path="res://entity/components/hitbox_component.gd" id="96_gcmgo"]
+[ext_resource type="AudioStream" uid="uid://dnfopwp171cv3" path="res://sounds/player_death.wav" id="96_vuyvy"]
 [ext_resource type="Script" uid="uid://bhoj3a7rxsomr" path="res://player/states/attack/standing_attack_up.gd" id="99_l7gmo"]
 [ext_resource type="Script" uid="uid://cr0mffjfp8jlb" path="res://player/states/attack/air_attack.gd" id="101_wylla"]
 [ext_resource type="Script" uid="uid://bfkmuq54u4pwv" path="res://player/states/attack/air_attack_up.gd" id="102_a3eqm"]
@@ -649,7 +652,7 @@ size = Vector2(40, 35.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nj2w7"]
 size = Vector2(40, 35.5)
 
-[node name="Player" type="CharacterBody2D" unique_id=1237580124 node_paths=PackedStringArray("movement_state_machine", "attack_state_machine", "sprite", "effect_sprite", "input_component", "velocity_component", "hurtbox_component")]
+[node name="Player" type="CharacterBody2D" unique_id=1237580124 node_paths=PackedStringArray("movement_state_machine", "attack_state_machine", "sprite", "effect_sprite", "input_component", "velocity_component", "hurtbox_component", "audio_player")]
 collision_layer = 2
 script = ExtResource("1_770dr")
 movement_state_machine = NodePath("MovementStateMachine")
@@ -662,6 +665,7 @@ effect_sprite = NodePath("EffectSprite")
 input_component = NodePath("InputComponent")
 velocity_component = NodePath("VelocityComponent")
 hurtbox_component = NodePath("HurtboxComponent")
+audio_player = NodePath("DeathAudio")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=575221577]
 texture_filter = 1
@@ -681,13 +685,14 @@ autoplay = "idle"
 position = Vector2(0, -19)
 shape = SubResource("CapsuleShape2D_0wfyh")
 
-[node name="HurtboxComponent" parent="." unique_id=1648363097 node_paths=PackedStringArray("health_component", "sprite_flash") instance=ExtResource("72_qjt2w")]
+[node name="HurtboxComponent" parent="." unique_id=1648363097 node_paths=PackedStringArray("health_component", "sprite_flash", "audio_player") instance=ExtResource("72_qjt2w")]
 collision_layer = 0
 collision_mask = 4
 health_component = NodePath("../HealthComponent")
 invulnerability_time = 0.75
 sprite_flash = NodePath("../SpriteFlash")
 enable_camera_shake = true
+audio_player = NodePath("../HurtAudio")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxComponent" unique_id=837305921]
 position = Vector2(-1, -16.5)
@@ -745,6 +750,15 @@ position = Vector2(0, -55)
 shape = SubResource("RectangleShape2D_nj2w7")
 disabled = true
 debug_color = Color(0.9957481, 0, 0.20788833, 0.41960785)
+
+[node name="SwordAudio" type="AudioStreamPlayer2D" parent="." unique_id=1987698354]
+stream = ExtResource("94_0toqm")
+
+[node name="HurtAudio" type="AudioStreamPlayer2D" parent="." unique_id=575780106]
+stream = ExtResource("95_wh3n5")
+
+[node name="DeathAudio" type="AudioStreamPlayer2D" parent="." unique_id=1662885957]
+stream = ExtResource("96_vuyvy")
 
 [node name="SpriteFlash" type="Node" parent="." unique_id=1625462612]
 script = ExtResource("84_7xdiq")
@@ -840,7 +854,7 @@ metadata/_custom_type_script = "uid://dyr0ab7nrdr0c"
 
 [node name="AttackStateMachine" parent="." unique_id=686622543 instance=ExtResource("78_j3o0i")]
 
-[node name="IdleAttack" type="Node" parent="AttackStateMachine" unique_id=942466336 node_paths=PackedStringArray("standing_attack_state", "upwards_standing_attack_state", "running_attack_state", "aerial_attack_state", "upwards_aerial_attack_state", "downwards_aerial_attack_state")]
+[node name="IdleAttack" type="Node" parent="AttackStateMachine" unique_id=942466336 node_paths=PackedStringArray("standing_attack_state", "upwards_standing_attack_state", "running_attack_state", "aerial_attack_state", "upwards_aerial_attack_state", "downwards_aerial_attack_state", "sword_audio_player")]
 script = ExtResource("74_bpsgo")
 standing_attack_state = NodePath("../StandingAttack")
 upwards_standing_attack_state = NodePath("../StandingAttackUp")
@@ -848,6 +862,7 @@ running_attack_state = NodePath("../RunningAttack")
 aerial_attack_state = NodePath("../AirAttack")
 upwards_aerial_attack_state = NodePath("../AirAttackUp")
 downwards_aerial_attack_state = NodePath("../AirAttackDown")
+sword_audio_player = NodePath("../../SwordAudio")
 
 [node name="StandingAttack" type="Node" parent="AttackStateMachine" unique_id=1663022956 node_paths=PackedStringArray("idle_attack_state", "right_hitbox", "left_hitbox")]
 script = ExtResource("75_jx8is")

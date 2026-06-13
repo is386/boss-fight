@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://be1oh4mrrdi05"
-path="res://.godot/imported/grid-cell.png-3dd548bab71678d5dfa4128e5505355b.ctex"
+uid="uid://h3jwsy54i2yh"
+path="res://.godot/imported/AngledBarForeground.png-f53c805203558426e2284cf3708b30b0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://grid-cell.png"
-dest_files=["res://.godot/imported/grid-cell.png-3dd548bab71678d5dfa4128e5505355b.ctex"]
+source_file="res://ui/player_health_bar/assets/AngledBarForeground.png"
+dest_files=["res://.godot/imported/AngledBarForeground.png-f53c805203558426e2284cf3708b30b0.ctex"]
 
 [params]
 

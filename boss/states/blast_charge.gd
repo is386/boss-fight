@@ -3,6 +3,7 @@ extends BossState
 
 @export var blast_attack_state: State
 @export var charge_time: float = 2.0
+@export var audio_player: AudioStreamPlayer2D
 
 var isCharged: bool = false
 
@@ -10,6 +11,7 @@ func enter() -> void:
 	super.enter()
 	isCharged = false
 	boss.play_animation("blast_charge")
+	audio_player.play()
 	await get_tree().create_timer(charge_time).timeout 
 	isCharged = true
 
