@@ -10,11 +10,7 @@ extends PlayerMoveState
 func enter() -> void:
 	super.enter()
 	player.is_idle = true
-	if player.was_crouching:
-		player.play_animation("get_up")
-		player.sprite.animation_finished.connect(_on_get_up_animation_finished)
-	else:
-		play_entry_animation()
+	play_entry_animation()
 	player.velocity.x = 0
 
 func exit() -> void:

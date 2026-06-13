@@ -5,14 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://bfll5urroiv68" path="res://player/assets/Combat/AirSlash/AirSlash02.png" id="3_kft7l"]
 [ext_resource type="Texture2D" uid="uid://ch3y4v4vohtwj" path="res://player/assets/Combat/AirSlash/AirSlash03.png" id="4_2s4os"]
 [ext_resource type="Texture2D" uid="uid://78ic8m15rrqc" path="res://player/assets/Combat/AirSlash/AirSlash04.png" id="5_2em0j"]
-[ext_resource type="Texture2D" uid="uid://dfgn68qmocx4l" path="res://player/assets/Crawl/Crawl01.png" id="10_qk6i7"]
-[ext_resource type="Texture2D" uid="uid://dwqkh2ufe6gdo" path="res://player/assets/Crawl/Crawl02.png" id="11_6c3st"]
-[ext_resource type="Texture2D" uid="uid://oq8n81cifhwx" path="res://player/assets/Crawl/Crawl03.png" id="12_1da1t"]
-[ext_resource type="Texture2D" uid="uid://cgtjemt1t3pk7" path="res://player/assets/Crawl/Crawl04.png" id="13_p21yu"]
-[ext_resource type="Texture2D" uid="uid://j2s3hgfv16f8" path="res://player/assets/Crawl/Crawl05.png" id="14_irpag"]
-[ext_resource type="Texture2D" uid="uid://bwabnym5gixeg" path="res://player/assets/Crawl/Crawl06.png" id="15_bpsgo"]
-[ext_resource type="Texture2D" uid="uid://xskj34d3ydbf" path="res://player/assets/Crawl/Crawl07.png" id="16_jx8is"]
-[ext_resource type="Texture2D" uid="uid://kq3bjpgyxbdb" path="res://player/assets/Crawl/Crawl08.png" id="17_vx63k"]
 [ext_resource type="Texture2D" uid="uid://btim8iku3x2v7" path="res://player/assets/Combat/SwordDash/SwordDash01.png" id="18_lw0jh"]
 [ext_resource type="Texture2D" uid="uid://c556xjp0ghg81" path="res://player/assets/Combat/SwordDash/SwordDash02.png" id="19_770dr"]
 [ext_resource type="Texture2D" uid="uid://ctjhs4r5fu7qj" path="res://player/assets/Combat/SwordDash/SwordDash03.png" id="20_8f1cb"]
@@ -42,14 +34,21 @@
 [ext_resource type="Texture2D" uid="uid://3r1p557bqhr3" path="res://player/assets/Combat/SwordRun/SwordRun04.png" id="36_wqna8"]
 [ext_resource type="Texture2D" uid="uid://bivpnjpno8adt" path="res://player/assets/Combat/SwordRun/SwordRun05.png" id="37_l7gmo"]
 [ext_resource type="Texture2D" uid="uid://bpp18gqh8eqhg" path="res://player/assets/Die/Die07.png" id="37_oevg7"]
+[ext_resource type="Texture2D" uid="uid://6t1x4vjegn1a" path="res://player/assets/Combat/SwordIdle/SwordIdle01.png" id="37_wh3n5"]
 [ext_resource type="Texture2D" uid="uid://dsfi4nav0y6mh" path="res://player/assets/Combat/SwordRun/SwordRun06.png" id="38_kft7l"]
 [ext_resource type="Texture2D" uid="uid://dersjgihhlig7" path="res://player/assets/Die/Die08.png" id="38_teerl"]
+[ext_resource type="Texture2D" uid="uid://bdxfiw7k45hif" path="res://player/assets/Combat/SwordIdle/SwordIdle02.png" id="38_vuyvy"]
+[ext_resource type="Texture2D" uid="uid://dv06hihw4lw23" path="res://player/assets/Combat/SwordIdle/SwordIdle03.png" id="39_0yt84"]
 [ext_resource type="Texture2D" uid="uid://ckwn4mv0845wl" path="res://player/assets/Combat/SwordRun/SwordRun07.png" id="39_2s4os"]
 [ext_resource type="Texture2D" uid="uid://bwbgvyonw2prx" path="res://player/assets/Die/Die09.png" id="39_ama2g"]
 [ext_resource type="Texture2D" uid="uid://uyt28e1rcfau" path="res://player/assets/Combat/SwordRun/SwordRun08.png" id="40_2em0j"]
+[ext_resource type="Texture2D" uid="uid://brulv7g3ftfxo" path="res://player/assets/Combat/SwordIdle/SwordIdle04.png" id="40_318aw"]
+[ext_resource type="Texture2D" uid="uid://d223tt67rxg0a" path="res://player/assets/Combat/SwordIdle/SwordIdle05.png" id="41_kosww"]
 [ext_resource type="Texture2D" uid="uid://clxpi7lgr56i8" path="res://player/assets/Combat/SwordSprint/SwordSprint01.png" id="41_qe2k6"]
 [ext_resource type="Texture2D" uid="uid://7cmy0hmp2bh2" path="res://player/assets/Combat/SwordSprint/SwordSprint02.png" id="42_edwuo"]
+[ext_resource type="Texture2D" uid="uid://cf1ihn5fu3euq" path="res://player/assets/Combat/SwordIdle/SwordIdle06.png" id="42_s15n6"]
 [ext_resource type="Texture2D" uid="uid://c7det1yarn5ub" path="res://player/assets/Combat/SwordSprint/SwordSprint03.png" id="43_5eiju"]
+[ext_resource type="Texture2D" uid="uid://brnxfy5qys1v4" path="res://player/assets/Combat/SwordIdle/SwordIdle07.png" id="43_es2j2"]
 [ext_resource type="Texture2D" uid="uid://cea5wqaoa2uu7" path="res://player/assets/Combat/SwordSprint/SwordSprint04.png" id="44_uukdq"]
 [ext_resource type="Texture2D" uid="uid://l6jc6t8qktcq" path="res://player/assets/Combat/SwordSprint/SwordSprint05.png" id="45_3k3j0"]
 [ext_resource type="Texture2D" uid="uid://3smnnyxr4mjk" path="res://player/assets/Combat/SwordSprint/SwordSprint06.png" id="46_0bpox"]
@@ -121,51 +120,6 @@
 [ext_resource type="PackedScene" uid="uid://bstlvaocgek5x" path="res://effects/landing_effect.tscn" id="103_wyvah"]
 [ext_resource type="PackedScene" uid="uid://dh6ty8tkbwlwa" path="res://effects/dash_effect.tscn" id="108_1g4h8"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_j3o0i"]
-load_path = "res://.godot/imported/Land02.png-0c53832d343decb6c284fe7eeb1c0b1d.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pgo6y"]
-load_path = "res://.godot/imported/Land01.png-75a59d1d616b16906ad159de9c842ed4.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qm6yy"]
-load_path = "res://.godot/imported/Crouch01.png-97c1c5732ce962e1939fe8dd725278cb.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gcmgo"]
-load_path = "res://.godot/imported/Crouch02.png-b5b367b2917fb6e78c29559e4e926996.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rnncm"]
-load_path = "res://.godot/imported/Crouch03.png-dff9086a89e483277f92c851fb98cfb7.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_nj2w7"]
-load_path = "res://.godot/imported/Crouch04.png-c4e60a95b98b63f9b73dff55167bbce8.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iojyt"]
-load_path = "res://.godot/imported/Crouch05.png-7f5c60c05e9d39578444aa9b64062ba0.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vhicv"]
-load_path = "res://.godot/imported/Crouch06.png-fc40fa426536b47a192ca3940f5490d7.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hrakr"]
-load_path = "res://.godot/imported/SwordIdle01.png-47d87a15f23ee581aa7c15e5362ca262.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wsa1w"]
-load_path = "res://.godot/imported/SwordIdle02.png-0e637d58606e841847a5db802d9d1851.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2s0vo"]
-load_path = "res://.godot/imported/SwordIdle03.png-0ee7850722efd47ecf1313cd6a2bc40f.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hgm8h"]
-load_path = "res://.godot/imported/SwordIdle04.png-28ee4720bb915e5dc885577e5f15fbe7.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ig2t1"]
-load_path = "res://.godot/imported/SwordIdle05.png-9dd7dc1de18247a1a6c337f8dc3db3d8.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7xdiq"]
-load_path = "res://.godot/imported/SwordIdle06.png-7c7d3971d85ab92503f9b21da37dd367.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_d0gtc"]
-load_path = "res://.godot/imported/SwordIdle07.png-873cd8354c42fe28d22455e04567283e.ctex"
-
 [sub_resource type="SpriteFrames" id="SpriteFrames_o5qli"]
 animations = [{
 "frames": [{
@@ -230,64 +184,6 @@ animations = [{
 "loop": false,
 "name": &"air_attack_up",
 "speed": 20.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_j3o0i")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_pgo6y")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_qm6yy")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_gcmgo")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_rnncm")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_nj2w7")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_iojyt")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_vhicv")
-}],
-"loop": false,
-"name": &"crouch",
-"speed": 20.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("10_qk6i7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("11_6c3st")
-}, {
-"duration": 1.0,
-"texture": ExtResource("12_1da1t")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_p21yu")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_irpag")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_bpsgo")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_jx8is")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_vx63k")
-}],
-"loop": true,
-"name": &"crouch_walk",
-"speed": 7.5
 }, {
 "frames": [{
 "duration": 1.0,
@@ -357,17 +253,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_pgo6y")
-}, {
-"duration": 1.0,
-"texture": SubResource("CompressedTexture2D_j3o0i")
-}],
-"loop": false,
-"name": &"get_up",
-"speed": 20.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": ExtResource("33_pgo6y")
 }, {
 "duration": 1.0,
@@ -382,25 +267,25 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_hrakr")
+"texture": ExtResource("37_wh3n5")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_wsa1w")
+"texture": ExtResource("38_vuyvy")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_2s0vo")
+"texture": ExtResource("39_0yt84")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_hgm8h")
+"texture": ExtResource("40_318aw")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_ig2t1")
+"texture": ExtResource("41_kosww")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_7xdiq")
+"texture": ExtResource("42_s15n6")
 }, {
 "duration": 1.0,
-"texture": SubResource("CompressedTexture2D_d0gtc")
+"texture": ExtResource("43_es2j2")
 }],
 "loop": true,
 "name": &"idle",
@@ -668,12 +553,11 @@ hurtbox_component = NodePath("HurtboxComponent")
 audio_player = NodePath("DeathAudio")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=575221577]
+physics_interpolation_mode = 2
 texture_filter = 1
 position = Vector2(0, -42)
 sprite_frames = SubResource("SpriteFrames_o5qli")
-animation = &"run"
-autoplay = "idle"
-frame_progress = 0.2876042
+animation = &"idle"
 
 [node name="EffectSprite" type="AnimatedSprite2D" parent="." unique_id=646608348]
 position = Vector2(-1, -42)
