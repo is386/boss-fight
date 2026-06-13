@@ -2,7 +2,7 @@
 
 This is a prototype for a 2D platformer Boss Fight created using the Godot Engine: https://is386.itch.io/boss-fight
 
-!()[./docs/screenshot.png]
+<img src="./docs/screenshot.png"/>
 
 ## Controls
 
