@@ -195,7 +195,6 @@ script = ExtResource("8_5vw27")
 boss = NodePath("../../Boss")
 
 [node name="ColorRect" type="ColorRect" parent="UI" unique_id=388582128]
-visible = false
 offset_left = -2.5
 offset_top = -2.0
 offset_right = 327.0
