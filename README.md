@@ -1,8 +1,8 @@
 # Boss Fight
 
-This is a prototype for a 2D platformer Boss Fight created using the Godot Engine: https://is386.itch.io/boss-fight
-
 <img src="./docs/screenshot.png"/>
+
+This is a prototype for a 2D platformer Boss Fight created using the Godot Engine: https://is386.itch.io/boss-fight
 
 ## Controls
 
