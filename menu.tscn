@@ -244,8 +244,10 @@ stream = ExtResource("3_kk3ma")
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1835504904]
 
 [node name="Background" type="ColorRect" parent="CanvasLayer" unique_id=1824372159]
-offset_right = 640.0
-offset_bottom = 360.0
+offset_left = -339.0
+offset_top = -297.0
+offset_right = 932.0
+offset_bottom = 672.0
 color = Color(0, 0, 0, 1)
 
 [node name="Title" type="Label" parent="CanvasLayer" unique_id=1344384401]
@@ -348,10 +350,10 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=1228802235]
-offset_left = -22.0
-offset_top = -16.0
-offset_right = 672.0
-offset_bottom = 382.0
+offset_left = -339.0
+offset_top = -297.0
+offset_right = 932.0
+offset_bottom = 672.0
 color = Color(0, 0, 0, 1)
 
 [connection signal="button_down" from="CanvasLayer/VBoxContainer/StartButton" to="." method="_on_start_button"]

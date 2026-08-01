@@ -12,9 +12,9 @@ config_version=5
 
 config/name="BossFight"
 run/main_scene="uid://bxcf8fptvrqkm"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/features=PackedStringArray("4.7", "Forward Plus")
 boot_splash/show_image=false
-config/icon="res://icon.svg"
+config/icon="uid://cr4arm0xtic50"
 
 [display]
 

@@ -8,11 +8,13 @@ extends State
 var player: Player
 var hitbox: HitboxComponent
 
+
 func _ready() -> void:
 	player = owner as Player
 
+
 func enter() -> void:
-	play_entry_animation()	
+	play_entry_animation()
 	player.is_attacking = true
 	player.sprite.animation_finished.connect(_on_attack_animation_finished)
 
@@ -22,18 +24,22 @@ func enter() -> void:
 		hitbox = left_hitbox
 	hitbox.enable()
 
+
 func exit() -> void:
 	hitbox.disable()
 	player.is_attacking = false
 	player.sprite.animation_finished.disconnect(_on_attack_animation_finished)
+
 
 func process(_delta: float) -> State:
 	if !player.is_attacking and player.is_on_floor():
 		return idle_attack_state
 	return null
 
+
 func _on_attack_animation_finished() -> void:
 	player.is_attacking = false
-	
+
+
 func play_entry_animation() -> void:
-	player.play_animation("air_attack")	
+	player.play_animation("air_attack")
